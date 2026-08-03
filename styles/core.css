@@ -2016,7 +2016,7 @@ img {
   }
 
   .concept-row {
-    grid-template-columns: 16px minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .concept-row-meta {
