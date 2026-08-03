@@ -56,8 +56,26 @@ typography:
     letterSpacing: "0.08em"
 rounded:
   none: "0"
+  chip: "10px"
+  control: "11px"
+  card: "16px"
   panel: "22px"
+  hero: "30px"
   pill: "999px"
+typeRamp:
+  - "10px"
+  - "11px"
+  - "12px"
+  - "13px"
+  - "14px"
+  - "15px"
+  - "17px"
+  - "18px"
+  - "19px"
+  - "23px"
+  - "clamp(29px, 4vw, 40px)"
+  - "clamp(44px, 6vw, 82px)"
+  - "clamp(55px, 8.8vw, 132px)"
 components:
   button-primary:
     backgroundColor: "{colors.brand}"
@@ -81,7 +99,7 @@ components:
 
 이 이름은 사용자가 확정한 것이 아니라, 사이트가 자체적으로 이미 선언한 기본 테마 이름을 그대로 옮긴 **잠정 표현**입니다. 정성적 확인 라운드(플레이북 Step 3)를 실행할 수 없었기 때문에, 아래 서술은 사용자 확정 전까지 관찰된 사실의 요약으로만 읽어야 합니다. 이 사이트는 자체적으로 두 개의 이름 있는 테마를 이미 선언하고 있습니다: 기본 테마 **Knowledge Atlas**(문서 지향, 차분한 정보 밀도)와 보조 테마로 보존된 **Pixel Portfolio**(원래 프로토타입의 하드엣지 네오브루탈리즘).
 
-관찰된 사실만 정리하면: 이 사이트는 이력서, 포트폴리오, 블로그, 그리고 1,250개 canonical concept를 담은 개념 위키를 하나의 정적 셸(`site-header`/`site-footer`/`page-shell`) 아래 묶습니다. 시각 정체성은 코드 레벨에서 완전히 분리된 두 테마 스타일시트로 스위칭되며, 같은 HTML 컴포넌트가 테마에 따라 정반대의 표면 언어(평평한 대비형 vs. 부드러운 앰비언트형)를 입습니다. `wiki-document.css`는 현행(v2) 페이지 셸이 조건 없이 항상 로드하는 세 번째 레이어이며(레거시 v1 위키 페이지 7건만 예외적으로 로드하지 않음), 그 안의 선택자가 전부 `.wiki-document-page`로 스코프되어 있어 실제로는 위키 문서 페이지에서만 발현합니다 — 항상 다크 표면인 `.lab` 실험 패널도 이 레이어에 속합니다.
+관찰된 사실만 정리하면: 이 사이트는 이력서, 포트폴리오, 블로그, 그리고 1,250개 canonical concept를 담은 개념 위키를 하나의 정적 셸(`site-header`/`site-footer`/`page-shell`) 아래 묶습니다. 시각 정체성은 코드 레벨에서 완전히 분리된 두 테마 스타일시트로 스위칭되며, 같은 HTML 컴포넌트가 테마에 따라 정반대의 표면 언어(평평한 대비형 vs. 부드러운 앰비언트형)를 입습니다. `wiki-document.css`는 모든 페이지 셸이 조건 없이 항상 로드하는 세 번째 레이어이며(과거 이를 로드하지 않던 레거시 v1 위키 페이지 7건은 2026-08-04 삭제됨), 그 안의 선택자가 전부 `.wiki-document-page`로 스코프되어 있어 실제로는 위키 문서 페이지에서만 발현합니다 — 항상 다크 표면인 `.lab` 실험 패널도 이 레이어에 속합니다.
 
 **Key Characteristics:**
 - 토큰 계약 기반 2-테마 시스템: Atlas(기본)와 Pixel(보조)이 동일 컴포넌트를 완전히 다른 표면 언어로 렌더링합니다.
@@ -110,7 +128,7 @@ components:
 
 ### Primary
 - **Brand Blue** (`#315eea`, Atlas light `--brand`): Atlas의 유일한 강조색. 액션 버튼, 링크 호버, 도메인 카드 호버 테두리, 진행률 바 그라디언트의 한쪽 끝에 쓰입니다.
-- **Brand Violet** (`#6d47e5`, Atlas light `--brand-2`): `--brand`와 짝을 이루는 2차 강조색. 그라디언트(`.site-brand span`, `.reading-progress`)와 히어로 배경의 방사형 광채, 그리고 위키 문서의 의미론적 용법 두 곳 — math 콜아웃(`.callout[data-kind="math"]`)의 좌측 강조와 개념 지도 bridge 노드(`.map-node.bridge`) — 에 쓰입니다.
+- **Brand Violet** (`#6d47e5`, Atlas light `--brand-2`): `--brand`와 짝을 이루는 2차 강조색. 그라디언트(`.site-brand span`, `.reading-progress`)와 히어로 배경의 방사형 광채, 그리고 위키 문서의 의미론적 용법 두 곳 — math 콜아웃(`.callout[data-kind="math"]`)의 테두리·타이틀 틴트와 개념 지도 bridge 노드(`.map-node.bridge`) — 에 쓰입니다.
 
 ### Secondary
 - **Pixel Purple** (`#a866ff`, Pixel 테마의 `--purple` = `--brand` 별칭): Pixel 테마가 활성화되면 Atlas의 파랑 대신 이 보라가 브랜드 색 역할을 맡습니다. 두 테마는 브랜드 색상 자체가 다릅니다.
@@ -146,11 +164,13 @@ components:
 ### Named Rules
 **The Mono-Label Rule.** 본문(가변폭 산세리프)과 라벨(모노스페이스)은 폰트 패밀리로 구분되어 절대 섞이지 않습니다. 새 라벨류 요소를 추가할 때 모노스페이스 스택을 임의로 생략하면 안 됩니다.
 
-**The Gradient Span Rule.** `core.css`가 `.page-heading h1 span, .landing-title span:last-child`에 공통으로 `background: linear-gradient(90deg, var(--purple) 5%, var(--blue) 50%, var(--mint) 95%)` + `background-clip:text`를 지정합니다. Atlas 테마는 이 중 `.landing-title span:last-child`만 골라 `color:var(--brand)` 단색으로 덮어씁니다 — `.page-heading h1 span`은 어느 테마 파일에서도 재정의되지 않습니다. 그 결과 **기본 테마(Atlas)에서도 포트폴리오·위키·블로그의 페이지 제목 둘째 줄 `<span>`은 core.css의 보라→파랑→민트 그라디언트 텍스트로 렌더링되고, 랜딩 페이지의 마지막 `<span>`만 단색 `--brand`로 예외 처리됩니다.** 새 페이지 제목을 만들 때 `<h1>텍스트<br><span>강조 텍스트</span></h1>` 패턴을 따르면 이 그라디언트가 자동 적용됩니다.
+**The Heading Emphasis Rule (2026-08-04 교체).** 페이지 제목의 강조 스팬(`.page-heading h1 span`, `.landing-title span:last-child`)은 **단색 `var(--brand)`** 로 강조합니다 — Atlas에선 파랑, Pixel에선 보라로 테마를 따라갑니다. 과거의 보라→파랑→민트 그라디언트 텍스트는 사용자 결정으로 제거되었습니다(강조는 색 하나와 굵기로 충분하고, 그라디언트 종단부의 대비 저하 문제가 있었음). 새 페이지 제목은 `<h1>텍스트<br><span>강조 텍스트</span></h1>` 패턴을 그대로 쓰면 단색 강조가 적용됩니다. 그라디언트는 로고 마크(`.site-brand span`)와 진행바(`.reading-progress`) 같은 **비텍스트 표면에만** 남아 있습니다.
 
 ## Layout
 
-명시적인 spacing 스케일 토큰은 없습니다 — 여백값은 컴포넌트별 리터럴(`7px, 9px, 12px, 13px, 17px, 18px, 21px, 22px, 26px, 30px, 34px...`)로 흩어져 있으며, 재사용 가능한 이름 있는 척도로 추출된 적이 없습니다. 새 컴포넌트를 만들 때 기존 값 중 가장 가까운 리터럴을 참고하되, 이를 하나의 통일된 스케일인 것처럼 문서화해서는 안 됩니다.
+**타입·반경 램프 (2026-08-04 확립, 점진 이주 정책).** frontmatter의 `typeRamp`와 `rounded`가 이제 정규 척도다: 관찰된 사용 빈도 클러스터에서 도출했고, **새 코드와 새 문서는 램프 값만 쓴다**. 기존 리터럴은 오류가 아니라 이주 대기 상태이며, 각 파일을 실질적으로 손대는 단위에서 가장 가까운 램프 값으로 옮긴다(디자인 훅의 잔여 지적이 이주 백로그 역할을 한다). 일괄 치환은 하지 않는다 — 시각 회귀를 검증 없이 만들기 때문이다.
+
+명시적인 spacing 스케일 토큰은 여전히 없습니다 — 여백값은 컴포넌트별 리터럴(`7px, 9px, 12px, 13px, 17px, 18px, 21px, 22px, 26px, 30px, 34px...`)로 흩어져 있으며, 새 컴포넌트를 만들 때 기존 값 중 가장 가까운 리터럴을 참고하되, 이를 하나의 통일된 스케일인 것처럼 문서화해서는 안 됩니다.
 
 **컨테이너 폭:** `--page: 1240px` (core.css)가 기준 폭이고 `.page-shell`이 `width:min(calc(100% - 40px), var(--page))`로 패딩을 얹습니다. 위키 문서는 별도로 `.wiki-document-page .shell{max-width:1380px}`를 씁니다. 블로그/카탈로그류 v2 콘텐츠는 `.prose-shell{width:min(calc(100% - 40px),900px)}`로 더 좁습니다.
 
@@ -179,7 +199,7 @@ components:
 
 **Atlas:** 둥근 형태가 기본값입니다. 패널·카드는 `22~32px`(히어로는 `30~32px`까지), 버튼/입력은 `10~11px`, 칩/뱃지/상태 표시는 `999px`(완전한 필 형태). 테두리는 얇고(1px) `--line` — 형태 구분은 주로 반경과 그림자가 담당하고 테두리는 옅은 경계 역할만 합니다.
 
-**공통(테마 무관):** 위키 문서의 좌측 강조 accent border(콜아웃, `.hero-summary`, `.callout[data-kind]`)는 `border-left-width`만 별도로 굵게(4~5px) 지정되는 패턴이 테마와 무관하게 반복됩니다.
+**공통(테마 무관):** 위키 문서의 의미 블록(`.callout[data-kind]`, `.hero-summary`)은 **kind 색으로 틴트된 1px 전체 테두리 + 옅은 배경 틴트 + kind 색 타이틀**로 구분합니다(2026-08-04, 굵은 좌측 보더에서 교체 — 사용자 결정). 의미→색 매핑(intuition=brand, math=brand-2, warning=orange, practice=green)은 교체 전과 동일하게 유지됩니다.
 
 ## Components
 
@@ -210,7 +230,7 @@ components:
 카탈로그·최근 문서 목록의 행 컴포넌트. 계약은 **2-자식 마크업**(내용 `span` + `.concept-row-meta`)에 2열 그리드(`minmax(0,1fr) auto`)이고, `820px` 이하에서는 메타를 숨기고 1열로 접습니다. 마커 열을 가정한 옛 3~4열 그리드는 내용 열이 마커 폭에 끼여 글자 단위 세로 붕괴를 일으켰던 실결함이므로 되살리면 안 됩니다.
 
 ### Callouts (`data-kind` 문서 콜아웃)
-`.callout[data-kind="intuition|math|warning|practice"]`가 좌측 강조 테두리 색으로 종류를 구분합니다: intuition → `--brand`, math → `--brand-2`, warning → `--orange`(배경도 옅은 orange 틴트), practice → `--green`(배경도 옅은 green 틴트). 이 좌측 5px 강조는 `[data-kind]` 선택자의 specificity가 `pixel.css`의 일반 `.callout{border-width:3px}` 규칙보다 높아 Pixel 테마에서도 유지됩니다(위·우·아래 3면만 Pixel이 3px 각진 테두리로 바꾸고, 좌측 5px 강조색은 두 테마 모두 보존됩니다).
+`.callout[data-kind="intuition|math|warning|practice"]`는 **kind 색 틴트의 1px 전체 테두리 + 6~7% 배경 틴트 + kind 색 `.callout-title`** 로 종류를 구분합니다(2026-08-04 좌측 굵은 보더에서 교체): intuition → `--brand`, math → `--brand-2`, warning → `--orange`, practice → `--green`. kind 규칙은 색상만 지정하므로 Pixel 테마의 3px 각진 테두리 굵기와도 그대로 합성됩니다. 같은 언어가 `.hero-summary`(brand 틴트 패널)에도 적용됩니다.
 
 ## Do's and Don'ts
 

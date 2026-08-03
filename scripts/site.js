@@ -175,7 +175,7 @@
       const section = heading.closest('section[id]');
       const link = document.createElement('a');
       link.href = `#${section.id}`;
-      link.textContent = heading.textContent.replace(/^\d+\.?\s*/, '');
+      link.textContent = section.dataset.tocLabel || heading.textContent.replace(/^\d+\.?\s*/, '');
       toc.append(link);
     });
     const links = [...toc.querySelectorAll('a')];

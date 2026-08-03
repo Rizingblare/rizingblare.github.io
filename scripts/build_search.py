@@ -69,11 +69,12 @@ def build_outputs(stamp: bool = False) -> dict[str, str]:
             if missing:
                 errors.append(f"{where}: missing keys {sorted(missing)}")
             cid = item.get("id")
-            if isinstance(cid, str) and cid:
-                if cid in seen_ids:
-                    errors.append(f"{where}: duplicate id {cid!r} (also in {seen_ids[cid]})")
-                else:
-                    seen_ids[cid] = src.name
+            if not isinstance(cid, str) or not cid:
+                errors.append(f"{where}: id must be a non-empty string, got {cid!r}")
+            elif cid in seen_ids:
+                errors.append(f"{where}: duplicate id {cid!r} (also in {seen_ids[cid]})")
+            else:
+                seen_ids[cid] = src.name
             for key in ("primaryDomain", "domain"):
                 if key in item and item[key] != src.stem:
                     errors.append(f"{where}: {key}={item[key]!r} != file domain {src.stem!r}")

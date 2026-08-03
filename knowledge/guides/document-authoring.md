@@ -36,9 +36,15 @@ concept-graph       선행→핵심→응용 개념 지도 (SVG, .concept-map)
 worked-examples     풀이 과정이 있는 예제 (.worked, details.solution)
 misconceptions      오개념 교정 (.callout[data-kind="warning"] 등)
 document-connections 관련 문서 링크 (.connection-grid)
-pending-concepts    아직 문서화되지 않은 참조 개념 (.glossary-grid + status)
+pending-concepts    아직 문서화되지 않은 참조 개념 (details로 접은 .glossary-grid)
 sources             출처 (.source-list)
+checkpoint          도착점 셀프체크 + 다음 문서 CTA (peak-end 마감)
 ```
+
+각 섹션에는 모바일 TOC용 짧은 라벨 `data-toc-label="…"`을 반드시 단다(없으면
+문장형 헤딩 전문이 TOC에 들어가 모바일 탐색이 붕괴한다). 마크업 원본은
+[section-patterns.html](section-patterns.html)에서 복사하고, 살아 있는 완전한
+예시는 PCM 문서를 참조한다.
 
 - 새 문서는 이 골격에서 시작한다. 섹션 id는 위 이름을 그대로 쓴다 — TOC는
   기술적으로 임의의 `section[id]`를 스크롤 위치 기반으로 처리하므로(site.js)
@@ -83,8 +89,11 @@ sources             출처 (.source-list)
   네 팔레트에서 자동으로 맞물리는 유일한 방법이다.
 - 도메인 4색 코딩(purple/mint/blue/yellow)은 Pixel 전용이다. Atlas 기준 설계에서는
   `--brand` 단일 강조를 쓴다.
-- 콜아웃은 `data-kind="intuition|math|warning|practice"` 4종. 좌측 강조 보더는
-  양 테마에 보존되는 기존 언어다.
+- 콜아웃은 `data-kind="intuition|math|warning|practice"` 4종 — kind 색 틴트의
+  1px 전체 테두리 + 배경 틴트 + kind 색 타이틀 (2026-08-04 확정 언어). 굵은
+  좌측 보더와 그라디언트 텍스트는 사용자 결정으로 퇴역했다 — 새 문서에 쓰지
+  않는다. 페이지 제목 강조는 단색 `var(--brand)` 스팬.
+- 새 값은 DESIGN.md frontmatter의 `typeRamp`·`rounded` 램프에서만 고른다.
 - 수식은 `.equation` 블록(전용 세리프)과 `<sub>/<sup>` 마크업. 외부 수식 라이브러리
   금지(정적 사이트, CSP·성능).
 

@@ -1,0 +1,87 @@
+<!-- knowledge/guides/section-patterns.html
+     위키 문서 섹션·컴포넌트 패턴 스니펫 (2026-08-04 확정 언어).
+     이 파일은 사이트 페이지가 아니라 작성 에이전트용 복사 원본이다.
+     살아 있는 완전한 예시는 wiki/signal-communications/digital-signal-processing/pcm/index.html.
+     규범은 knowledge/guides/document-authoring.md, 시각 계약은 DESIGN.md. -->
+
+<!-- ── 1. 섹션 뼈대: 모든 섹션은 이 3요소로 연다. data-toc-label은 모바일 TOC용 짧은 라벨(필수) -->
+<section id="SECTION-ID" data-toc-label="짧은라벨">
+  <div class="section-kicker">EN KICKER · SUBTOPIC</div>
+  <h2>단정문형 헤딩 — 명사구가 아니라 주장으로 쓴다</h2>
+  <p class="section-lead">이 섹션이 답하는 질문 하나를 예고하는 리드 문장.</p>
+</section>
+
+<!-- ── 2. 히어로 요약 (도착점 계약): brand 틴트 패널 -->
+<div class="hero-summary"><strong>이 문서의 도착점</strong><br>학습 후 할 수 있게 되는 것 2~3가지를 능력 동사로.</div>
+
+<!-- ── 3. 콜아웃 4종: kind 색 1px 테두리 + 배경 틴트 + kind 색 타이틀. 좌측 굵은 보더 금지 -->
+<div class="callout" data-kind="intuition"><span class="callout-title">직관</span>본문…</div>
+<div class="callout" data-kind="math"><span class="callout-title">수식으로</span>본문…</div>
+<div class="callout" data-kind="warning"><span class="callout-title">먼저 구분할 것</span>본문…</div>
+<div class="callout" data-kind="practice"><span class="callout-title">직접 해보기</span>본문…</div>
+
+<!-- ── 4. 수식 블록: 전용 세리프, sub/sup 마크업, 외부 수식 라이브러리 금지 -->
+<div class="equation">
+  X(f)=∫<sub>−∞</sub><sup>∞</sup>x(t)e<sup>−i2πft</sup>dt
+  <small>식이 왜 필요한지 한 문장.</small>
+</div>
+
+<!-- ── 5. 개념 지도: marker id는 반드시 map-arrow. 노드는 실마크업(이스케이프 금지),
+        클릭 노드는 concept-ref 앵커로 감싼다. min-width는 공유 CSS(720px)가 관리 -->
+<div class="concept-map-wrap">
+  <svg aria-labelledby="cmTitle cmDesc" class="concept-map" role="img" viewBox="0 0 1040 560">
+    <title id="cmTitle">…개념 그래프</title><desc id="cmDesc">…</desc>
+    <defs><marker id="map-arrow" markerWidth="6" markerHeight="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+    <text class="plot-muted" text-anchor="middle" x="110" y="32">열 라벨</text>
+    <path class="map-edge" d="M190 105H270"/>
+    <a class="concept-ref" data-concept-id="CONCEPT-ID" data-status="proposed" data-title="표제" data-body="툴팁 정의문." href="/wiki/domains/DOMAIN/?q=검색어">
+      <g class="map-node sub"><rect x="30" y="70" width="160" height="70"/><text x="110" y="112">라벨</text></g>
+    </a>
+  </svg>
+</div>
+
+<!-- ── 6. 인터랙티브 랩 셸: 항상 다크. 파형 색은 var(--wave-1..3/--wave-sum)를 style=로만.
+        SVG presentation attribute에 var() 금지. 스크립트는 문서 동거 labs.js -->
+<div class="lab" id="uniqueLab">
+  <div class="lab-head"><div><div class="lab-index">INTERACTIVE SVG 01</div><h3>랩이 답하는 질문</h3><p>조작 안내 한 문장.</p></div></div>
+  <div class="lab-controls"><div class="control"><label for="p1">파라미터 <output id="p1Out">1.0</output></label><input type="range" id="p1" min="0" max="10" step="0.1" value="1"></div></div>
+  <div class="svg-scroll"><svg viewBox="0 0 980 420" role="img" aria-label="…">
+    <path class="wave-path" id="wave1" style="stroke:var(--wave-1)" stroke-width="3"/>
+  </svg></div>
+  <p class="lab-caption">관찰 포인트와 실험의 한계를 함께 적는다.</p>
+</div>
+
+<!-- ── 7. worked 예제: 문제 → 접힌 풀이 → 정답 박스 → 대표 오답 -->
+<article class="worked">
+  <div class="worked-head"><span class="level-badge">기본</span><h3>예제 제목</h3></div>
+  <div class="problem"><span class="problem-label">문제</span> …</div>
+  <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+    <div class="solution-step"><span>1</span><p>…</p></div>
+    <div class="answer"><strong>정답:</strong> …</div>
+    <div class="error-note"><strong>대표 오답:</strong> 오답 하나와 그 사고 경로.</div>
+  </div></details>
+</article>
+
+<!-- ── 8. 예약 개념(pending): 반드시 details로 접는다 — 본문 무게를 희석하지 않도록 -->
+<section id="pending-concepts" data-toc-label="예약 개념">
+  <div class="section-kicker">Reference concepts · Catalog nodes</div>
+  <h2>참조되었지만 아직 독립 문서가 없는 개념</h2>
+  <p class="section-lead">동일 concept ID는 문서 발행 후 자동으로 실제 경로로 전환됩니다.</p>
+  <details class="pending-fold"><summary>예약된 개념 N개 펼쳐 보기</summary>
+    <div class="glossary-grid"><article class="glossary-card" id="concept-SLUG"><h3>표제</h3><p>정의문.</p><span class="status">proposed · SLUG</span></article></div>
+  </details>
+</section>
+
+<!-- ── 9. 엔딩(peak-end): 도착점 회수 + 다음 문서 CTA. stub 나열로 문서를 끝내지 않는다 -->
+<section id="checkpoint" data-toc-label="도착점 확인">
+  <div class="section-kicker">Checkpoint · Can you do this now?</div>
+  <h2>도착점으로 돌아갑니다</h2>
+  <p class="section-lead">처음 약속한 것들을 스스로 확인해 보세요.</p>
+  <div class="steps">
+    <div class="step"><strong>능력 1</strong><p>…를 설명할 수 있다. <a href="#SECTION-ID">해당 섹션</a>으로 복습.</p></div>
+  </div>
+  <div class="footer-nav" style="margin-top:26px"><a href="/wiki/…/NEXT-DOC/">다음 문서 — 제목: 이 문서와의 연결 이유 한 문장 →</a></div>
+</section>
+
+<!-- ── 10. 푸터 메타 -->
+<footer class="footer"><div>문서 ID <span class="inline-code">SLUG</span> · 버전 <span class="inline-code">1.0.0</span> · 갱신 YYYY-MM-DD</div></footer>
