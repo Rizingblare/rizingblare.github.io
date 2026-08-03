@@ -1,0 +1,170 @@
+# Structure declaration registry.
+#
+# This file owns which paths exist in the repository and what each is for. It is
+# the canonical answer to "where does this belong", and it is machine-read by
+# scripts/engine/registry.py.
+#
+# It ships already declaring the whole skeleton you were handed, so the first
+# validator run is green before you have changed anything. That is deliberate: a
+# starter registry that does not declare the starter makes the gate fail on the
+# very files the instructions told you to copy, and the newcomer reasonably
+# concludes the tooling is broken.
+#
+# THE RULE THAT MAKES IT WORTH HAVING: a tracked path that no declaration matches
+# is a FAILURE, not a warning. A registry that merely describes the tree drifts
+# from it within weeks and then misleads. A registry that refuses undeclared paths
+# cannot drift, because drift does not commit.
+#
+# Registration is not the same as intent, and the registry cannot tell the
+# difference. A path can be correctly declared and still carry the wrong
+# disposition, and every registry check will pass it. If you ship anything derived
+# from this repository, gate the distribution with a second check that never reads
+# this file.
+#
+# Changes here go through your decision procedure and a single writer.
+#
+# Selector grammar (frozen — anything else is a load error):
+#   docs/guide.md   exact file
+#   docs/           direct children of a directory
+#   docs/**         recursive subtree
+#   *               root-level files only
+#   <name>          a single path segment
+#   **/<name>/**    a named directory at any depth
+#
+# Specificity: exact beats longer literal prefix beats fewer wildcards. Two
+# declarations of equal specificity matching one path is an error, never a
+# coin flip — order must not decide attribution.
+
+schema_version: 1
+
+# ── Declarations ──────────────────────────────────────────────────────────────
+# role:        your vocabulary. Constrain it by injecting a schema (see
+#              scripts/engine/README.md); the permissive default accepts any
+#              string, which means a typo will not be caught at load time.
+# disposition: what a downstream distribution of YOUR repository does with the
+#              path — not what this kit did with it.
+#              ship = copy as-is · stub = replace with a fixed generic body ·
+#              seed = recreate the directory empty · skip = declared non-shipment.
+#              A declared "no" is not the same as a silent omission.
+
+declarations:
+  # ── Provenance content layers — none declared, on purpose ──────────────────
+  # The harness ships the operating contract and its tooling. It does NOT ship
+  # the three content layers (immutable inputs, derived material, generated
+  # outputs), and it does not pick their names. Which of them a project needs is
+  # a property of that project: one that captures nothing from outside has no
+  # inputs layer, and forcing an empty directory on it teaches agents to file by
+  # the name of an empty box instead of by provenance.
+  #
+  # Adoption is ONE declaration plus the directory, landed in the SAME commit —
+  # split them and there is a commit in which a path is attributed to a layer it
+  # does not live in while every check still passes. Uncomment and rename:
+  #
+  #   - select: knowledge/**
+  #     role: content-root
+  #     disposition: seed
+  #
+  # `seed` says a downstream distribution of YOUR repository recreates the
+  # directory empty rather than shipping its contents. Note that nothing here
+  # checks the reverse direction: a declaration whose paths do not exist is
+  # silent, not a failure, so a layer declared and never created leaves no trace.
+  # Declare it when you create it.
+
+  # ── The operating contract ─────────────────────────────────────────────────
+  # Rules, procedures, forms, and the evidence chain. This is the shippable part,
+  # with the private subtrees carved out below.
+  - select: schema/**
+    role: contract
+    disposition: ship
+    overrides:
+      # The evidence chain records private work: what was run, what the user
+      # said, what was decided. Declared non-shipment.
+      #
+      # An override must be strictly more specific than its parent AND contained
+      # within it, or the registry refuses to load. Each of these is one exact
+      # subtree of schema/**, so both halves hold.
+      - select: schema/observations/**
+        disposition: skip
+      - select: schema/feedbacks/**
+        disposition: skip
+      - select: schema/proposals/**
+        disposition: skip
+      - select: schema/evaluations/**
+        disposition: skip
+      - select: schema/decisions/**
+        disposition: skip
+      - select: schema/defers/**
+        disposition: skip
+
+      # Handoff surfaces carry in-flight session state and operating ledgers.
+      # Nothing here is meaningful to a recipient.
+      #
+      # The volatile half legitimately empties itself: a snapshot is DELETED once
+      # the successor takes over. Declare the subtree anyway — an undeclared or
+      # missing path is a failure, and without this row the routine deletion
+      # reads as one, which creates pressure to keep consumed snapshots forever
+      # and so destroys the mechanism.
+      - select: schema/handoff/**
+        disposition: skip
+
+      # Volatile multi-session workspaces. Deleted at close by design.
+      - select: schema/stages/**
+        disposition: skip
+
+  # ── Tooling ────────────────────────────────────────────────────────────────
+  - select: scripts/**
+    role: support
+    disposition: ship
+
+  # ── Root-level files ───────────────────────────────────────────────────────
+  # Enumerated exactly, never covered by a wildcard. A root wildcard silently
+  # adopts every new root file into whatever disposition it carries, so a scratch
+  # file dropped at the root ships with no signal at any point. The friction of
+  # editing this list when you add a root file is the mechanism working.
+  - select: AGENTS.md
+    role: contract
+    disposition: ship
+  - select: CLAUDE.md
+    role: contract
+    disposition: ship
+  - select: README.md
+    role: support
+    disposition: ship
+  - select: QUICKSTART.md
+    role: support
+    disposition: ship
+  - select: .gitignore
+    role: support
+    disposition: ship
+
+  # The build marker the kit assembler leaves in its output. Declared because a
+  # recipient who copies the kit and runs the first documented command would
+  # otherwise be met with an undeclared-path failure on a file they never made.
+  # Delete it once this tree is yours, and delete this row with it.
+  - select: .harness-kit-sentinel
+    role: support
+    disposition: skip
+
+# ── Exclusions ────────────────────────────────────────────────────────────────
+# Untracked by design. Listed so the undeclared-path check skips them knowingly
+# rather than by accident. Each carries a stated reason: an exclusion is a
+# decision, not a gap.
+#
+# READ THIS BEFORE RELYING ON ONE. An exclusion decides a path only when no MORE
+# SPECIFIC declaration claims it, because both are resolved by the same
+# specificity ordering. A scattered pattern therefore loses to a broad literal
+# one: `**/__pycache__/**` is less specific than `scripts/**`, so bytecode
+# written beside a script resolves to that declaration's disposition and not to
+# the exclusion below. Measured with the loader, not assumed.
+#
+# So the exclusions here record intent, and `.gitignore` is what enforces it —
+# an ignored path leaves the validator's universe altogether and is never asked
+# which declaration owns it. Keep the two lists in step.
+
+exclusions:
+  - select: dist/**
+    reason: "generated distribution output, not tracked"
+  - select: node_modules/**
+    reason: "tool-local dependencies"
+  - select: "**/__pycache__/**"
+    reason: "build residue"
