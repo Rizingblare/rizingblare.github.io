@@ -109,7 +109,7 @@ body {
   min-height:38px; color:var(--ink); background:var(--paper); border:1px solid var(--line);
   border-radius:11px; box-shadow:none; font:750 11px/1.2 inherit; cursor:pointer;
 }
-.theme-picker select { max-width:132px; padding:0 28px 0 10px; }
+.theme-picker select { max-width:168px; padding:0 28px 0 10px; }
 .color-mode-button { min-width:40px; padding:0 11px; }
 .theme-picker select:hover,.color-mode-button:hover { border-color:var(--line-strong); transform:translateY(-1px); }
 .landing-theme-tools { position:absolute; top:clamp(20px,3vw,38px); right:clamp(20px,3vw,44px); z-index:8; }
@@ -223,7 +223,7 @@ body {
   .landing-theme-tools { top:14px; right:14px; }
   .landing-topline { padding-right:0; margin-top:54px; }
   .landing-hero { padding:30px 22px; border-radius:24px; text-align:left; }
-  .theme-picker select { width:98px; }
+  .theme-picker select { width:148px; }
 }
 @media print {
   body { background:#fff!important; }
