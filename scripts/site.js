@@ -153,6 +153,13 @@
     }
   });
 
+  const stickyHeader = document.querySelector('.site-header');
+  const setHeaderOffset = () => {
+    if (stickyHeader) document.documentElement.style.setProperty('--header-offset', `${stickyHeader.offsetHeight}px`);
+  };
+  setHeaderOffset();
+  window.addEventListener('resize', setHeaderOffset);
+
   const progress = document.querySelector('.reading-progress');
   const updateProgress = () => {
     if (!progress) return;
@@ -166,7 +173,7 @@
   const article = document.querySelector('.wiki-document-page .article');
   const toc = document.querySelector('.wiki-document-page .toc');
   if (article && toc) {
-    const headings = [...article.querySelectorAll('.article-body > section[id] > h2, .article-body > section[id] > .section-heading > h2')];
+    const headings = [...article.querySelectorAll(':scope > section[id] > h2, :scope > section[id] > .section-heading > h2, .article-body > section[id] > h2, .article-body > section[id] > .section-heading > h2')];
     const title = document.createElement('div');
     title.className = 'toc-title';
     title.textContent = '이 문서에서';
@@ -191,15 +198,18 @@
   }
 
   const tooltip = document.querySelector('.concept-tooltip');
+  if (tooltip && !tooltip.id) tooltip.id = 'concept-tooltip';
   let activeRef = null;
   const hideTooltip = () => {
     if (!tooltip) return;
     tooltip.dataset.open = 'false';
+    if (activeRef) activeRef.removeAttribute('aria-describedby');
     activeRef = null;
   };
   const showTooltip = (ref) => {
     if (!tooltip) return;
     activeRef = ref;
+    ref.setAttribute('aria-describedby', tooltip.id);
     tooltip.querySelector('strong').textContent = ref.dataset.title || ref.textContent.trim();
     tooltip.querySelector('span').textContent = ref.dataset.body || '';
     tooltip.querySelector('em').textContent = ref.dataset.status === 'published'
@@ -223,6 +233,9 @@
   });
   window.addEventListener('scroll', () => activeRef && showTooltip(activeRef), { passive: true });
   window.addEventListener('resize', () => activeRef && showTooltip(activeRef));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && activeRef) hideTooltip();
+  });
 
   document.querySelector('[data-action="print"]')?.addEventListener('click', () => window.print());
   document.querySelectorAll('.code-block').forEach((block) => {

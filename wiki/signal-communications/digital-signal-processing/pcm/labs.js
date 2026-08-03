@@ -63,8 +63,8 @@
       ? `fₛ=${fs} Hz > 2f=${2*f} Hz · 조건 충족 · 기본 대역 관찰값 ${alias.toFixed(1)} Hz`
       : `fₛ=${fs} Hz ≤ 2f=${2*f} Hz · 에일리어싱 가능 · ${f} Hz가 ${alias.toFixed(1)} Hz처럼 보임`;
     const badge=el('g');
-    badge.append(el('rect',{x:655,y:34,width:220,height:38,rx:10,fill:safe?'#123c32':'#4a2428',stroke:safe?'#3aa889':'#cf6674'}));
-    badge.append(el('text',{x:765,y:59,'text-anchor':'middle',fill:'#f5f7fb','font-size':13,'font-weight':800},safe?'표본화 조건 충족':'에일리어싱 영역'));
+    badge.append(el('rect',{x:24,y:34,width:220,height:38,rx:10,fill:safe?'#123c32':'#4a2428',stroke:safe?'#3aa889':'#cf6674'}));
+    badge.append(el('text',{x:134,y:59,'text-anchor':'middle',fill:'#f5f7fb','font-size':13,'font-weight':800},safe?'표본화 조건 충족':'에일리어싱 영역'));
     svg.append(badge);
   }
 

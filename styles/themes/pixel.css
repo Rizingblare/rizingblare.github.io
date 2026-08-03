@@ -52,6 +52,7 @@ html[data-color-mode="dark"] {
   --shadow: 6px 6px 0 #060507;
   --shadow-small: 3px 3px 0 #060507;
 }
+.wiki-document-page{--map-core:#6d3fc0}
 .theme-tools { display:flex; align-items:center; gap:7px; }
 .theme-picker { display:flex; align-items:center; gap:6px; }
 .theme-picker select,

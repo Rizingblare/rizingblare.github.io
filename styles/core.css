@@ -38,11 +38,7 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--ink);
-  background:
-    linear-gradient(rgba(30, 27, 38, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30, 27, 38, 0.035) 1px, transparent 1px),
-    var(--paper);
-  background-size: 32px 32px;
+  background: var(--paper);
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.65;
@@ -576,7 +572,7 @@ img {
   display: grid;
   gap: 2px;
   padding: 26px 30px;
-  border-right: 3px solid var(--ink);
+  border-right: 1px solid var(--line-soft);
 }
 
 .resume-metrics div:last-child {
@@ -1053,7 +1049,7 @@ img {
   color: var(--paper-strong);
   background: #34303c;
   border: 0;
-  border-right: 3px solid var(--ink);
+  border-right: 1px solid var(--line-soft);
   cursor: zoom-in;
 }
 
