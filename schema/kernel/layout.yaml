@@ -115,6 +115,46 @@ declarations:
   - select: scripts/**
     role: support
     disposition: ship
+    overrides:
+      # Browser runtime shipped with the site, not repository tooling.
+      - select: scripts/site.js
+        role: site
+      - select: scripts/v2.js
+        role: site
+      - select: scripts/portfolio.js
+        role: site
+      - select: scripts/wiki.js
+        role: site
+
+  # ── Published website (GitHub Pages) ───────────────────────────────────────
+  # The deployed personal site: landing, resume, portfolio, blog, concept wiki,
+  # search index, styles, and assets. Agent-maintained presentation output;
+  # provenance-layer sources for wiki content are adopted separately when the
+  # authoring pipeline lands.
+  - select: 404-page/**
+    role: site
+    disposition: ship
+  - select: assets/**
+    role: site
+    disposition: ship
+  - select: blog/**
+    role: site
+    disposition: ship
+  - select: portfolio/**
+    role: site
+    disposition: ship
+  - select: resume/**
+    role: site
+    disposition: ship
+  - select: search/**
+    role: site
+    disposition: ship
+  - select: styles/**
+    role: site
+    disposition: ship
+  - select: wiki/**
+    role: site
+    disposition: ship
 
   # ── Root-level files ───────────────────────────────────────────────────────
   # Enumerated exactly, never covered by a wildcard. A root wildcard silently
@@ -123,6 +163,33 @@ declarations:
   # editing this list when you add a root file is the mechanism working.
   - select: AGENTS.md
     role: contract
+    disposition: ship
+  - select: PRODUCT.md
+    role: contract
+    disposition: ship
+  - select: index.html
+    role: site
+    disposition: ship
+  - select: 404.html
+    role: site
+    disposition: ship
+  - select: robots.txt
+    role: site
+    disposition: ship
+  - select: sitemap.xml
+    role: site
+    disposition: ship
+  - select: feed.xml
+    role: site
+    disposition: ship
+  - select: build-report.json
+    role: site
+    disposition: ship
+  - select: .nojekyll
+    role: site
+    disposition: ship
+  - select: LICENSE
+    role: support
     disposition: ship
   - select: CLAUDE.md
     role: contract
@@ -168,3 +235,13 @@ exclusions:
     reason: "tool-local dependencies"
   - select: "**/__pycache__/**"
     reason: "build residue"
+  - select: .claude/**
+    reason: "agent-harness workspace, session-local"
+  - select: .mcp.json
+    reason: "agent-harness MCP configuration, machine-local"
+  - select: .impeccable/**
+    reason: "design-tool session state"
+  - select: .orca/**
+    reason: "orchestration-tool session state"
+  - select: .playwright-mcp/**
+    reason: "browser-session artifacts"

@@ -1,0 +1,14 @@
+# OS metadata
+.DS_Store
+
+# Build residue
+__pycache__/
+dist/
+node_modules/
+
+# Tool-local workspaces (agent harness, session artifacts)
+.claude/
+.mcp.json
+.impeccable/
+.orca/
+.playwright-mcp/
