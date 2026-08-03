@@ -126,6 +126,14 @@ declarations:
       - select: scripts/wiki.js
         role: site
 
+  # ── Derived content layer (adopted 2026-08-03, charter: knowledge/README.md)
+  # Editable wiki sources: canonical catalog per domain plus authoring guides.
+  # search/wiki shards and manifest counts are BUILD OUTPUTS of this layer
+  # (scripts/build_search.py; freshness enforced by the catalog-sync plugin).
+  - select: knowledge/**
+    role: content
+    disposition: ship
+
   # ── Published website (GitHub Pages) ───────────────────────────────────────
   # The deployed personal site: landing, resume, portfolio, blog, concept wiki,
   # search index, styles, and assets. Agent-maintained presentation output;
@@ -165,6 +173,9 @@ declarations:
     role: contract
     disposition: ship
   - select: PRODUCT.md
+    role: contract
+    disposition: ship
+  - select: DESIGN.md
     role: contract
     disposition: ship
   - select: index.html

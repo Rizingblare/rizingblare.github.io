@@ -22,4 +22,5 @@ set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PYTHONPATH="$ROOT" python3 "$ROOT/scripts/engine/validate.py" \
   --root "$ROOT" --registry "$ROOT/schema/kernel/layout.yaml" \
+  --plugin scripts.catalog_sync_check:PLUGIN \
   --warn worktree-clean "$@"
