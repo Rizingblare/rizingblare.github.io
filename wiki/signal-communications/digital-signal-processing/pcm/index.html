@@ -1,0 +1,234 @@
+<!doctype html><html lang="ko-KR" data-theme="atlas" data-color-preference="system" data-color-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eef2f7"><meta name="description" content="표본화, 나이퀴스트 조건, 에일리어싱, 양자화, 비트 깊이, 부호화, 비트 전송률, 컴팬딩과 복원까지 설명하는 PCM 완성 문서"><meta property="og:title" content="PCM · 김정도 — Developer &amp; Knowledge Builder"><meta property="og:description" content="표본화, 나이퀴스트 조건, 에일리어싱, 양자화, 비트 깊이, 부호화, 비트 전송률, 컴팬딩과 복원까지 설명하는 PCM 완성 문서"><meta property="og:type" content="website"><meta property="og:url" content="https://YOUR_USERNAME.github.io/wiki/signal-communications/digital-signal-processing/pcm/"><link rel="canonical" href="https://YOUR_USERNAME.github.io/wiki/signal-communications/digital-signal-processing/pcm/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><script>window.__SITE_THEME_CONFIG__={"defaultTheme":"atlas","defaultColorMode":"system","themes":["atlas","pixel"],"storageKeys":{"theme":"jeongdo-site-theme","colorMode":"jeongdo-site-color-mode"},"themeDetails":{"atlas":{"label":"Knowledge Atlas","themeColor":{"light":"#eef2f7","dark":"#0d1118"}},"pixel":{"label":"Pixel Portfolio","themeColor":{"light":"#f7f4ef","dark":"#15121b"}}}};(()=>{const c=window.__SITE_THEME_CONFIG__,r=document.documentElement;let t=c.defaultTheme,m=c.defaultColorMode;try{const st=localStorage.getItem(c.storageKeys.theme),sm=localStorage.getItem(c.storageKeys.colorMode);if(c.themes.includes(st))t=st;if(['system','light','dark'].includes(sm))m=sm}catch{}r.dataset.theme=t;r.dataset.colorPreference=m;r.dataset.colorMode=m==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):m;})();</script><link rel="stylesheet" href="/styles/core.css" data-shared-stylesheet><link rel="stylesheet" href="/styles/wiki-document.css" data-shared-stylesheet><link rel="stylesheet" href="/styles/themes/atlas.css" data-theme-stylesheet="atlas">
+<link rel="stylesheet" href="/styles/themes/pixel.css" data-theme-stylesheet="pixel" disabled><script>document.querySelectorAll('link[data-theme-stylesheet]').forEach(l=>{l.disabled=l.dataset.themeStylesheet!==document.documentElement.dataset.theme});</script><title>PCM · 김정도 — Developer &amp; Knowledge Builder</title></head><body class="wiki-document-page"><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><header class="site-header" data-site-header><a class="site-brand" href="/"><span aria-hidden="true">▦</span> JD.ATLAS</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav">MENU</button><nav id="global-nav" class="global-nav" aria-label="주요 메뉴"><a href="/">HOME</a><a href="/resume/">RESUME</a><a href="/portfolio/">PORTFOLIO</a><a href="/blog/">BLOG</a><a href="/wiki/" aria-current="page">WIKI</a><a href="/search/">SEARCH</a></nav><div class="theme-tools header-theme-tools" data-theme-tools><label class="theme-picker"><span class="visually-hidden">디자인 테마 선택</span><select data-theme-picker aria-label="디자인 테마 선택"><option value="atlas">KNOWLEDGE ATLAS</option><option value="pixel">PIXEL PORTFOLIO</option></select></label><button class="color-mode-button" type="button" data-color-mode-toggle aria-label="색상 모드 전환">◐</button></div></header><div class="reading-progress" aria-hidden="true"></div><div class="shell"><aside class="toc" aria-label="문서 목차"></aside><main id="main-content" class="article" data-document-id="pcm" data-content-version="1.0.0"><nav class="breadcrumbs" aria-label="현재 문서 위치"><a href="/wiki/">위키</a><span aria-hidden="true">›</span><a href="/wiki/domains/signal-processing/">신호처리</a><span aria-hidden="true">›</span><b>PCM</b></nav><header class="hero"><div class="eyebrow">신호처리 · signal-chain</div><h1>PCM</h1><p class="hero-subtitle">연속적인 소리와 파형을 표본·숫자·비트열로 바꾸는 전체 과정</p><div class="hero-meta"><span class="chip">난이도 · 기초 → 중급</span><span class="chip">예상 학습 · 45분</span><span class="chip">문서 버전 · 1.0.0</span><span class="chip">문서 ID · pcm</span></div><div class="hero-summary"><strong>이 문서의 도착점</strong><br>표본화·양자화·부호화의 역할을 구분하고, 표본화 조건·양자화 레벨·PCM 비트 전송률과 저장 용량을 계산하며, 품질 저하의 원인을 설명할 수 있습니다.</div></header><div class="domain-panel"><section class="domain-card" style="margin:0"><h2>도메인 분류</h2><div class="domain-tree"><b>신호처리</b><span aria-hidden="true">›</span><b>digital-signal-processing</b><span aria-hidden="true">›</span><b>PCM</b></div><p>문서 프로필 · <span class="inline-code">signal-chain</span></p></section><section class="relation-card" style="margin:0"><h2>직접 연결</h2><div class="relation-list"><a class="relation-link" href="/wiki/signal-communications/signal-analysis/fourier-transform/">푸리에 변환 <span aria-hidden="true">→</span></a></div></section></div><div class="article-body modular-article"><section id="overview">
+  <div class="section-kicker">Start here · One sentence model</div>
+  <h2>PCM은 파형을 “언제, 얼마나 크게, 몇 번으로 적을 것인가”로 바꾸는 규칙입니다</h2>
+  <p class="section-lead"><a class="concept-ref" data-concept-id="pcm" data-status="published" data-title="PCM" data-body="아날로그 신호가 표본화·양자화·부호화를 거쳐 디지털 비트열이 되고 다시 복원되는 과정을 수식과 SVG 실험으로 연결합니다." href="/wiki/signal-communications/digital-signal-processing/pcm/">PCM</a>(Pulse Code Modulation)은 <a class="concept-ref" data-concept-id="analog-signal" data-status="proposed" data-title="아날로그 신호" data-body="시간과 크기가 연속적으로 변할 수 있는 신호입니다." href="/wiki/domains/signal-processing/?q=%EC%95%84%EB%82%A0%EB%A1%9C%EA%B7%B8%20%EC%8B%A0%ED%98%B8">아날로그 신호</a>를 일정한 시간마다 측정하고, 측정값을 유한한 숫자 중 하나로 고른 뒤, 그 숫자를 비트 패턴으로 기록하는 방식입니다.</p>
+  <div class="callout" data-kind="intuition"><strong class="callout-title">사진에 비유하면</strong>표본화는 “몇 개의 픽셀로 촬영할 것인가”, 양자화는 “각 픽셀이 몇 단계의 밝기를 가질 것인가”, 부호화는 “선택한 밝기 번호를 0과 1로 어떻게 적을 것인가”에 가깝습니다. 세 단계는 서로 다른 질문에 답합니다.</div>
+  <div class="grid-3">
+    <article class="mini-card"><span class="tag">시간축</span><strong><a class="concept-ref" data-concept-id="sampling" data-status="proposed" data-title="표본화(sampling)" data-body="연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다." href="/wiki/domains/signal-processing/?q=%ED%91%9C%EB%B3%B8%ED%99%94(sampling)">표본화</a></strong><p>연속 파형에서 언제 값을 읽을지 정합니다. 핵심 변수는 초당 측정 횟수인 <a class="concept-ref" data-concept-id="sampling-frequency" data-status="proposed" data-title="표본화 주파수" data-body="1초에 신호 값을 몇 번 측정하는지 나타내는 값이며 단위는 Hz입니다." href="/wiki/domains/signal-processing/?q=%ED%91%9C%EB%B3%B8%ED%99%94%20%EC%A3%BC%ED%8C%8C%EC%88%98">표본화 주파수</a>입니다.</p></article>
+    <article class="mini-card"><span class="tag">크기축</span><strong><a class="concept-ref" data-concept-id="quantization" data-status="proposed" data-title="양자화" data-body="연속적인 표본 크기를 유한한 대표 레벨 중 하나로 반올림하는 과정입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94">양자화</a></strong><p>측정한 연속 크기를 어느 대표 레벨에 붙일지 정합니다. 핵심 변수는 <a class="concept-ref" data-concept-id="bit-depth" data-status="proposed" data-title="비트 깊이" data-body="표본 하나를 표현하는 비트 수입니다. N비트는 보통 2ᴺ개의 코드 또는 레벨을 표현합니다." href="/wiki/domains/signal-processing/?q=%EB%B9%84%ED%8A%B8%20%EA%B9%8A%EC%9D%B4">비트 깊이</a>입니다.</p></article>
+    <article class="mini-card"><span class="tag">기호축</span><strong><a class="concept-ref" data-concept-id="encoding" data-status="proposed" data-title="부호화" data-body="양자화된 레벨 번호를 정해진 비트 패턴으로 대응시키는 과정입니다." href="/wiki/domains/signal-processing/?q=%EB%B6%80%ED%98%B8%ED%99%94">부호화</a></strong><p>선택된 레벨 번호를 비트열로 대응시킵니다. 그 결과 저장·전송 가능한 <a class="concept-ref" data-concept-id="digital-signal" data-status="proposed" data-title="디지털 신호" data-body="시간이나 크기를 이산적인 값으로 표현한 신호입니다." href="/wiki/domains/signal-processing/?q=%EB%94%94%EC%A7%80%ED%84%B8%20%EC%8B%A0%ED%98%B8">디지털 표현</a>이 됩니다.</p></article>
+  </div>
+  <p>중요한 점은 PCM이 “아날로그를 디지털로 바꾸는 버튼 하나”가 아니라는 사실입니다. 표본화가 부족하면 시간축 정보가 뒤섞이고, 비트 깊이가 낮으면 크기축 정보가 거칠어집니다. 따라서 PCM 품질은 <strong>표본화 주파수와 비트 깊이가 서로 다른 종류의 오차를 어떻게 제한하는가</strong>로 이해해야 합니다.</p>
+</section>
+
+<section id="concept-graph">
+  <div class="section-kicker">Concept graph · Dependency first</div>
+  <h2>PCM을 이해하는 데 필요한 개념 그래프</h2>
+  <p class="section-lead">아래 그래프에서 왼쪽은 입력 신호와 선행 조건, 가운데는 PCM의 세 핵심 연산, 오른쪽은 결과와 품질·용량의 확장 개념입니다.</p>
+  <div class="concept-map-wrap">
+    <svg class="concept-map" viewBox="0 0 1040 610" role="img" aria-labelledby="pcmMapTitle pcmMapDesc">
+      <title id="pcmMapTitle">PCM 개념 의존 관계</title><desc id="pcmMapDesc">아날로그 신호와 주파수 대역이 안티에일리어싱 필터와 표본화를 거쳐 양자화, 부호화, 비트열과 복원으로 이어지는 그래프</desc>
+      <defs><marker id="map-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+      <path class="map-edge" d="M180 105C260 105 260 160 340 175"/><path class="map-edge" d="M180 215C260 215 270 205 340 195"/><path class="map-edge" d="M180 325C270 325 285 235 350 215"/>
+      <path class="map-edge core" d="M490 190H605"/><path class="map-edge core" d="M745 190H850"/><path class="map-edge" d="M920 245V330"/><path class="map-edge" d="M675 245V330"/><path class="map-edge" d="M420 245V330"/>
+      <path class="map-edge" d="M490 385C590 385 690 430 805 450"/><path class="map-edge" d="M745 385C780 385 805 420 835 445"/><path class="map-edge" d="M920 385V445"/>
+      <g class="map-node pre"><rect x="30" y="70" width="155" height="70"/><text x="107" y="101"><tspan x="107">아날로그 신호</tspan><tspan x="107" dy="22">연속 시간·크기</tspan></text></g>
+      <g class="map-node pre"><rect x="30" y="180" width="155" height="70"/><text x="107" y="211"><tspan x="107">주파수 대역</tspan><tspan x="107" dy="22">최고 주파수</tspan></text></g>
+      <g class="map-node pre"><rect x="30" y="290" width="155" height="70"/><text x="107" y="321"><tspan x="107">안티에일리어싱</tspan><tspan x="107" dy="22">고주파 제거</tspan></text></g>
+      <g class="map-node core"><rect x="340" y="145" width="155" height="100"/><text x="417" y="181"><tspan x="417">표본화</tspan><tspan x="417" dy="23">시간을 이산화</tspan><tspan x="417" dy="20">x[n]=x(nTₛ)</tspan></text></g>
+      <g class="map-node core"><rect x="605" y="145" width="140" height="100"/><text x="675" y="181"><tspan x="675">양자화</tspan><tspan x="675" dy="23">크기를 이산화</tspan><tspan x="675" dy="20">Q(x[n])</tspan></text></g>
+      <g class="map-node core"><rect x="850" y="145" width="145" height="100"/><text x="922" y="181"><tspan x="922">부호화</tspan><tspan x="922" dy="23">번호 → 비트</tspan><tspan x="922" dy="20">010…</tspan></text></g>
+      <g class="map-node bridge"><rect x="340" y="330" width="155" height="90"/><text x="417" y="365"><tspan x="417">나이퀴스트 조건</tspan><tspan x="417" dy="22">에일리어싱 경계</tspan></text></g>
+      <g class="map-node bridge"><rect x="600" y="330" width="150" height="90"/><text x="675" y="365"><tspan x="675">비트 깊이</tspan><tspan x="675" dy="22">레벨·오차·SNR</tspan></text></g>
+      <g class="map-node bridge"><rect x="845" y="330" width="155" height="90"/><text x="922" y="365"><tspan x="922">비트 전송률</tspan><tspan x="922" dy="22">fₛ×N×채널</tspan></text></g>
+      <g class="map-node out"><rect x="335" y="445" width="170" height="85"/><text x="420" y="479"><tspan x="420">복원</tspan><tspan x="420" dy="22">DAC + 저역통과</tspan></text></g>
+      <g class="map-node out"><rect x="610" y="445" width="160" height="85"/><text x="690" y="479"><tspan x="690">컴팬딩</tspan><tspan x="690" dy="22">작은 신호 보호</tspan></text></g>
+      <g class="map-node out"><rect x="820" y="445" width="185" height="85"/><text x="912" y="479"><tspan x="912">저장·전송 비용</tspan><tspan x="912" dy="22">용량·대역폭</tspan></text></g>
+    </svg>
+  </div>
+
+  <figure class="document-visual semantic-media" data-media-id="pcm-flow-overview"><img src="/wiki/signal-communications/digital-signal-processing/pcm/assets/media/pcm-flow-overview/universal.c8a7bcff21c1.svg" alt="아날로그 신호가 표본화, 양자화, 부호화를 거쳐 PCM 비트열이 되는 흐름" data-media-responsive data-media-variants="%5B%7B%22id%22%3A%22universal%22%2C%22src%22%3A%22%2Fwiki%2Fsignal-communications%2Fdigital-signal-processing%2Fpcm%2Fassets%2Fmedia%2Fpcm-flow-overview%2Funiversal.c8a7bcff21c1.svg%22%2C%22themeIds%22%3A%5B%22*%22%5D%2C%22colorModes%22%3A%5B%22*%22%5D%7D%5D"><figcaption><strong>PCM 처리 파이프라인</strong><span class="media-purpose">PCM 처리 파이프라인</span></figcaption></figure>
+</section>
+
+<section id="signal-chain">
+  <div class="section-kicker">End-to-end chain</div>
+  <h2>아날로그 입력에서 재생 파형까지: 단계별로 무엇이 사라지고 무엇이 남는가</h2>
+  <div class="steps">
+    <article class="step"><strong>입력 대역을 제한합니다.</strong><p><a class="concept-ref" data-concept-id="anti-aliasing-filter" data-status="proposed" data-title="안티에일리어싱 필터" data-body="표본화 전에 나이퀴스트 주파수보다 높은 성분을 줄여 에일리어싱을 방지하는 아날로그 저역통과 필터입니다." href="/wiki/domains/signal-processing/?q=%EC%95%88%ED%8B%B0%EC%97%90%EC%9D%BC%EB%A6%AC%EC%96%B4%EC%8B%B1%20%ED%95%84%ED%84%B0">안티에일리어싱 필터</a>가 표본화로 구별할 수 없는 높은 주파수 성분을 먼저 줄입니다. 표본화 후에는 이미 겹친 성분을 완전히 분리하기 어렵기 때문에 앞단 필터가 중요합니다.</p></article>
+    <article class="step"><strong>일정한 시간 간격으로 값을 읽습니다.</strong><p><a class="concept-ref" data-concept-id="sampling" data-status="proposed" data-title="표본화(sampling)" data-body="연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다." href="/wiki/domains/signal-processing/?q=%ED%91%9C%EB%B3%B8%ED%99%94(sampling)">표본화</a>는 시간축을 이산화합니다. 이 단계의 출력은 값 자체가 아직 연속적일 수 있는 표본 수열입니다.</p></article>
+    <article class="step"><strong>각 표본을 가장 가까운 허용 레벨로 바꿉니다.</strong><p><a class="concept-ref" data-concept-id="quantization" data-status="proposed" data-title="양자화" data-body="연속적인 표본 크기를 유한한 대표 레벨 중 하나로 반올림하는 과정입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94">양자화</a>는 크기축을 이산화합니다. 이때 원래 값과 선택된 레벨 사이에 <a class="concept-ref" data-concept-id="quantization-error" data-status="proposed" data-title="양자화 오차" data-body="원래 표본 값과 선택된 양자화 레벨 사이의 차이입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94%20%EC%98%A4%EC%B0%A8">양자화 오차</a>가 생깁니다.</p></article>
+    <article class="step"><strong>레벨 번호를 비트 패턴으로 적습니다.</strong><p><a class="concept-ref" data-concept-id="encoding" data-status="proposed" data-title="부호화" data-body="양자화된 레벨 번호를 정해진 비트 패턴으로 대응시키는 과정입니다." href="/wiki/domains/signal-processing/?q=%EB%B6%80%ED%98%B8%ED%99%94">부호화</a>는 예를 들어 레벨 5를 <span class="inline-code">101</span>처럼 기록합니다. 이 단계는 이미 결정된 레벨을 기호로 나타내며, 양자화 품질 자체를 높이지는 않습니다.</p></article>
+    <article class="step"><strong>수신·재생 시 역순으로 해석합니다.</strong><p>비트열을 레벨 값으로 되돌리고, DAC가 시간축에 값을 배치한 뒤 <a class="concept-ref" data-concept-id="reconstruction-filter" data-status="proposed" data-title="복원 필터" data-body="이산 표본 또는 DAC 계단 출력을 매끄러운 연속 신호로 복원하기 위한 저역통과 필터입니다." href="/wiki/domains/signal-processing/?q=%EB%B3%B5%EC%9B%90%20%ED%95%84%ED%84%B0">복원 필터</a>가 고주파 이미지를 줄여 매끄러운 파형을 만듭니다.</p></article>
+  </div>
+  <div class="callout" data-kind="warning"><strong class="callout-title">용어 구분</strong>“표본화된 신호”는 시간만 이산적일 수 있고, “양자화된 신호”는 크기까지 이산적입니다. 비트열은 이 양자화 값을 코드로 표현한 결과입니다. 세 표현을 모두 같은 뜻으로 사용하면 PCM의 오류 원인을 구분하기 어렵습니다.</div>
+</section>
+
+<section id="sampling">
+  <div class="section-kicker">Time axis · Sampling</div>
+  <h2>표본화는 점을 적게 찍는 문제가 아니라 서로 다른 주파수를 구별하는 문제입니다</h2>
+  <p>연속 신호 <span class="inline-code">x(t)</span>를 표본 주기 <span class="inline-code">Tₛ</span>마다 읽으면 이산 수열은 다음처럼 적습니다.</p>
+  <div class="equation">x[n] = x(nTₛ), &nbsp; fₛ = 1/Tₛ<small>n은 정수 표본 번호이고, fₛ는 1초당 표본 수인 표본화 주파수입니다.</small></div>
+  <p><a class="concept-ref" data-concept-id="nyquist-shannon" data-status="proposed" data-title="나이퀴스트–섀넌 표본화 정리" data-body="대역 제한 신호를 손실 없이 복원하려면 표본화 주파수가 최고 주파수의 두 배보다 커야 한다는 조건입니다." href="/wiki/domains/signal-processing/?q=%EB%82%98%EC%9D%B4%ED%80%B4%EC%8A%A4%ED%8A%B8%E2%80%93%EC%84%80%EB%84%8C%20%ED%91%9C%EB%B3%B8%ED%99%94%20%EC%A0%95%EB%A6%AC">나이퀴스트–섀넌 표본화 정리</a>는 신호가 최고 주파수 <span class="inline-code">B</span> 이하로 제한되어 있을 때 이상적으로 복원하려면 다음 조건이 필요하다고 말합니다.</p>
+  <div class="equation">fₛ &gt; 2B<small>실제 시스템은 필터 전이 대역과 여유를 고려해 경계보다 높은 표본화 주파수를 선택합니다.</small></div>
+  <p>왜 두 배일까요? 표본화하면 원래 스펙트럼의 복사본이 <span class="inline-code">fₛ</span> 간격으로 반복됩니다. <a class="concept-ref" data-concept-id="fourier-transform" data-status="published" data-title="푸리에 변환" data-body="시간 영역과 주파수 영역을 연결하고 복잡한 신호의 주파수 재료표를 얻는 원리를 설명합니다." href="/wiki/signal-communications/signal-analysis/fourier-transform/">푸리에 변환</a> 관점에서 복사본이 겹치지 않으려면 원래 대역 폭의 양쪽 끝을 합친 간격이 필요합니다. 조건을 어기면 높은 주파수가 낮은 주파수처럼 보이는 <a class="concept-ref" data-concept-id="aliasing" data-status="proposed" data-title="에일리어싱(aliasing)" data-body="표본화가 충분히 빠르지 않을 때 서로 다른 아날로그 주파수가 같은 표본열로 보이는 현상입니다." href="/wiki/domains/signal-processing/?q=%EC%97%90%EC%9D%BC%EB%A6%AC%EC%96%B4%EC%8B%B1(aliasing)">에일리어싱</a>이 생깁니다.</p>
+
+  <div class="lab" id="sampling-lab">
+    <div class="lab-head"><div><div class="lab-index">Interactive SVG 01 · Sampling and aliasing</div><h3>같은 정현파를 얼마나 자주 읽어야 원래 움직임을 알아볼 수 있을까?</h3><p>신호 주파수와 표본화 주파수를 바꾸어 표본점이 만드는 겉보기 파형을 비교해 보세요.</p></div></div>
+    <div class="lab-controls">
+      <div class="control"><label for="pcm-signal-frequency">신호 주파수 <output id="pcm-signal-frequency-out">3 Hz</output></label><input id="pcm-signal-frequency" type="range" min="1" max="9" step="0.5" value="3"></div>
+      <div class="control"><label for="pcm-sample-rate">표본화 주파수 <output id="pcm-sample-rate-out">12 Hz</output></label><input id="pcm-sample-rate" type="range" min="4" max="24" step="1" value="12"></div>
+    </div>
+    <div class="svg-scroll"><svg id="pcm-sampling-svg" viewBox="0 0 920 430" role="img" aria-labelledby="pcmSamplingTitle pcmSamplingDesc"><title id="pcmSamplingTitle">표본화와 에일리어싱 실험</title><desc id="pcmSamplingDesc">연속 정현파, 표본점, 표본점으로부터 보이는 낮은 주파수 파형을 같은 축에서 비교합니다.</desc></svg></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-alias-readout" aria-live="polite"></span></div>
+    <p class="lab-caption">점 사이를 직선으로 이은 모양 자체가 복원 공식은 아닙니다. 이 실험의 목적은 표본열만 관찰할 때 여러 연속 주파수가 같은 값 배열을 만들 수 있음을 보여 주는 것입니다.</p>
+  </div>
+
+  <h3>안티에일리어싱 필터는 왜 표본화보다 앞에 있어야 하나</h3>
+  <p>표본화 전에 입력에 <a class="concept-ref" data-concept-id="nyquist-frequency" data-status="proposed" data-title="나이퀴스트 주파수(Nyquist frequency)" data-body="표본화 주파수의 절반으로, 이상적인 표본화에서 구별 가능한 최고 주파수 경계입니다." href="/wiki/domains/signal-processing/?q=%EB%82%98%EC%9D%B4%ED%80%B4%EC%8A%A4%ED%8A%B8%20%EC%A3%BC%ED%8C%8C%EC%88%98(Nyquist%20frequency)">나이퀴스트 주파수</a>보다 높은 성분이 남아 있으면 그 성분은 낮은 대역에 접혀 들어옵니다. 이미 접힌 뒤에는 원래 저주파 성분과 구분할 정보가 사라집니다. 따라서 ADC 앞의 아날로그 저역통과 필터가 실제 입력 대역을 제한합니다.</p>
+  <div class="callout" data-kind="math"><strong class="callout-title">에일리어스 주파수의 직관적 계산</strong>표본화 후 관찰 주파수는 원래 주파수에 <span class="inline-code">k·fₛ</span>를 더하거나 뺀 값 중 0과 <span class="inline-code">fₛ/2</span> 사이에 들어오는 값으로 접힙니다. 예를 들어 6 kHz를 8 kHz로 표본화하면 <span class="inline-code">|6−8|=2 kHz</span> 성분처럼 보일 수 있습니다.</div>
+</section>
+
+<section id="quantization">
+  <div class="section-kicker">Amplitude axis · Quantization</div>
+  <h2>양자화는 측정값을 버리는 과정이지만, 버리는 간격을 설계할 수 있습니다</h2>
+  <p>표본화된 값은 여전히 무한히 많은 실수 중 하나일 수 있습니다. 디지털 코드로 저장하려면 유한한 <a class="concept-ref" data-concept-id="quantization-level" data-status="proposed" data-title="양자화 레벨" data-body="양자화기가 표본을 대응시킬 수 있는 유한한 출력 크기 값입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94%20%EB%A0%88%EB%B2%A8">양자화 레벨</a> 중 하나를 골라야 합니다. 표본당 <span class="inline-code">N</span>비트를 사용하면 일반적으로 표현 가능한 코드 수는 다음과 같습니다.</p>
+  <div class="equation">L = 2ᴺ<small>예: 3비트 → 8개 코드, 8비트 → 256개 코드, 16비트 → 65,536개 코드</small></div>
+  <p>입력 범위가 <span class="inline-code">Vmin</span>부터 <span class="inline-code">Vmax</span>까지이고 균일 양자화를 사용한다면 레벨 간격은 대략 <span class="inline-code">Δ=(Vmax−Vmin)/L</span>입니다. 반올림형 양자화에서 과부하가 없을 때 오차는 보통 <span class="inline-code">−Δ/2</span>와 <span class="inline-code">+Δ/2</span> 사이에 놓입니다.</p>
+
+  <div class="lab" id="quantization-lab">
+    <div class="lab-head"><div><div class="lab-index">Interactive SVG 02 · Quantization depth</div><h3>비트가 한 개 늘면 왜 레벨 수는 두 배가 되는가?</h3><p>동일한 표본을 서로 다른 비트 깊이로 양자화하여 계단 간격과 오차를 비교합니다.</p></div></div>
+    <div class="lab-controls">
+      <div class="control"><label for="pcm-bit-depth">표본당 비트 수 <output id="pcm-bit-depth-out">3 bit · 8 levels</output></label><input id="pcm-bit-depth" type="range" min="2" max="6" step="1" value="3"></div>
+      <div class="control"><label for="pcm-amplitude">신호 진폭 <output id="pcm-amplitude-out">0.82</output></label><input id="pcm-amplitude" type="range" min="0.2" max="1" step="0.02" value="0.82"></div>
+    </div>
+    <div class="svg-scroll"><svg id="pcm-quant-svg" viewBox="0 0 920 470" role="img" aria-labelledby="pcmQuantTitle pcmQuantDesc"><title id="pcmQuantTitle">비트 깊이에 따른 양자화 실험</title><desc id="pcmQuantDesc">원래 정현파 표본과 선택된 양자화 레벨, 오차 막대를 표시합니다.</desc></svg></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-quant-readout" aria-live="polite"></span></div>
+    <p class="lab-caption">비트 깊이가 늘면 같은 입력 범위 안의 레벨 간격이 줄어듭니다. 다만 입력이 허용 범위를 넘는 <strong>클리핑</strong>은 비트 수를 늘리는 것만으로 해결되지 않습니다.</p>
+  </div>
+
+  <h3>양자화 잡음과 SNR</h3>
+  <p><a class="concept-ref" data-concept-id="quantization-error" data-status="proposed" data-title="양자화 오차" data-body="원래 표본 값과 선택된 양자화 레벨 사이의 차이입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94%20%EC%98%A4%EC%B0%A8">양자화 오차</a>가 시간에 따라 신호와 충분히 복잡하게 섞이면 이를 <a class="concept-ref" data-concept-id="quantization-noise" data-status="proposed" data-title="양자화 잡음" data-body="여러 표본의 양자화 오차를 잡음과 같은 오차 성분으로 해석한 것입니다." href="/wiki/domains/signal-processing/?q=%EC%96%91%EC%9E%90%ED%99%94%20%EC%9E%A1%EC%9D%8C">양자화 잡음</a>처럼 모델링할 수 있습니다. 이상적인 균일 양자기에서 입력 범위를 거의 채우는 정현파라면 비트가 하나 늘 때 양자화 신호 대 잡음비가 약 6 dB 개선된다는 근사식이 자주 사용됩니다.</p>
+  <div class="equation">SQNR ≈ 6.02N + 1.76 dB<small>이 식은 이상적인 균일 양자화, 과부하 없음, 거의 전 범위를 사용하는 정현파 등 특정 가정에서의 근사입니다. 모든 음성과 모든 ADC에 그대로 적용되는 보편 법칙은 아닙니다.</small></div>
+</section>
+
+<section id="encoding">
+  <div class="section-kicker">Code space · Encoding and bit rate</div>
+  <h2>부호화는 레벨 번호를 비트열로 적고, 시스템 비용을 초당 비트 수로 바꿉니다</h2>
+  <p>양자화기가 선택한 레벨에는 0부터 <span class="inline-code">L−1</span>까지 번호를 붙일 수 있습니다. 3비트라면 0은 <span class="inline-code">000</span>, 5는 <span class="inline-code">101</span>, 7은 <span class="inline-code">111</span>로 적을 수 있습니다. 실제 PCM 코드의 극성·크기 배치는 시스템 규격에 따라 달라질 수 있지만, 핵심은 <strong>한 표본이 고정된 수의 비트를 소비한다</strong>는 점입니다.</p>
+  <div class="equation">R = fₛ × N × C<small>R: PCM 비트 전송률(bit/s), fₛ: 표본화 주파수(sample/s), N: 표본당 비트, C: 채널 수</small></div>
+  <p>압축되지 않은 PCM의 저장량은 이 전송률에 시간을 곱하면 됩니다. 파일 헤더나 패킷 헤더가 있다면 그 오버헤드는 별도로 더해야 합니다.</p>
+
+  <div class="lab" id="bitrate-lab">
+    <div class="lab-head"><div><div class="lab-index">Interactive SVG 03 · PCM pipeline</div><h3>표본 하나가 코드가 되고, 코드들이 초당 비트 수가 되는 과정</h3><p>표본화 주파수, 비트 깊이, 채널 수를 바꾸어 비트 전송률과 짧은 코드열을 확인합니다.</p></div></div>
+    <div class="lab-controls">
+      <div class="control"><label for="pcm-rate-select">표본화 주파수</label><select id="pcm-rate-select"><option value="8000">8 kHz · 전화 음성</option><option value="16000">16 kHz</option><option value="44100">44.1 kHz</option><option value="48000" selected>48 kHz</option></select></div>
+      <div class="control"><label for="pcm-bits-select">비트 깊이</label><select id="pcm-bits-select"><option value="8">8 bit</option><option value="16" selected>16 bit</option><option value="24">24 bit</option></select></div>
+      <div class="control"><label for="pcm-channel-select">채널 수</label><select id="pcm-channel-select"><option value="1">모노 · 1</option><option value="2" selected>스테레오 · 2</option></select></div>
+      <div class="control"><label for="pcm-duration">재생 시간 <output id="pcm-duration-out">60 s</output></label><input id="pcm-duration" type="range" min="1" max="180" step="1" value="60"></div>
+    </div>
+    <div class="svg-scroll"><svg id="pcm-pipeline-svg" viewBox="0 0 920 390" role="img" aria-labelledby="pcmPipeTitle pcmPipeDesc"><title id="pcmPipeTitle">PCM 처리 파이프라인과 코드열</title><desc id="pcmPipeDesc">아날로그 파형, 표본, 양자화 번호, 이진 코드, 최종 비트 전송률을 왼쪽에서 오른쪽으로 표시합니다.</desc></svg></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-bitrate-readout" aria-live="polite"></span></div>
+    <p class="lab-caption">표본화 주파수는 시간 해상도, 비트 깊이는 크기 해상도, 채널 수는 독립 신호 수를 늘립니다. 세 값은 비트 전송률에 곱셈으로 반영됩니다.</p>
+  </div>
+
+  <h3>G.711의 64 kbit/s가 나오는 이유</h3>
+  <p>전통적인 전화 음성 PCM 규격인 G.711은 명목상 초당 8,000개의 표본을 사용하고 표본마다 8비트 코드를 만듭니다. 모노 한 채널의 순수 PCM 페이로드는 <span class="inline-code">8,000×8=64,000 bit/s</span>, 즉 64 kbit/s입니다. 패킷망에서 전송하면 IP·UDP·RTP 등 헤더 오버헤드는 별도입니다.</p>
+</section>
+
+<section id="companding">
+  <div class="section-kicker">Non-uniform quantization</div>
+  <h2>컴팬딩은 같은 8비트 안에서 작은 음성 신호에 더 많은 구분 능력을 배분합니다</h2>
+  <p>사람의 음성은 작은 구간의 세밀한 차이가 중요하지만 큰 신호 전체를 균일 간격으로 나누면 작은 신호가 몇 개 레벨에만 몰릴 수 있습니다. <a class="concept-ref" data-concept-id="companding" data-status="proposed" data-title="컴팬딩" data-body="작은 신호에는 촘촘한 양자화, 큰 신호에는 거친 양자화를 적용하도록 압축 후 양자화하고 복원 시 확장하는 방법입니다." href="/wiki/domains/signal-processing/?q=%EC%BB%B4%ED%8C%AC%EB%94%A9">컴팬딩</a>은 입력 크기를 로그형 곡선으로 압축한 뒤 균일 양자화하고, 복원할 때 반대 곡선으로 확장합니다.</p>
+  <div class="grid-2">
+    <article class="card"><h3 style="margin-top:0"><a class="concept-ref" data-concept-id="mu-law" data-status="proposed" data-title="μ-law" data-body="북미와 일본의 G.711 계열에서 널리 쓰이는 로그형 컴팬딩 법칙입니다." href="/wiki/domains/signal-processing/?q=%CE%BC-law">μ-law</a></h3><p>작은 입력 구간을 상대적으로 크게 펼쳐 양자화한 뒤 되돌립니다. 북미와 일본의 전통 전화망에서 널리 사용되었습니다.</p></article>
+    <article class="card"><h3 style="margin-top:0"><a class="concept-ref" data-concept-id="a-law" data-status="proposed" data-title="A-law" data-body="유럽 등에서 널리 쓰이는 G.711 계열의 로그형 컴팬딩 법칙입니다." href="/wiki/domains/signal-processing/?q=A-law">A-law</a></h3><p>목적은 같지만 압축 곡선과 코드 배치가 다릅니다. 유럽을 비롯한 많은 지역의 G.711 계열에서 사용됩니다.</p></article>
+  </div>
+  <div class="callout" data-kind="warning"><strong class="callout-title">압축 코덱과 혼동하지 않기</strong>컴팬딩은 양자화 레벨의 배분을 비선형으로 바꾸는 방식입니다. MP3·AAC처럼 시간·주파수 중복과 청각 특성을 이용해 전체 비트 수를 크게 줄이는 손실 압축 코덱과는 목적과 구조가 다릅니다.</div>
+</section>
+
+<section id="reconstruction">
+  <div class="section-kicker">Return path · Reconstruction</div>
+  <h2>디지털 표본을 이어 붙인 계단이 곧 원래 파형은 아닙니다</h2>
+  <p>디코더는 비트 패턴을 양자화 레벨로 복원합니다. DAC는 각 레벨에 해당하는 전압이나 전류를 출력하며, 흔히 한 표본 값을 다음 표본까지 유지하는 계단 형태가 만들어집니다. 이 출력에는 원래 신호 대역 외의 고주파 이미지가 포함될 수 있으므로 <a class="concept-ref" data-concept-id="reconstruction-filter" data-status="proposed" data-title="복원 필터" data-body="이산 표본 또는 DAC 계단 출력을 매끄러운 연속 신호로 복원하기 위한 저역통과 필터입니다." href="/wiki/domains/signal-processing/?q=%EB%B3%B5%EC%9B%90%20%ED%95%84%ED%84%B0">복원 필터</a>가 이를 줄입니다.</p>
+  <p>이상적인 대역 제한 신호라면 각 표본에 sinc 함수를 배치해 모두 더하는 보간으로 원래 연속 파형을 복원할 수 있습니다. 실제 장치는 유한한 필터와 회로를 사용하므로 완벽한 이상 조건 대신 허용 오차 안에서 복원합니다.</p>
+  <div class="callout" data-kind="intuition"><strong class="callout-title">핵심 보존 관계</strong>표본화 조건을 만족하면 시간축 정보는 표본열에 보존될 수 있습니다. 그러나 양자화에서 반올림된 크기 정보는 이미 손실되었으므로 디코딩만으로 원래 값과 완전히 같아지지는 않습니다.</div>
+</section>
+
+<section id="worked-examples">
+  <div class="section-kicker">Worked examples · Verify understanding</div>
+  <h2>예제와 풀이</h2>
+  <p class="section-lead">각 예제는 표본화, 양자화, 부호화, 비용 계산을 따로 검사한 뒤 마지막에 전체 PCM 체인으로 연결합니다.</p>
+
+  <article class="worked">
+    <div class="worked-head"><div><span class="tag">예제 1 · 비트 전송률</span><h3>전화 음성 PCM의 순수 페이로드 전송률</h3></div><span class="chip">기초 계산</span></div>
+    <div class="problem"><strong>문제</strong><p>표본화 주파수 8 kHz, 표본당 8비트, 모노 1채널인 PCM 신호의 비트 전송률을 구하세요.</p></div>
+    <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+      <div class="solution-step"><span>1</span><div><strong>단위를 초당 표본 수로 바꿉니다.</strong><p>8 kHz = 8,000 sample/s입니다.</p></div></div>
+      <div class="solution-step"><span>2</span><div><strong>표본 하나의 비트와 채널 수를 곱합니다.</strong><p>R = 8,000×8×1 = 64,000 bit/s입니다.</p></div></div>
+      <div class="solution-step"><span>3</span><div><strong>통신 단위로 읽습니다.</strong><p>10진 접두어를 쓰면 64 kbit/s입니다. 이는 PCM 페이로드만의 값이며 패킷 헤더는 포함하지 않습니다.</p></div></div>
+      <div class="answer"><strong>정답:</strong> 64,000 bit/s = 64 kbit/s</div>
+      <div class="error-note"><strong>대표 오답:</strong> 8,000÷8=1,000으로 계산하는 경우가 있습니다. 표본마다 8비트가 <em>추가</em>되므로 나눗셈이 아니라 곱셈입니다.</div>
+    </div></details>
+  </article>
+
+  <article class="worked">
+    <div class="worked-head"><div><span class="tag">예제 2 · 표본화 조건</span><h3>3.4 kHz 음성 대역에 필요한 이론적 최소 표본화 주파수</h3></div><span class="chip">나이퀴스트</span></div>
+    <div class="problem"><strong>문제</strong><p>최고 주파수가 3.4 kHz인 대역 제한 신호를 이상적으로 복원하려면 표본화 주파수가 최소 어느 조건을 만족해야 합니까? 8 kHz 선택이 조건을 만족하는지도 판단하세요.</p></div>
+    <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+      <div class="solution-step"><span>1</span><div><strong>최고 주파수를 B로 둡니다.</strong><p>B=3.4 kHz입니다.</p></div></div>
+      <div class="solution-step"><span>2</span><div><strong>fₛ&gt;2B를 적용합니다.</strong><p>2B=6.8 kHz이므로 이론적으로 fₛ가 6.8 kHz보다 커야 합니다.</p></div></div>
+      <div class="solution-step"><span>3</span><div><strong>8 kHz와 비교합니다.</strong><p>8 kHz는 6.8 kHz보다 크므로 이상적 조건을 만족합니다. 4 kHz 나이퀴스트 주파수와 3.4 kHz 사이에 필터 전이 여유도 일부 생깁니다.</p></div></div>
+      <div class="answer"><strong>정답:</strong> fₛ&gt;6.8 kHz, 따라서 8 kHz는 조건을 만족합니다.</div>
+      <div class="error-note"><strong>주의:</strong> 경계값 fₛ=6.8 kHz를 실무 설계의 안전한 값으로 보는 것은 부적절합니다. 이상적인 벽 모양 필터가 없기 때문에 여유가 필요합니다.</div>
+    </div></details>
+  </article>
+
+  <article class="worked">
+    <div class="worked-head"><div><span class="tag">예제 3 · 양자화</span><h3>3비트 균일 양자기의 레벨 수와 간격</h3></div><span class="chip">크기 해상도</span></div>
+    <div class="problem"><strong>문제</strong><p>입력 범위가 −1 V부터 +1 V이고 3비트를 사용하는 균일 양자기를 생각합니다. 코드 수와 단순한 레벨 간격 근사값을 구하세요.</p></div>
+    <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+      <div class="solution-step"><span>1</span><div><strong>코드 수를 계산합니다.</strong><p>L=2³=8개입니다.</p></div></div>
+      <div class="solution-step"><span>2</span><div><strong>입력 전체 폭을 구합니다.</strong><p>Vmax−Vmin=1−(−1)=2 V입니다.</p></div></div>
+      <div class="solution-step"><span>3</span><div><strong>폭을 레벨 수로 나눕니다.</strong><p>Δ≈2/8=0.25 V입니다. 실제 양자기에서 끝점과 결정 경계 배치는 mid-rise·mid-tread 방식에 따라 달라질 수 있습니다.</p></div></div>
+      <div class="answer"><strong>정답:</strong> 8개 코드, 간격 근사값 0.25 V</div>
+      <div class="error-note"><strong>대표 오답 6개:</strong> 3비트를 양수·음수 두 방향으로 단순히 곱하는 것이 아닙니다. 각 비트의 0/1 조합 수가 2³입니다.</div>
+    </div></details>
+  </article>
+
+  <article class="worked">
+    <div class="worked-head"><div><span class="tag">예제 4 · 에일리어싱</span><h3>6 kHz 정현파를 8 kHz로 표본화하면 무엇처럼 보이는가</h3></div><span class="chip">주파수 접힘</span></div>
+    <div class="problem"><strong>문제</strong><p>6 kHz 정현파를 8 kHz로 표본화했습니다. 0~4 kHz 기본 대역에서 나타나는 에일리어스 주파수를 구하세요.</p></div>
+    <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+      <div class="solution-step"><span>1</span><div><strong>나이퀴스트 주파수를 확인합니다.</strong><p>fₛ/2=4 kHz이고 입력 6 kHz는 이를 넘습니다.</p></div></div>
+      <div class="solution-step"><span>2</span><div><strong>표본화 주파수의 정수배를 빼 기본 대역으로 접습니다.</strong><p>|6−8|=2 kHz입니다.</p></div></div>
+      <div class="solution-step"><span>3</span><div><strong>의미를 해석합니다.</strong><p>표본값만 보면 6 kHz와 특정 위상의 2 kHz 정현파를 구별할 수 없습니다. 이것이 단순한 “점이 부족해 거칠어짐”보다 심각한 이유입니다.</p></div></div>
+      <div class="answer"><strong>정답:</strong> 2 kHz로 나타납니다.</div>
+    </div></details>
+  </article>
+
+  <article class="worked">
+    <div class="worked-head"><div><span class="tag">예제 5 · 저장 용량</span><h3>48 kHz·16비트·스테레오 3분 PCM</h3></div><span class="chip">전체 체인</span></div>
+    <div class="problem"><strong>문제</strong><p>48 kHz, 16 bit, 스테레오 2채널의 무압축 PCM을 3분 저장할 때 순수 샘플 데이터 크기를 구하세요. 파일 헤더는 무시합니다.</p></div>
+    <details class="solution"><summary>풀이 보기</summary><div class="solution-body">
+      <div class="solution-step"><span>1</span><div><strong>비트 전송률을 계산합니다.</strong><p>48,000×16×2=1,536,000 bit/s입니다.</p></div></div>
+      <div class="solution-step"><span>2</span><div><strong>시간을 초로 바꿉니다.</strong><p>3분=180초입니다.</p></div></div>
+      <div class="solution-step"><span>3</span><div><strong>전체 비트와 바이트를 구합니다.</strong><p>1,536,000×180=276,480,000 bit, 이를 8로 나누면 34,560,000 byte입니다.</p></div></div>
+      <div class="solution-step"><span>4</span><div><strong>단위를 읽습니다.</strong><p>10진 MB로 34.56 MB, 이진 MiB로는 약 32.96 MiB입니다.</p></div></div>
+      <div class="answer"><strong>정답:</strong> 약 34.56 MB의 순수 PCM 데이터</div>
+      <div class="error-note"><strong>검산:</strong> 48 kHz·16비트·스테레오는 초당 192,000 byte입니다. 192,000×180=34,560,000 byte로 같은 결과가 나옵니다.</div>
+    </div></details>
+  </article>
+
+  <div class="callout" data-kind="practice"><strong class="callout-title">독립 연습</strong>
+    <ol>
+      <li>20 kHz까지 포함된 신호를 표본화할 때 이론적 조건과 44.1 kHz가 갖는 여유를 설명하세요.</li>
+      <li>12비트 양자기는 몇 개의 코드를 표현합니까? 8비트보다 코드 수가 몇 배입니까?</li>
+      <li>16 kHz·16비트·모노 PCM의 초당 바이트 수를 구하세요.</li>
+    </ol>
+    <details class="solution"><summary>연습 풀이 보기</summary><div class="solution-body"><p>1) fₛ&gt;40 kHz가 필요하며 44.1 kHz는 수학적 경계를 넘지만 실제 필터 설계에서는 입력 대역 정의와 전이 대역을 함께 봐야 합니다. 2) 2¹²=4,096개이며 8비트의 256개보다 16배입니다. 3) 16,000×16÷8=32,000 byte/s입니다.</p></div></details>
+  </div>
+</section>
+
+<section id="misconceptions">
+  <div class="section-kicker">Misconceptions and boundaries</div>
+  <h2>흔한 오해를 경계로 개념을 다시 확인합니다</h2>
+  <div class="grid-2">
+    <article class="card"><h3 style="margin-top:0">“표본화 주파수가 높으면 양자화 잡음도 자동으로 사라진다”</h3><p>표본화 주파수는 주로 시간·주파수 표현 범위를, 비트 깊이는 주로 크기 해상도를 결정합니다. 오버샘플링과 잡음 성형처럼 둘을 연결하는 기술도 있지만 기본 PCM에서는 서로 다른 축입니다.</p></article>
+    <article class="card"><h3 style="margin-top:0">“나이퀴스트의 정확히 두 배면 언제나 충분하다”</h3><p>정리는 이상적인 대역 제한과 이상적 복원을 전제로 합니다. 실제 필터의 전이 대역, 클록 오차, 입력 스펙트럼 여유 때문에 보통 더 높은 표본화 주파수가 필요합니다.</p></article>
+    <article class="card"><h3 style="margin-top:0">“양자화와 부호화는 같은 과정이다”</h3><p>양자화는 어느 레벨을 선택할지 결정해 손실을 만들고, 부호화는 선택된 레벨을 비트 패턴으로 기록합니다. 코드 표를 바꾸어도 이미 발생한 양자화 오차는 줄지 않습니다.</p></article>
+    <article class="card"><h3 style="margin-top:0">“디지털이면 원본과 완전히 같다”</h3><p>조건을 만족한 표본화는 대역 제한 신호의 시간 정보를 보존할 수 있지만, 유한 비트 양자화는 크기 정보를 반올림합니다. 디지털 전송의 강점은 복제·오류 관리의 안정성이지 무조건 무손실이라는 뜻이 아닙니다.</p></article>
+  </div>
+  <div class="callout" data-kind="warning"><strong class="callout-title">문서 범위</strong>이 문서는 기본 PCM을 다룹니다. 델타 변조, DPCM, ADPCM, 시그마-델타 ADC, 노이즈 셰이핑, 오디오 손실 압축은 별도 문서에서 PCM과의 차이를 연결하는 것이 적절합니다.</div>
+</section>
+</div><section id="document-connections"><div class="section-kicker">Knowledge graph · Local 1-hop view</div><h2>현재 문서의 직접 관계만 표시합니다</h2><div class="local-graph"><svg viewBox="0 0 900 420" role="img" aria-label="PCM 중심의 직접 개념 관계"><defs><marker id="local-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M450 210L450.0 65.0" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#local-arrow)"/><rect x="350" y="174" width="200" height="72" rx="18" fill="var(--brand)"/><text x="450" y="207" text-anchor="middle" fill="#fff" font-size="15" font-weight="900">PCM</text><text x="450" y="229" text-anchor="middle" fill="#fff" font-size="10">central concept</text><a href="/wiki/signal-communications/signal-analysis/fourier-transform/"><rect x="360.0" y="37.0" width="180" height="56" rx="12" fill="var(--paper)" stroke="var(--line-strong)"/><text x="450.0" y="63.0" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="800">푸리에 변환</text><text x="450.0" y="82.0" text-anchor="middle" fill="var(--muted)" font-size="9">requires</text></a></svg></div><div class="local-relation-list"><a class="relation-card-v2 surface-panel" href="/wiki/signal-communications/signal-analysis/fourier-transform/"><strong>푸리에 변환</strong><small>requires · 시간 영역과 주파수 영역을 연결하고 복잡한 신호의 주파수 재료표를 얻는 원리를 설명합니다.</small></a></div></section><section id="pending-concepts"><div class="section-kicker">Reference concepts · Catalog nodes</div><h2>참조되었지만 아직 독립 문서가 없는 개념</h2><p class="section-lead">동일 concept ID는 문서 발행 후 자동으로 실제 경로로 전환됩니다.</p><div class="glossary-grid"><article class="glossary-card" id="concept-analog-signal"><h3>아날로그 신호</h3><p>시간과 크기가 연속적으로 변할 수 있는 신호입니다.</p><span class="status">proposed · analog-signal</span></article><article class="glossary-card" id="concept-sampling"><h3>표본화(sampling)</h3><p>연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다.</p><span class="status">proposed · sampling</span></article><article class="glossary-card" id="concept-sampling-frequency"><h3>표본화 주파수</h3><p>1초에 신호 값을 몇 번 측정하는지 나타내는 값이며 단위는 Hz입니다.</p><span class="status">proposed · sampling-frequency</span></article><article class="glossary-card" id="concept-quantization"><h3>양자화</h3><p>연속적인 표본 크기를 유한한 대표 레벨 중 하나로 반올림하는 과정입니다.</p><span class="status">proposed · quantization</span></article><article class="glossary-card" id="concept-bit-depth"><h3>비트 깊이</h3><p>표본 하나를 표현하는 비트 수입니다. N비트는 보통 2ᴺ개의 코드 또는 레벨을 표현합니다.</p><span class="status">proposed · bit-depth</span></article><article class="glossary-card" id="concept-encoding"><h3>부호화</h3><p>양자화된 레벨 번호를 정해진 비트 패턴으로 대응시키는 과정입니다.</p><span class="status">proposed · encoding</span></article><article class="glossary-card" id="concept-digital-signal"><h3>디지털 신호</h3><p>시간이나 크기를 이산적인 값으로 표현한 신호입니다.</p><span class="status">proposed · digital-signal</span></article><article class="glossary-card" id="concept-anti-aliasing-filter"><h3>안티에일리어싱 필터</h3><p>표본화 전에 나이퀴스트 주파수보다 높은 성분을 줄여 에일리어싱을 방지하는 아날로그 저역통과 필터입니다.</p><span class="status">proposed · anti-aliasing-filter</span></article><article class="glossary-card" id="concept-quantization-error"><h3>양자화 오차</h3><p>원래 표본 값과 선택된 양자화 레벨 사이의 차이입니다.</p><span class="status">proposed · quantization-error</span></article><article class="glossary-card" id="concept-reconstruction-filter"><h3>복원 필터</h3><p>이산 표본 또는 DAC 계단 출력을 매끄러운 연속 신호로 복원하기 위한 저역통과 필터입니다.</p><span class="status">proposed · reconstruction-filter</span></article><article class="glossary-card" id="concept-nyquist-shannon"><h3>나이퀴스트–섀넌 표본화 정리</h3><p>대역 제한 신호를 손실 없이 복원하려면 표본화 주파수가 최고 주파수의 두 배보다 커야 한다는 조건입니다.</p><span class="status">proposed · nyquist-shannon</span></article><article class="glossary-card" id="concept-aliasing"><h3>에일리어싱(aliasing)</h3><p>표본화가 충분히 빠르지 않을 때 서로 다른 아날로그 주파수가 같은 표본열로 보이는 현상입니다.</p><span class="status">proposed · aliasing</span></article><article class="glossary-card" id="concept-nyquist-frequency"><h3>나이퀴스트 주파수(Nyquist frequency)</h3><p>표본화 주파수의 절반으로, 이상적인 표본화에서 구별 가능한 최고 주파수 경계입니다.</p><span class="status">proposed · nyquist-frequency</span></article><article class="glossary-card" id="concept-quantization-level"><h3>양자화 레벨</h3><p>양자화기가 표본을 대응시킬 수 있는 유한한 출력 크기 값입니다.</p><span class="status">proposed · quantization-level</span></article><article class="glossary-card" id="concept-quantization-noise"><h3>양자화 잡음</h3><p>여러 표본의 양자화 오차를 잡음과 같은 오차 성분으로 해석한 것입니다.</p><span class="status">proposed · quantization-noise</span></article><article class="glossary-card" id="concept-companding"><h3>컴팬딩</h3><p>작은 신호에는 촘촘한 양자화, 큰 신호에는 거친 양자화를 적용하도록 압축 후 양자화하고 복원 시 확장하는 방법입니다.</p><span class="status">proposed · companding</span></article><article class="glossary-card" id="concept-mu-law"><h3>μ-law</h3><p>북미와 일본의 G.711 계열에서 널리 쓰이는 로그형 컴팬딩 법칙입니다.</p><span class="status">proposed · mu-law</span></article><article class="glossary-card" id="concept-a-law"><h3>A-law</h3><p>유럽 등에서 널리 쓰이는 G.711 계열의 로그형 컴팬딩 법칙입니다.</p><span class="status">proposed · a-law</span></article></div></section><section id="sources"><div class="section-kicker">Primary references</div><h2>표준과 공식 문서</h2><div class="source-list"><article class="source-item"><a href="https://www.itu.int/rec/T-REC-G.711/" target="_blank" rel="noreferrer">ITU-T G.711 — Pulse code modulation (PCM) of voice frequencies</a><p>음성 대역 PCM의 8 kHz 표본화와 A-law·μ-law 계열을 확인하기 위한 공식 권고입니다.</p></article><article class="source-item"><a href="https://www.itu.int/rec/dologin_pub.asp?id=T-REC-G.711-198811-I!!PDF-E&amp;lang=e&amp;type=items" target="_blank" rel="noreferrer">ITU-T G.711 (1988) PDF</a><p>G.711의 표본화 주파수와 부호화 특성에 대한 원문입니다.</p></article></div></section><footer class="footer"><div>문서 ID <span class="inline-code">pcm</span> · 버전 <span class="inline-code">1.0.0</span> · 갱신 2026-08-02</div></footer></main></div><div class="concept-tooltip" data-open="false" role="tooltip"><strong></strong><span></span><em></em></div><footer class="site-footer"><p><span class="status-dot" aria-hidden="true"></span> Static build ready for GitHub Pages</p><p><a href="/">© 2026 Jeongdo Kim</a></p></footer><script src="/scripts/site.js" defer></script><script src="/scripts/v2.js" defer></script><script src="/wiki/signal-communications/digital-signal-processing/pcm/labs.js/" defer></script></body></html>

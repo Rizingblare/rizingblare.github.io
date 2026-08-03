@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">부가세 조회 V5 전환 프로젝트 모형</title>
+  <desc id="desc">여러 검색 조건이 상태 그룹으로 정리되는 픽셀 아트 화면</desc>
+  <rect width="800" height="450" fill="#1e1b26"/>
+  <rect x="48" y="45" width="704" height="355" fill="#f7f4ef" stroke="#1e1b26" stroke-width="8"/>
+  <rect x="48" y="45" width="704" height="48" fill="#a866ff" stroke="#1e1b26" stroke-width="8"/>
+  <rect x="78" y="125" width="190" height="42" fill="#fff" stroke="#1e1b26" stroke-width="6"/>
+  <rect x="78" y="190" width="190" height="42" fill="#fff" stroke="#1e1b26" stroke-width="6"/>
+  <rect x="78" y="255" width="190" height="42" fill="#fff" stroke="#1e1b26" stroke-width="6"/>
+  <path d="M300 146H370M300 211H370M300 276H370" stroke="#1e1b26" stroke-width="8"/>
+  <rect x="390" y="120" width="310" height="70" fill="#63d7b3" stroke="#1e1b26" stroke-width="6"/>
+  <rect x="390" y="205" width="145" height="80" fill="#ffd166" stroke="#1e1b26" stroke-width="6"/>
+  <rect x="555" y="205" width="145" height="80" fill="#64b5f6" stroke="#1e1b26" stroke-width="6"/>
+  <rect x="390" y="300" width="310" height="52" fill="#fff" stroke="#1e1b26" stroke-width="6"/>
+  <text x="80" y="79" font-family="ui-monospace,monospace" font-size="20" font-weight="700" fill="#1e1b26">VAT QUERY / V5 STATUS BOX</text>
+  <text x="78" y="375" font-family="ui-monospace,monospace" font-size="18" fill="#1e1b26">normalize → group → route</text>
+</svg>

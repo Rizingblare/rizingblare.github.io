@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">C#에서 TypeScript로의 레거시 이전 프로젝트 모형</title>
+  <desc id="desc">왼쪽의 큰 코드 블록이 오른쪽의 여러 책임 모듈로 분리되는 픽셀 아트 도식</desc>
+  <rect width="800" height="450" fill="#f7f4ef"/>
+  <rect x="55" y="80" width="250" height="285" fill="#2b2734" stroke="#1e1b26" stroke-width="8"/>
+  <text x="95" y="135" font-family="ui-monospace,monospace" font-size="46" font-weight="800" fill="#a866ff">C#</text>
+  <path d="M95 180H260M95 220H235M95 260H275M95 300H220" stroke="#f7f4ef" stroke-width="13"/>
+  <path d="M330 220H430" stroke="#1e1b26" stroke-width="12"/>
+  <path d="M405 190L440 220L405 250" fill="none" stroke="#1e1b26" stroke-width="12"/>
+  <g stroke="#1e1b26" stroke-width="7">
+    <rect x="470" y="65" width="265" height="75" fill="#a866ff"/>
+    <rect x="470" y="155" width="265" height="75" fill="#63d7b3"/>
+    <rect x="470" y="245" width="265" height="75" fill="#ffd166"/>
+    <rect x="470" y="335" width="265" height="50" fill="#64b5f6"/>
+  </g>
+  <text x="500" y="113" font-family="ui-monospace,monospace" font-size="22" font-weight="700" fill="#1e1b26">INPUT / VALIDATE</text>
+  <text x="500" y="203" font-family="ui-monospace,monospace" font-size="22" font-weight="700" fill="#1e1b26">QUERY / MAP</text>
+  <text x="500" y="293" font-family="ui-monospace,monospace" font-size="22" font-weight="700" fill="#1e1b26">STATE / UPDATE</text>
+  <text x="500" y="367" font-family="ui-monospace,monospace" font-size="20" font-weight="700" fill="#1e1b26">TESTABLE TYPESCRIPT</text>
+</svg>

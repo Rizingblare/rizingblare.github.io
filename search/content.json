@@ -1,0 +1,119 @@
+[
+  {
+    "type": "project",
+    "id": "knowledge-wiki",
+    "title": "개념 학습 위키와 GitHub Pages 구조",
+    "description": "신호처리·정보통신·네트워크·데이터베이스 개념을 원자 단위 문서로 나누고 상호 관계를 탐색할 수 있는 위키를 설계하고 있습니다.",
+    "summary": "신호처리·정보통신·네트워크·데이터베이스 개념을 원자 단위 문서로 나누고 상호 관계를 탐색할 수 있는 위키를 설계하고 있습니다.",
+    "status": "published",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Markdown",
+      "SVG",
+      "GitHub Actions"
+    ],
+    "domain": "portfolio",
+    "url": "/portfolio/projects/knowledge-wiki/"
+  },
+  {
+    "type": "project",
+    "id": "legacy-typescript-migration",
+    "title": "C# 레거시 기능의 TypeScript 전환",
+    "description": "C#에 축적된 세금계산서 관련 비즈니스 로직을 TypeScript 기반 서버 구조로 이전했습니다.",
+    "summary": "C#에 축적된 세금계산서 관련 비즈니스 로직을 TypeScript 기반 서버 구조로 이전했습니다.",
+    "status": "published",
+    "tags": [
+      "TypeScript",
+      "C#",
+      "Internal Framework",
+      "SQL"
+    ],
+    "domain": "portfolio",
+    "url": "/portfolio/projects/legacy-typescript-migration/"
+  },
+  {
+    "type": "project",
+    "id": "mobile-knowledge-sync",
+    "title": "모바일 지식 저장소 동기화 흐름",
+    "description": "Android에서 Git 저장소와 Obsidian Vault를 함께 사용할 때 발생한 참조 손상·동기화 충돌을 분석하고 안전한 복사 규칙을 정리했습니다.",
+    "summary": "Android에서 Git 저장소와 Obsidian Vault를 함께 사용할 때 발생한 참조 손상·동기화 충돌을 분석하고 안전한 복사 규칙을 정리했습니다.",
+    "status": "published",
+    "tags": [
+      "Git",
+      "Termux",
+      "Obsidian",
+      "rsync",
+      "Shell"
+    ],
+    "domain": "portfolio",
+    "url": "/portfolio/projects/mobile-knowledge-sync/"
+  },
+  {
+    "type": "project",
+    "id": "tax-invoice-stability",
+    "title": "전자세금계산서 발행 안정화",
+    "description": "여러 사용자가 동일한 전표를 동시에 열고 발행을 요청할 수 있는 환경에서 중복 처리와 상태 충돌을 줄이는 검증 흐름을 설계했습니다.",
+    "summary": "여러 사용자가 동일한 전표를 동시에 열고 발행을 요청할 수 있는 환경에서 중복 처리와 상태 충돌을 줄이는 검증 흐름을 설계했습니다.",
+    "status": "published",
+    "tags": [
+      "TypeScript",
+      "C#",
+      "PostgreSQL",
+      "MSSQL",
+      "MySQL",
+      "Optimistic Locking"
+    ],
+    "domain": "portfolio",
+    "url": "/portfolio/projects/tax-invoice-stability/"
+  },
+  {
+    "type": "project",
+    "id": "vat-query-v5",
+    "title": "부가세 조회 V3 → V5 전환",
+    "description": "기존 부가세 조회 기능의 검색 파라미터와 상태 박스 분류 로직을 V5 화면 구조에 맞게 변환했습니다.",
+    "summary": "기존 부가세 조회 기능의 검색 파라미터와 상태 박스 분류 로직을 V5 화면 구조에 맞게 변환했습니다.",
+    "status": "published",
+    "tags": [
+      "TypeScript",
+      "SQL",
+      "PostgreSQL",
+      "MSSQL",
+      "MySQL"
+    ],
+    "domain": "portfolio",
+    "url": "/portfolio/projects/vat-query-v5/"
+  },
+  {
+    "type": "post",
+    "id": "knowledge-wiki-v2-architecture",
+    "title": "1,157개 개념을 위한 지식 위키 v2 구조",
+    "description": "개념 목록을 바로 문서화하지 않고 inventory, canonical catalog, 작성 작업 큐로 분리한 이유를 기록합니다.",
+    "summary": "개념 목록을 바로 문서화하지 않고 inventory, canonical catalog, 작성 작업 큐로 분리한 이유를 기록합니다.",
+    "status": "published",
+    "tags": [
+      "GitHub Pages",
+      "Knowledge Wiki",
+      "Static Site",
+      "Multi-agent"
+    ],
+    "domain": "blog",
+    "url": "/blog/knowledge-wiki-v2-architecture/"
+  },
+  {
+    "type": "post",
+    "id": "theme-contract",
+    "title": "Atlas와 Pixel 테마가 같은 컴포넌트를 바꾸는 방식",
+    "description": "공통 구조 CSS와 테마 토큰 CSS를 분리해 사이트 전체 디자인을 교체하는 구조를 설명합니다.",
+    "summary": "공통 구조 CSS와 테마 토큰 CSS를 분리해 사이트 전체 디자인을 교체하는 구조를 설명합니다.",
+    "status": "published",
+    "tags": [
+      "CSS",
+      "Design System",
+      "Theme"
+    ],
+    "domain": "blog",
+    "url": "/blog/theme-contract/"
+  }
+]

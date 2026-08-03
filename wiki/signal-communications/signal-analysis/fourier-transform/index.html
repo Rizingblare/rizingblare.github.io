@@ -1,0 +1,611 @@
+<!doctype html><html lang="ko-KR" data-theme="atlas" data-color-preference="system" data-color-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#eef2f7"><meta name="description" content="푸리에 급수, 오일러 공식, 직교성, 적분에서 푸리에 변환까지 설명하는 인터랙티브 문서"><meta property="og:title" content="푸리에 변환 · 김정도 — Developer &amp; Knowledge Builder"><meta property="og:description" content="푸리에 급수, 오일러 공식, 직교성, 적분에서 푸리에 변환까지 설명하는 인터랙티브 문서"><meta property="og:type" content="website"><meta property="og:url" content="https://YOUR_USERNAME.github.io/wiki/signal-communications/signal-analysis/fourier-transform/"><link rel="canonical" href="https://YOUR_USERNAME.github.io/wiki/signal-communications/signal-analysis/fourier-transform/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><script>window.__SITE_THEME_CONFIG__={"defaultTheme":"atlas","defaultColorMode":"system","themes":["atlas","pixel"],"storageKeys":{"theme":"jeongdo-site-theme","colorMode":"jeongdo-site-color-mode"},"themeDetails":{"atlas":{"label":"Knowledge Atlas","themeColor":{"light":"#eef2f7","dark":"#0d1118"}},"pixel":{"label":"Pixel Portfolio","themeColor":{"light":"#f7f4ef","dark":"#15121b"}}}};(()=>{const c=window.__SITE_THEME_CONFIG__,r=document.documentElement;let t=c.defaultTheme,m=c.defaultColorMode;try{const st=localStorage.getItem(c.storageKeys.theme),sm=localStorage.getItem(c.storageKeys.colorMode);if(c.themes.includes(st))t=st;if(['system','light','dark'].includes(sm))m=sm}catch{}r.dataset.theme=t;r.dataset.colorPreference=m;r.dataset.colorMode=m==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):m;})();</script><link rel="stylesheet" href="/styles/core.css" data-shared-stylesheet><link rel="stylesheet" href="/styles/wiki-document.css" data-shared-stylesheet><link rel="stylesheet" href="/styles/themes/atlas.css" data-theme-stylesheet="atlas">
+<link rel="stylesheet" href="/styles/themes/pixel.css" data-theme-stylesheet="pixel" disabled><link rel="stylesheet" href="/wiki/signal-communications/signal-analysis/fourier-transform/local.css/"><script>document.querySelectorAll('link[data-theme-stylesheet]').forEach(l=>{l.disabled=l.dataset.themeStylesheet!==document.documentElement.dataset.theme});</script><title>푸리에 변환 · 김정도 — Developer &amp; Knowledge Builder</title></head><body class="wiki-document-page"><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><header class="site-header" data-site-header><a class="site-brand" href="/"><span aria-hidden="true">▦</span> JD.ATLAS</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="global-nav">MENU</button><nav id="global-nav" class="global-nav" aria-label="주요 메뉴"><a href="/">HOME</a><a href="/resume/">RESUME</a><a href="/portfolio/">PORTFOLIO</a><a href="/blog/">BLOG</a><a href="/wiki/" aria-current="page">WIKI</a><a href="/search/">SEARCH</a></nav><div class="theme-tools header-theme-tools" data-theme-tools><label class="theme-picker"><span class="visually-hidden">디자인 테마 선택</span><select data-theme-picker aria-label="디자인 테마 선택"><option value="atlas">KNOWLEDGE ATLAS</option><option value="pixel">PIXEL PORTFOLIO</option></select></label><button class="color-mode-button" type="button" data-color-mode-toggle aria-label="색상 모드 전환">◐</button></div></header><div class="reading-progress" aria-hidden="true"></div><div class="shell"><aside class="toc" aria-label="문서 목차"></aside><main id="main-content" class="article" data-document-id="fourier-transform" data-content-version="1.0.0"><nav class="breadcrumbs" aria-label="현재 문서 위치"><a href="/wiki/">위키</a><span aria-hidden="true">›</span><a href="/wiki/domains/signal-processing/">신호처리</a><span aria-hidden="true">›</span><b>푸리에 변환</b></nav><header class="hero"><div class="eyebrow">신호처리 · signal-analysis</div><h1>푸리에 변환</h1><p class="hero-subtitle">복잡한 신호를 주파수 성분의 크기와 위상으로 다시 읽는 방법</p><div class="hero-meta"><span class="chip">난이도 · 기초 → 중급</span><span class="chip">예상 학습 · 50분</span><span class="chip">문서 버전 · 1.0.0</span><span class="chip">문서 ID · fourier-transform</span></div><div class="hero-summary"><strong>이 문서의 도착점</strong><br>푸리에 급수와 직교성을 바탕으로 푸리에 변환의 입력·출력·해석·한계를 설명하고 기본 문제를 풀 수 있습니다.</div></header><div class="domain-panel"><section class="domain-card" style="margin:0"><h2>도메인 분류</h2><div class="domain-tree"><b>신호처리</b><span aria-hidden="true">›</span><b>signal-analysis</b><span aria-hidden="true">›</span><b>푸리에 변환</b></div><p>문서 프로필 · <span class="inline-code">signal-analysis</span></p></section><section class="relation-card" style="margin:0"><h2>직접 연결</h2><div class="relation-list"><a class="relation-link" href="/wiki/signal-communications/digital-signal-processing/pcm/">PCM <span aria-hidden="true">→</span></a><a class="relation-link" href="/wiki/signal-communications/signal-foundations/euler-formula/">오일러 공식 <span aria-hidden="true">→</span></a><a class="relation-link" href="/wiki/signal-communications/signal-analysis/fourier-series/">푸리에 급수 <span aria-hidden="true">→</span></a></div></section></div><div class="article-body modular-article"><section data-toc-label="출발점" id="overview">
+<div class="section-kicker">Overview · One object, two views</div>
+<h2>푸리에 변환은 복잡한 신호를 ‘주파수 재료표’로 다시 읽는 방법입니다</h2>
+<p class="section-lead">
+<a class="concept-ref" data-concept-id="time-domain" data-status="proposed" data-title="시간 영역" data-body="가로축을 시간으로 두고 신호의 값이 시간에 따라 어떻게 변하는지 보는 표현입니다." href="/wiki/domains/signal-processing/?q=%EC%8B%9C%EA%B0%84%20%EC%98%81%EC%97%AD">시간 영역</a>에서는 신호가 시간에 따라 어떻게 변하는지를 봅니다.
+    푸리에 변환을 적용하면 같은 신호를 <a class="concept-ref" data-concept-id="frequency-domain" data-status="proposed" data-title="주파수 영역" data-body="신호를 구성하는 주파수별 크기와 위상을 좌표로 삼아 보는 표현입니다." href="/wiki/domains/signal-processing/?q=%EC%A3%BC%ED%8C%8C%EC%88%98%20%EC%98%81%EC%97%AD">주파수 영역</a>에서 바라보며,
+    어떤 <a class="concept-ref" data-concept-id="frequency" data-status="proposed" data-title="주파수" data-body="1초 동안 반복되는 횟수이며 단위는 Hz입니다." href="/wiki/domains/electronics-circuits/?q=%EC%A3%BC%ED%8C%8C%EC%88%98">주파수</a>가 얼마나 강하고 어느 <a class="concept-ref" data-concept-id="phase" data-status="proposed" data-title="위상(phase)" data-body="반복 신호가 기준에 비해 주기 안에서 얼마나 이동했는지를 나타내는 값입니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81(phase)">위상</a>으로 들어 있는지를 읽을 수 있습니다.
+  </p>
+<div class="callout" data-kind="intuition">
+<span class="callout-title">한 문장 모델</span>
+    푸리에 변환은 신호를 여러 회전 파동과 하나씩 비교하여 각 파동과 닮은 정도를 기록하고,
+    <a class="concept-ref" data-concept-id="inverse-fourier-transform" data-status="proposed" data-title="역푸리에 변환" data-body="주파수별 계수 X(f)를 모두 다시 합쳐 시간 영역 신호 x(t)를 복원하는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%97%AD%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98">역푸리에 변환</a>은 그 기록을 모두 다시 합쳐 원래 신호를 복원합니다.
+  </div>
+<div class="grid-3">
+<article class="mini-card"><span class="tag">입력</span><strong>x(t)</strong><p>시간에 따라 변하는 연속 시간 신호입니다.</p></article>
+<article class="mini-card"><span class="tag">연산</span><strong>비교하고 적분하기</strong><p>각 후보 파동과 곱한 값을 전체 시간에 걸쳐 더합니다.</p></article>
+<article class="mini-card"><span class="tag">출력</span><strong>X(f)</strong><p>주파수별 크기와 위상을 담는 복소수 계수입니다.</p></article>
+</div>
+<div class="equation">
+    X(f)=∫<sub>−∞</sub><sup>∞</sup>x(t)e<sup>−i2πft</sup>dt
+    <small>이 문서는 이 식을 외우는 데서 시작하지 않습니다. 정현파의 합 → 푸리에 급수 → 오일러 공식 → 직교성과 적분 → 연속 주파수라는 순서로 식의 각 부분이 왜 필요한지 도달합니다.</small>
+</div>
+<div class="callout" data-kind="warning">
+<span class="callout-title">먼저 구분할 것</span>
+    푸리에 변환은 원래 신호에 없던 주파수를 만들어 내는 마법이 아닙니다. 같은 정보를 다른 좌표계로 표현하는 변환입니다.
+    다만 실제 측정에서는 유한한 관측 시간, <a class="concept-ref" data-concept-id="sampling" data-status="proposed" data-title="표본화(sampling)" data-body="연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다." href="/wiki/domains/signal-processing/?q=%ED%91%9C%EB%B3%B8%ED%99%94(sampling)">샘플링</a>, 잡음과 창 함수 때문에 이상적인 수식과 차이가 생깁니다.
+  </div>
+</section>
+
+<section data-toc-label="개념 그래프" id="concept-graph">
+<div class="section-kicker">Concept graph · Prerequisite path</div>
+<h2>먼저, 이해에 필요한 개념의 길을 봅시다</h2>
+<p class="section-lead">
+        푸리에 변환은 하나의 공식으로 갑자기 등장하지 않습니다. 아래 지도에서 왼쪽의 기초 개념이 가운데의 수학 도구를 거쳐 오른쪽의 푸리에 변환으로 모입니다. 노드에 마우스를 올리거나 키보드로 초점을 맞추면 간단한 설명이 나타납니다.
+      </p>
+<div class="concept-map-wrap">
+<svg aria-labelledby="conceptMapTitle conceptMapDesc" class="concept-map" role="img" viewbox="0 0 1120 520">
+<title id="conceptMapTitle">푸리에 변환 개념 그래프</title>
+<desc id="conceptMapDesc">신호, 정현파, 주파수, 진폭, 위상, 복소수, 오일러 공식, 적분, 직교성, 푸리에 급수를 거쳐 푸리에 변환과 스펙트럼으로 이어지는 학습 지도</desc>
+<defs>
+<marker id="arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="context-stroke"></path></marker>
+</defs>
+<text class="plot-muted" text-anchor="middle" x="110" y="32">관찰 대상</text>
+<text class="plot-muted" text-anchor="middle" x="360" y="32">원자 개념</text>
+<text class="plot-muted" text-anchor="middle" x="630" y="32">분해 도구</text>
+<text class="plot-muted" text-anchor="middle" x="900" y="32">핵심 개념과 결과</text>
+<path class="map-edge" d="M190 105H270" marker-end="url(#arrow)"></path><path class="map-edge" d="M190 105C230 105 230 205 270 205" marker-end="url(#arrow)"></path>
+<path class="map-edge" d="M190 105C230 105 230 305 270 305" marker-end="url(#arrow)"></path><path class="map-edge" d="M190 205H270" marker-end="url(#arrow)"></path>
+<path class="map-edge" d="M450 105C500 105 500 135 540 135" marker-end="url(#arrow)"></path><path class="map-edge" d="M450 205C500 205 500 135 540 135" marker-end="url(#arrow)"></path>
+<path class="map-edge" d="M450 305C500 305 500 235 540 235" marker-end="url(#arrow)"></path><path class="map-edge" d="M450 405C500 405 500 335 540 335" marker-end="url(#arrow)"></path>
+<path class="map-edge" d="M720 135C760 135 760 255 810 255" marker-end="url(#arrow)"></path><path class="map-edge" d="M720 235H810" marker-end="url(#arrow)"></path>
+<path class="map-edge" d="M720 335C760 335 760 255 810 255" marker-end="url(#arrow)"></path>
+<path class="map-edge core" d="M990 255C1030 255 1030 130 1040 130" marker-end="url(#arrow)"></path>
+<path class="map-edge core" d="M990 255C1030 255 1030 255 1040 255" marker-end="url(#arrow)"></path>
+<path class="map-edge core" d="M990 255C1030 255 1030 380 1040 380" marker-end="url(#arrow)"></path>
+<a class="concept-ref" data-concept-id="signal" data-status="proposed" data-title="신호" data-body="시간이나 공간에 따라 변하면서 정보를 담는 물리량 또는 수치열입니다." href="/wiki/domains/electronics-circuits/?q=%EC%8B%A0%ED%98%B8">&amp;lt;g class=&amp;quot;map-node sub&amp;quot; transform=&amp;quot;translate(30 70)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;160&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;80&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;신호&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="periodicity" data-status="proposed" data-title="주기성" data-body="일정한 시간 T가 지난 뒤 같은 모양이 반복되는 성질입니다. x(t+T)=x(t)로 씁니다." href="/wiki/domains/signal-processing/?q=%EC%A3%BC%EA%B8%B0%EC%84%B1">&amp;lt;g class=&amp;quot;map-node sub&amp;quot; transform=&amp;quot;translate(30 170)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;160&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;80&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;주기성&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="sinusoid" data-status="proposed" data-title="정현파" data-body="사인 또는 코사인 함수로 나타나는 가장 기본적인 부드러운 반복 파형입니다." href="/wiki/domains/signal-processing/?q=%EC%A0%95%ED%98%84%ED%8C%8C">&amp;lt;g class=&amp;quot;map-node&amp;quot; transform=&amp;quot;translate(270 70)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;정현파&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="frequency" data-status="proposed" data-title="주파수" data-body="1초 동안 반복되는 횟수이며 단위는 Hz입니다." href="/wiki/domains/electronics-circuits/?q=%EC%A3%BC%ED%8C%8C%EC%88%98">&amp;lt;g class=&amp;quot;map-node&amp;quot; transform=&amp;quot;translate(270 170)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;주파수 · 각주파수&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="amplitude" data-status="proposed" data-title="진폭(amplitude)" data-body="신호가 기준값에서 얼마나 크게 벗어나는지를 나타내는 크기입니다." href="/wiki/domains/signal-processing/?q=%EC%A7%84%ED%8F%AD(amplitude)">&amp;lt;g class=&amp;quot;map-node&amp;quot; transform=&amp;quot;translate(270 270)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;진폭 · 위상&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="complex-number" data-status="proposed" data-title="복소수" data-body="실수 부분과 허수 부분을 함께 가진 수입니다. 평면 위의 점 또는 크기와 각도를 가진 화살표로 볼 수 있습니다." href="/wiki/domains/signal-processing/?q=%EB%B3%B5%EC%86%8C%EC%88%98">&amp;lt;g class=&amp;quot;map-node&amp;quot; transform=&amp;quot;translate(270 370)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;복소수&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="euler-formula" data-status="published" data-title="오일러 공식" data-body="e^{jθ}=cosθ+j sinθ가 복소평면의 회전과 정현파 표현을 어떻게 연결하는지 설명합니다." href="/wiki/signal-communications/signal-foundations/euler-formula/">&amp;lt;g class=&amp;quot;map-node bridge&amp;quot; transform=&amp;quot;translate(540 100)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;오일러 공식&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="orthogonality" data-status="proposed" data-title="직교성" data-body="서로 다른 기준 함수의 내적이 0이 되는 성질입니다. 다른 주파수 성분이 서로 간섭하지 않고 분리되게 합니다." href="/wiki/domains/signal-processing/?q=%EC%A7%81%EA%B5%90%EC%84%B1">&amp;lt;g class=&amp;quot;map-node bridge&amp;quot; transform=&amp;quot;translate(540 200)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;직교성&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="integral" data-status="proposed" data-title="적분" data-body="아주 작은 구간의 값들을 연속적으로 모두 더하는 연산입니다. 면적, 누적량, 평균 비교를 계산합니다." href="/wiki/domains/signal-processing/?q=%EC%A0%81%EB%B6%84">&amp;lt;g class=&amp;quot;map-node bridge&amp;quot; transform=&amp;quot;translate(540 300)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;적분 · 내적&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="fourier-series" data-status="published" data-title="푸리에 급수" data-body="반복되는 파형을 서로 다른 정수배 주파수 성분의 크기와 위상으로 표현하는 방법입니다." href="/wiki/signal-communications/signal-analysis/fourier-series/">&amp;lt;g class=&amp;quot;map-node bridge&amp;quot; transform=&amp;quot;translate(810 70)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;푸리에 급수&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="fourier-transform" data-status="published" data-title="푸리에 변환" data-body="시간 영역과 주파수 영역을 연결하고 복잡한 신호의 주파수 재료표를 얻는 원리를 설명합니다." href="/wiki/signal-communications/signal-analysis/fourier-transform/">&amp;lt;g class=&amp;quot;map-node core-node&amp;quot; transform=&amp;quot;translate(810 220)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;푸리에 변환&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="inverse-fourier-transform" data-status="proposed" data-title="역푸리에 변환" data-body="주파수별 계수 X(f)를 모두 다시 합쳐 시간 영역 신호 x(t)를 복원하는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%97%AD%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98">&amp;lt;g class=&amp;quot;map-node bridge&amp;quot; transform=&amp;quot;translate(810 370)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;180&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;90&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;역푸리에 변환&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="spectrum" data-status="proposed" data-title="스펙트럼(spectrum)" data-body="주파수에 따라 성분의 크기와 위상이 어떻게 분포하는지를 나타낸 결과입니다." href="/wiki/domains/signal-processing/?q=%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC(spectrum)">&amp;lt;g class=&amp;quot;map-node sub&amp;quot; transform=&amp;quot;translate(1000 95)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;110&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;55&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;스펙트럼&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="filter" data-status="proposed" data-title="필터" data-body="특정 주파수 성분을 통과시키거나 줄이는 시스템입니다." href="/wiki/domains/signal-processing/?q=%ED%95%84%ED%84%B0">&amp;lt;g class=&amp;quot;map-node sub&amp;quot; transform=&amp;quot;translate(1000 220)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;110&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;55&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;필터링&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+<a class="concept-ref" data-concept-id="dft" data-status="proposed" data-title="이산 푸리에 변환 DFT" data-body="N개의 유한한 샘플을 N개의 복소 주파수 계수로 바꾸는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%9D%B4%EC%82%B0%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20DFT">&amp;lt;g class=&amp;quot;map-node sub&amp;quot; transform=&amp;quot;translate(1000 345)&amp;quot;&amp;gt;&amp;lt;rect height=&amp;quot;70&amp;quot; width=&amp;quot;110&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;&amp;lt;text x=&amp;quot;55&amp;quot; y=&amp;quot;42&amp;quot;&amp;gt;DFT · FFT&amp;lt;/text&amp;gt;&amp;lt;/g&amp;gt;</a>
+</svg>
+</div>
+<div class="callout" data-kind="intuition">
+<span class="callout-title">이 문서의 학습 순서</span>
+        먼저 파동을 실제로 더해 보고 → 반복 신호를 푸리에 급수로 분해하고 → 오일러 공식으로 파동을 회전으로 바꾸고 → 직교성과 적분으로 원하는 성분만 골라낸 뒤 → 반복 주기를 무한히 늘려 푸리에 변환에 도달합니다.
+      </div>
+</section>
+
+<section data-toc-label="정현파 중첩" id="superposition">
+<div class="section-kicker">Step 1 · Superposition</div>
+<h2>복잡한 신호는 단순한 파동들의 정확한 합이 될 수 있습니다</h2>
+<p class="section-lead">
+        푸리에 해석의 출발점은 <a class="concept-ref" data-concept-id="superposition" data-status="proposed" data-title="중첩" data-body="여러 신호가 동시에 있을 때 같은 시각의 값을 더해 전체 신호를 만드는 원리입니다." href="/wiki/domains/signal-processing/?q=%EC%A4%91%EC%B2%A9">중첩</a>입니다.
+        여러 <a class="concept-ref" data-concept-id="sinusoid" data-status="proposed" data-title="정현파" data-body="사인 또는 코사인 함수로 나타나는 가장 기본적인 부드러운 반복 파형입니다." href="/wiki/domains/signal-processing/?q=%EC%A0%95%ED%98%84%ED%8C%8C">정현파</a>를 같은 순간마다 더하면 새로운 하나의 파형이 됩니다. 아래 실험에서 흰색 복합 신호는 장식용 곡선이 아니라, 위 세 파형의 값을 실제로 계산해 더한 결과입니다.
+      </p>
+<div class="lab" id="superpositionLab">
+<div class="lab-head">
+<div><div class="lab-index">Interactive SVG 01</div><h3>정현파 세 개를 더해 복합 신호 만들기</h3><p>슬라이더를 바꾸거나 그래프 위를 가리켜 보세요. 같은 시간의 세 값과 합이 아래에 표시됩니다.</p></div>
+</div>
+<div class="lab-controls">
+<div class="control"><label>성분 A · 진폭 <output id="a1Out">1.00</output></label><input id="a1" max="1.4" min="0" step="0.05" type="range" value="1"/></div>
+<div class="control"><label>성분 A · 주파수 <output id="f1Out">1.0 Hz</output></label><input id="f1" max="6" min="0.5" step="0.5" type="range" value="1"/></div>
+<div class="control"><label>성분 A · 위상 <output id="p1Out">0°</output></label><input id="p1" max="180" min="-180" step="5" type="range" value="0"/></div>
+<div class="control"><label>성분 B · 진폭 <output id="a2Out">0.65</output></label><input id="a2" max="1.4" min="0" step="0.05" type="range" value="0.65"/></div>
+<div class="control"><label>성분 B · 주파수 <output id="f2Out">3.0 Hz</output></label><input id="f2" max="8" min="0.5" step="0.5" type="range" value="3"/></div>
+<div class="control"><label>성분 B · 위상 <output id="p2Out">25°</output></label><input id="p2" max="180" min="-180" step="5" type="range" value="25"/></div>
+<div class="control"><label>성분 C · 진폭 <output id="a3Out">0.35</output></label><input id="a3" max="1.4" min="0" step="0.05" type="range" value="0.35"/></div>
+<div class="control"><label>성분 C · 주파수 <output id="f3Out">5.0 Hz</output></label><input id="f3" max="10" min="0.5" step="0.5" type="range" value="5"/></div>
+<div class="control"><label>성분 C · 위상 <output id="p3Out">−40°</output></label><input id="p3" max="180" min="-180" step="5" type="range" value="-40"/></div>
+</div>
+<div class="lab-actions">
+<button aria-pressed="false" class="lab-button" id="superPlay" type="button">▶ 시간 이동</button>
+<button class="lab-button" id="superReset" type="button">초기값</button>
+<div aria-live="polite" class="lab-readout" id="superReadout">t = 0.50 s · 0.00 + 0.00 + 0.00 = 0.00</div>
+</div>
+<svg aria-labelledby="superTitle superDesc" id="superSvg" role="img" viewbox="0 0 980 590">
+<title id="superTitle">세 정현파와 그 합으로 만든 복합 신호</title>
+<desc id="superDesc">세 개의 서로 다른 정현파를 같은 시간에서 더한 값이 맨 아래 흰색 복합 신호가 됨을 보여주는 대화형 그래프</desc>
+<g>
+<path class="plot-grid" d="M150 40V535M350 40V535M550 40V535M750 40V535M940 40V535"></path>
+<path class="plot-axis" d="M150 105H940M150 225H940M150 345H940M150 485H940"></path>
+<text class="plot-label" x="24" y="82">성분 A</text><text class="plot-small" id="eqA" x="24" y="101">1.00·sin(2π·1.0t + 0°)</text>
+<text class="plot-label" x="24" y="202">성분 B</text><text class="plot-small" id="eqB" x="24" y="221">0.65·sin(2π·3.0t + 25°)</text>
+<text class="plot-label" x="24" y="322">성분 C</text><text class="plot-small" id="eqC" x="24" y="341">0.35·sin(2π·5.0t − 40°)</text>
+<text class="plot-label" x="24" y="462">A + B + C</text><text class="plot-small" x="24" y="481">정확한 점별 합</text>
+<text class="plot-muted" x="150" y="565">0 s</text><text class="plot-muted" x="920" y="565">2 s</text>
+<text class="plot-label" x="96" y="410">Σ</text><path d="M112 365V455" stroke="#8e99ab" stroke-width="2"></path><path d="M112 455l-8-12m8 12 8-12" fill="none" stroke="#8e99ab" stroke-width="2"></path>
+</g>
+<path class="wave-path" id="waveA" stroke="var(--wave-1)" stroke-width="3"></path>
+<path class="wave-path" id="waveB" stroke="var(--wave-2)" stroke-width="3"></path>
+<path class="wave-path" id="waveC" stroke="var(--wave-3)" stroke-width="3"></path>
+<path class="wave-path" id="waveSum" stroke="var(--wave-sum)" stroke-width="4"></path>
+<line id="superCursor" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" x1="545" x2="545" y1="40" y2="535"></line>
+<g id="superDots">
+<circle fill="var(--wave-1)" id="dotA" r="5"></circle><circle fill="var(--wave-2)" id="dotB" r="5"></circle><circle fill="var(--wave-3)" id="dotC" r="5"></circle><circle fill="#fff" id="dotSum" r="6" stroke="#f4c66a" stroke-width="2"></circle>
+</g>
+</svg>
+<div class="lab-caption">관찰 포인트: 맨 아래의 흰색 파형이 복잡해져도, 어느 한 시각을 세로로 잘라 보면 그 높이는 항상 A, B, C의 높이를 더한 값과 같습니다.</div>
+</div>
+<div class="equation">x(t) = A₁ sin(2πf₁t + φ₁) + A₂ sin(2πf₂t + φ₂) + A₃ sin(2πf₃t + φ₃)<small>A는 <a class="concept-ref" data-concept-id="amplitude" data-status="proposed" data-title="진폭(amplitude)" data-body="신호가 기준값에서 얼마나 크게 벗어나는지를 나타내는 크기입니다." href="/wiki/domains/signal-processing/?q=%EC%A7%84%ED%8F%AD(amplitude)">진폭</a>, f는 주파수, φ는 <a class="concept-ref" data-concept-id="phase" data-status="proposed" data-title="위상(phase)" data-body="반복 신호가 기준에 비해 주기 안에서 얼마나 이동했는지를 나타내는 값입니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81(phase)">위상</a>입니다. 2π는 한 바퀴가 2π 라디안이기 때문에 들어갑니다.</small></div>
+<p>
+        여기서 중요한 질문이 생깁니다. <strong>합치는 방법은 알겠는데, 이미 합쳐진 복잡한 신호에서 원래 성분을 어떻게 다시 찾아낼까요?</strong> 푸리에 해석은 이 역문제를 해결합니다.
+      </p>
+</section>
+
+<section data-toc-label="푸리에 급수" id="series">
+<div class="section-kicker">Step 2 · Fourier series</div>
+<h2>반복되는 신호라면, 푸리에 급수부터 시작합니다</h2>
+<p class="section-lead">
+        같은 모양이 일정 시간마다 반복되는 <a class="concept-ref" data-concept-id="periodicity" data-status="proposed" data-title="주기성" data-body="일정한 시간 T가 지난 뒤 같은 모양이 반복되는 성질입니다. x(t+T)=x(t)로 씁니다." href="/wiki/domains/signal-processing/?q=%EC%A3%BC%EA%B8%B0%EC%84%B1">주기 신호</a>는
+        가장 느린 기본 진동과 그 정수배 진동들을 합쳐 표현할 수 있습니다. 이 표현이 푸리에 급수입니다.
+      </p>
+<div class="callout" data-kind="intuition">
+<span class="callout-title">악기의 기본음과 배음</span>
+        기타 줄에서 ‘라’ 한 음을 내도 실제로는 기본 주파수뿐 아니라 2배, 3배, 4배…의 빠른 진동이 함께 섞입니다. 기본 주파수의 정수배를 <strong>고조파</strong>라고 합니다. 고조파의 비율이 음색을 만듭니다.
+      </div>
+<div class="equation">x(t) = a₀/2 + Σₙ₌₁∞ [aₙ cos(nω₀t) + bₙ sin(nω₀t)]<small>ω₀ = 2π/T₀는 기본 각주파수입니다. n = 1, 2, 3, …이므로 스펙트럼은 서로 떨어진 선들로 나타납니다.</small></div>
+<div class="lab" id="seriesLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 02</div><h3>사각파를 고조파로 조립하기</h3><p>사용하는 홀수 고조파 수를 늘리면 부드러운 정현파의 합이 각진 사각파에 가까워집니다.</p></div></div>
+<div class="lab-controls">
+<div class="control"><label>사용할 홀수 고조파 수 <output id="termsOut">5개</output></label><input id="terms" max="25" min="1" step="1" type="range" value="5"/></div>
+</div>
+<div class="lab-actions"><button class="lab-button" id="termsReset" type="button">1개부터 보기</button><div aria-live="polite" class="lab-readout" id="seriesReadout">1, 3, 5, 7, 9번째 고조파 사용</div></div>
+<svg aria-labelledby="seriesTitle seriesDesc" id="seriesSvg" role="img" viewbox="0 0 980 500">
+<title id="seriesTitle">푸리에 급수로 사각파를 근사하는 그래프</title><desc id="seriesDesc">홀수 고조파를 더할수록 정현파의 합이 목표 사각파에 가까워지고 아래에는 각 고조파 계수의 크기가 막대로 표시됨</desc>
+<path class="plot-grid" d="M70 80H940M70 150H940M70 220H940M70 290H940M70 380H940M70 450H940"></path>
+<path class="plot-axis" d="M70 185H940M70 450H940M70 340V460"></path>
+<text class="plot-label" x="70" y="45">시간 영역 · 사각파 재구성</text><text class="plot-muted" x="70" y="325">점선: 목표 사각파 · 실선: 현재 푸리에 급수</text>
+<text class="plot-label" x="70" y="365">주파수 영역 · 사용한 고조파의 크기</text>
+<path class="wave-path" id="squareTarget" stroke="#79879b" stroke-dasharray="7 6" stroke-width="2"></path>
+<path class="wave-path" id="squareApprox" stroke="#ffffff" stroke-width="3.5"></path>
+<g id="harmonicBars"></g>
+<text class="plot-small" id="gibbsLabel" x="880" y="86">불연속점 근처의 작은 넘침</text>
+</svg>
+<div class="lab-caption">관찰 포인트: 각진 모서리를 만들려면 점점 더 높은 주파수가 필요합니다. 항을 아무리 많이 더해도 점프 지점 근처에 일정한 넘침이 남는 현상을 <a class="concept-ref" data-concept-id="gibbs" data-status="proposed" data-title="깁스 현상" data-body="불연속 신호를 유한한 푸리에 급수로 근사할 때 점프 주변에 생기는 진동과 넘침입니다." href="/wiki/domains/signal-processing/?q=%EA%B9%81%EC%8A%A4%20%ED%98%84%EC%83%81">깁스 현상</a>이라고 합니다.</div>
+</div>
+<p>
+        푸리에 급수는 푸리에 변환의 예고편입니다. 반복되는 신호에서는 허용되는 주파수가 기본 주파수의 정수배로만 나타나므로 주파수 축에 <strong>띄엄띄엄 선</strong>이 생깁니다. 반복되지 않는 신호를 다루려면 이 선들의 간격을 0에 가깝게 줄여야 합니다. 그 과정은 뒤에서 직접 확인합니다.
+      </p>
+</section>
+
+<section data-toc-label="오일러 공식" id="euler">
+<div class="section-kicker">Step 3 · Euler's formula</div>
+<h2>오일러 공식은 파동을 ‘회전’으로 바꿔 줍니다</h2>
+<p class="section-lead">
+        사인과 코사인을 따로 다루는 대신 <a class="concept-ref" data-concept-id="complex-number" data-status="proposed" data-title="복소수" data-body="실수 부분과 허수 부분을 함께 가진 수입니다. 평면 위의 점 또는 크기와 각도를 가진 화살표로 볼 수 있습니다." href="/wiki/domains/signal-processing/?q=%EB%B3%B5%EC%86%8C%EC%88%98">복소수</a> 평면에서 도는 화살표 하나로 묶으면 계산이 훨씬 단순해집니다. 이 연결이 오일러 공식입니다.
+      </p>
+<div class="equation">eⁱᶿ = cos θ + i sin θ<small>실수축 방향 그림자는 cos θ, 허수축 방향 그림자는 sin θ입니다. 한 바퀴 θ = 2π가 지나면 파동도 한 주기를 마칩니다.</small></div>
+<div class="lab" id="eulerLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 03</div><h3>회전하는 화살표의 그림자가 사인과 코사인이 되는 과정</h3><p>각도를 움직여 원 위의 점, 코사인 값, 사인 값이 동시에 어떻게 변하는지 확인하세요.</p></div></div>
+<div class="lab-controls"><div class="control"><label>회전 각도 θ <output id="angleOut">45°</output></label><input id="angle" max="360" min="0" step="1" type="range" value="45"/></div></div>
+<div class="lab-actions"><button aria-pressed="false" class="lab-button" id="eulerPlay" type="button">▶ 회전</button><button class="lab-button" id="eulerReset" type="button">0°</button><div aria-live="polite" class="lab-readout" id="eulerReadout">cos θ = 0.707 · sin θ = 0.707</div></div>
+<svg aria-labelledby="eulerTitle eulerDesc" id="eulerSvg" role="img" viewbox="0 0 980 470">
+<title id="eulerTitle">오일러 공식의 회전 벡터와 사인 코사인 투영</title><desc id="eulerDesc">복소평면의 단위원 위를 도는 벡터를 실수축과 허수축에 투영한 값이 코사인과 사인이 되고, 오른쪽 파형의 같은 각도 위치에 표시됨</desc>
+<circle cx="245" cy="235" fill="none" r="132" stroke="#3a4352" stroke-width="2"></circle>
+<path class="plot-axis" d="M75 235H415M245 65V405"></path>
+<text class="plot-muted" x="390" y="225">실수축</text><text class="plot-muted" x="255" y="82">허수축</text>
+<line id="phasor" stroke="#b38cff" stroke-linecap="round" stroke-width="4" x1="245" x2="338" y1="235" y2="142"></line>
+<line id="projX" stroke="#7ba4ff" stroke-dasharray="5 5" stroke-width="2" x1="338" x2="338" y1="142" y2="235"></line>
+<line id="projY" stroke="#53d8b1" stroke-dasharray="5 5" stroke-width="2" x1="338" x2="245" y1="142" y2="142"></line>
+<circle cx="338" cy="142" fill="#fff" id="phasorPoint" r="7" stroke="#b38cff" stroke-width="3"></circle>
+<path d="" fill="none" id="angleArc" stroke="#f4c66a" stroke-width="2"></path>
+<text class="plot-label" id="thetaLabel" x="285" y="220">θ</text>
+<text class="plot-label" x="505" y="55">각도에 따른 두 그림자</text>
+<path class="plot-axis" d="M505 170H940M505 330H940"></path>
+<path class="wave-path" id="cosPath" stroke="var(--wave-1)" stroke-width="3"></path>
+<path class="wave-path" id="sinPath" stroke="var(--wave-3)" stroke-width="3"></path>
+<text class="plot-small" fill="var(--wave-1)" x="510" y="105">cos θ · 실수 성분</text>
+<text class="plot-small" fill="var(--wave-3)" x="510" y="265">sin θ · 허수 성분</text>
+<line id="angleMarker" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" x1="560" x2="560" y1="85" y2="365"></line>
+<circle fill="var(--wave-1)" id="cosDot" r="6"></circle><circle fill="var(--wave-3)" id="sinDot" r="6"></circle>
+<text class="plot-muted" x="505" y="395">0</text><text class="plot-muted" x="920" y="395">2π</text>
+</svg>
+<div class="lab-caption">푸리에 변환의 핵심 파동 <strong>e<sup>i2πft</sup></strong>는 초당 f바퀴 도는 복소수 화살표입니다. +f와 −f는 서로 반대 방향으로 도는 회전을 뜻합니다.</div>
+</div>
+<div class="grid-2">
+<div class="mini-card"><strong>왜 2πf인가?</strong><p>f는 1초당 ‘몇 바퀴’인지 세고, 2π는 한 바퀴의 라디안 수입니다. 따라서 <a class="concept-ref" data-concept-id="angular-frequency" data-status="proposed" data-title="각주파수" data-body="회전 각도의 변화 속도입니다. ω=2πf이며 단위는 rad/s입니다." href="/wiki/domains/signal-processing/?q=%EA%B0%81%EC%A3%BC%ED%8C%8C%EC%88%98">각주파수</a>는 ω = 2πf입니다.</p></div>
+<div class="mini-card"><strong>왜 복소수를 쓰는가?</strong><p>진폭과 위상을 한 숫자에 함께 담고, 미분·적분·시간 이동을 곱셈으로 간단히 처리할 수 있기 때문입니다.</p></div>
+</div>
+</section>
+
+<section data-toc-label="직교성과 적분" id="orthogonality">
+<div class="section-kicker">Step 4 · Orthogonality &amp; integration</div>
+<h2>직교성과 적분이 원하는 주파수만 골라냅니다</h2>
+<p class="section-lead">
+        x축 방향과 y축 방향이 서로 섞이지 않듯, 서로 다른 정수배 주파수의 정현파도 한 주기 전체에서 비교하면 서로의 평균 기여가 0이 됩니다. 이 성질을 <a class="concept-ref" data-concept-id="orthogonality" data-status="proposed" data-title="직교성" data-body="서로 다른 기준 함수의 내적이 0이 되는 성질입니다. 다른 주파수 성분이 서로 간섭하지 않고 분리되게 합니다." href="/wiki/domains/signal-processing/?q=%EC%A7%81%EA%B5%90%EC%84%B1">직교성</a>이라고 합니다.
+      </p>
+<ol class="term-list">
+<li><strong>찾고 싶은 후보 파동을 만든다.</strong><br/>예를 들어 3 Hz 성분을 찾으려면 3 Hz 정현파를 준비합니다.</li>
+<li><strong>원래 신호와 후보 파동을 순간마다 곱한다.</strong><br/>두 파동이 같은 리듬으로 움직이면 양의 곱이 오래 쌓입니다. 다른 리듬이면 양수와 음수가 서로 지워집니다.</li>
+<li><strong>그 곱을 시간 전체에 걸쳐 적분한다.</strong><br/><a class="concept-ref" data-concept-id="integral" data-status="proposed" data-title="적분" data-body="아주 작은 구간의 값들을 연속적으로 모두 더하는 연산입니다. 면적, 누적량, 평균 비교를 계산합니다." href="/wiki/domains/signal-processing/?q=%EC%A0%81%EB%B6%84">적분</a>은 아주 작은 시간 조각의 값을 모두 더하는 연속적인 합입니다.</li>
+</ol>
+<div class="lab" id="orthLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 04</div><h3>주파수 탐지기: 곱하고 적분하기</h3><p>원래 신호에는 1, 3, 5 Hz가 들어 있습니다. 후보 주파수를 바꾸며 검출값이 언제 커지는지 확인하세요.</p></div></div>
+<div class="lab-controls"><div class="control"><label>검사할 후보 주파수 <output id="candidateOut">3 Hz</output></label><input id="candidate" max="8" min="1" step="1" type="range" value="3"/></div></div>
+<div class="lab-actions"><button class="lab-button" id="candidateScan" type="button">1→8 Hz 자동 스캔</button><div aria-live="polite" class="lab-readout" id="orthReadout">검출값 0.650 · 3 Hz 성분이 존재합니다</div></div>
+<svg aria-labelledby="orthTitle orthDesc" id="orthSvg" role="img" viewbox="0 0 980 600">
+<title id="orthTitle">직교성을 이용한 주파수 성분 탐지</title><desc id="orthDesc">원래 신호, 후보 정현파, 두 파형의 곱, 1에서 8 헤르츠까지 적분한 검출값을 차례로 보여 줌</desc>
+<path class="plot-grid" d="M90 50V540M300 50V540M510 50V540M720 50V540M930 50V540"></path>
+<path class="plot-axis" d="M90 105H930M90 230H930M90 360H930M90 535H930"></path>
+<text class="plot-label" x="18" y="82">원래 신호</text><text class="plot-small" x="18" y="101">1 Hz + 0.65×3 Hz + 0.35×5 Hz</text>
+<text class="plot-label" x="18" y="207">후보 파동</text><text class="plot-small" id="basisLabel" x="18" y="226">sin(2π·3t)</text>
+<text class="plot-label" x="18" y="337">곱</text><text class="plot-small" x="18" y="356">양수와 음수를 적분</text>
+<text class="plot-label" x="18" y="435">검출 결과</text><text class="plot-small" x="18" y="454">1~8 Hz</text>
+<path class="wave-path" id="orthSignal" stroke="#ffffff" stroke-width="3"></path>
+<path class="wave-path" id="orthBasis" stroke="var(--wave-1)" stroke-width="3"></path>
+<g id="productPositive"></g><g id="productNegative"></g>
+<path class="wave-path" id="orthProduct" stroke="#d4d8e0" stroke-width="1.8"></path>
+<g id="detectorBars"></g>
+<text class="plot-muted" x="90" y="570">0 s</text><text class="plot-muted" x="910" y="570">1 s</text>
+</svg>
+<div class="lab-caption">검출값은 <strong>2∫x(t)sin(2πnt)dt</strong>를 수치적으로 계산한 값입니다. 신호에 없는 2, 4, 6… Hz에서는 양수와 음수가 거의 정확히 지워집니다.</div>
+</div>
+<div class="equation">cₙ = (1/T₀) ∫<sub>t₀</sub><sup>t₀+T₀</sup> x(t) · e<sup>−i2πnf₀t</sup> dt<small>원래 신호 x(t)를 n번째 기준 파동과 <a class="concept-ref" data-concept-id="inner-product" data-status="proposed" data-title="내적" data-body="두 함수가 얼마나 닮았는지 측정하는 곱셈과 적분의 조합입니다. 푸리에 계수는 신호와 기준 파동의 내적입니다." href="/wiki/domains/signal-processing/?q=%EB%82%B4%EC%A0%81">내적</a>하면 그 파동의 복소 계수 cₙ이 나옵니다. cₙ의 크기는 양, 각도는 위상을 담습니다.</small></div>
+<details class="math-layer">
+<summary>조금 더 엄밀하게: 왜 다른 주파수는 0이 되나요?</summary>
+<div>
+<p>한 주기 T에서 두 복소 지수 파동을 곱해 적분하면 다음과 같습니다.</p>
+<div class="equation">(1/T)∫₀ᵀ e<sup>i2πmt/T</sup>e<sup>−i2πnt/T</sup>dt = { 1 (m=n), 0 (m≠n) }</div>
+<p>m과 n이 다르면 결과는 원을 정수 번 완전히 돌며 모든 방향이 서로 상쇄됩니다. 같으면 회전이 멈춰 항상 1이므로 적분 결과가 남습니다. 이것이 푸리에 계수를 하나씩 정확히 분리할 수 있는 이유입니다.</p>
+</div>
+</details>
+</section>
+
+<section data-toc-label="급수에서 변환으로" id="transform">
+<div class="section-kicker">Step 5 · From series to transform</div>
+<h2>반복 주기를 무한히 늘리면 푸리에 변환이 됩니다</h2>
+<p class="section-lead">
+        푸리에 급수의 주파수 간격은 Δf = 1/T입니다. 가상의 반복 주기 T를 더 크게 잡을수록 선 사이가 촘촘해집니다. T가 무한대로 가면 반복은 사라지고, 띄엄띄엄 있던 계수는 연속적인 주파수 함수 X(f)가 됩니다.
+      </p>
+<div class="lab" id="limitLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 05</div><h3>푸리에 급수의 선들이 연속 스펙트럼이 되는 극한</h3><p>폭 1초인 펄스를 아주 긴 주기로 반복한다고 가정합니다. T를 키우면 주파수 표본 간격 1/T가 줄어듭니다.</p></div></div>
+<div class="lab-controls"><div class="control"><label>가상의 반복 주기 T <output id="periodOut">6.0 s</output></label><input id="virtualPeriod" max="14" min="2" step="0.25" type="range" value="6"/></div></div>
+<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="limitReadout">Δf = 0.167 Hz · 정규화된 계수들이 연속 곡선을 표본화합니다</div></div>
+<svg aria-labelledby="limitTitle limitDesc" id="limitSvg" role="img" viewbox="0 0 980 500">
+<title id="limitTitle">푸리에 급수에서 푸리에 변환으로 가는 극한</title><desc id="limitDesc">시간 영역에서 펄스를 둘러싼 반복 구간이 길어질수록 주파수 영역의 이산 선들이 촘촘해져 연속 sinc 스펙트럼을 채우는 모습</desc>
+<text class="plot-label" x="70" y="48">시간 영역 · 한 반복 구간</text>
+<path class="plot-axis" d="M70 190H930"></path><rect fill="none" height="120" id="periodBox" stroke="#3d4859" stroke-dasharray="6 5" stroke-width="2" width="640" x="180" y="70"></rect>
+<path d="M70 190H430V95H570V190H930" fill="none" id="pulsePath" stroke="#fff" stroke-width="3.5"></path>
+<text class="plot-small" id="periodLeft" x="180" y="215">−T/2</text><text class="plot-small" id="periodRight" x="795" y="215">T/2</text><text class="plot-small" x="445" y="85">폭 τ = 1 s</text>
+<text class="plot-label" x="70" y="275">주파수 영역 · 푸리에 급수 계수와 변환의 포락선</text>
+<path class="plot-axis" d="M70 430H930M500 300V445"></path>
+<path class="wave-path" id="sincEnvelope" opacity=".75" stroke="#ffffff" stroke-width="2.5"></path>
+<g id="spectrumLines"></g>
+<text class="plot-small" x="76" y="465">−6 Hz</text><text class="plot-small" x="900" y="465">+6 Hz</text><text class="plot-small" x="508" y="448">0</text>
+<text class="plot-small" fill="var(--wave-1)" x="700" y="310">세로선: T|cₙ|</text><text class="plot-small" x="700" y="330">흰 곡선: |X(f)|</text>
+</svg>
+<div class="lab-caption">수학적으로는 푸리에 급수의 합 <strong>Σ</strong>가 주파수 간격 Δf와 함께 리만 합을 이루고, T→∞에서 적분 <strong>∫</strong>으로 바뀝니다.</div>
+</div>
+<div class="equation">X(f) = ∫<sub>−∞</sub><sup>∞</sup> x(t)e<sup>−i2πft</sup>dt<small>분석식: 신호와 모든 후보 주파수의 반대 방향 회전을 비교해, 주파수 f의 복소 계수 X(f)를 구합니다.</small></div>
+<div class="equation">x(t) = ∫<sub>−∞</sub><sup>∞</sup> X(f)e<sup>i2πft</sup>df<small>합성식: 모든 주파수 성분을 X(f)의 크기와 위상에 맞춰 다시 더하면 원래 신호를 복원합니다.</small></div>
+<div class="card">
+<h3 style="margin-top:0">분석식의 각 부분을 말로 읽기</h3>
+<div class="grid-2">
+<div class="mini-card"><strong>x(t)</strong><p><a class="concept-ref" data-concept-id="time-domain" data-status="proposed" data-title="시간 영역" data-body="가로축을 시간으로 두고 신호의 값이 시간에 따라 어떻게 변하는지 보는 표현입니다." href="/wiki/domains/signal-processing/?q=%EC%8B%9C%EA%B0%84%20%EC%98%81%EC%97%AD">시간 영역</a>에서 관찰한 원래 신호입니다.</p></div>
+<div class="mini-card"><strong>e<sup>−i2πft</sup></strong><p>주파수 f로 반대 방향 회전하는 시험 파동입니다. 원래 신호 속 같은 회전을 멈춰 세우는 역할을 합니다.</p></div>
+<div class="mini-card"><strong>곱셈</strong><p>신호를 후보 파동의 좌표축에 투영하는 비교 과정입니다.</p></div>
+<div class="mini-card"><strong>∫dt</strong><p>모든 시간의 비교 결과를 누적해 다른 주파수의 흔들림을 상쇄합니다.</p></div>
+<div class="mini-card"><strong>X(f)</strong><p>해당 주파수가 얼마나 있고 어떤 위상인지 담는 복소수입니다.</p></div>
+<div class="mini-card"><strong>모든 f에 반복</strong><p>주파수 축 전체를 훑으면 <a class="concept-ref" data-concept-id="spectrum" data-status="proposed" data-title="스펙트럼(spectrum)" data-body="주파수에 따라 성분의 크기와 위상이 어떻게 분포하는지를 나타낸 결과입니다." href="/wiki/domains/signal-processing/?q=%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC(spectrum)">스펙트럼</a>이 완성됩니다.</p></div>
+</div>
+</div>
+<div class="callout" data-kind="warning">
+<span class="callout-title">표기법 주의</span>
+        이 문서는 주파수 f(Hz)를 사용해 지수에 2π를 넣었습니다. 어떤 책은 각주파수 ω(rad/s)를 사용해 X(ω)=∫x(t)e<sup>−iωt</sup>dt로 쓰고, 역변환 앞에 1/2π를 둡니다. 서로 다른 규약일 뿐 의미는 같습니다.
+      </div>
+</section>
+
+<section data-toc-label="크기와 위상" id="magnitude-phase">
+<div class="section-kicker">Step 6 · Magnitude &amp; phase</div>
+<h2>X(f)는 ‘양’뿐 아니라 ‘타이밍’도 보관합니다</h2>
+<p class="section-lead">
+        복소수 X(f)는 두 정보를 가집니다. <a class="concept-ref" data-concept-id="magnitude-spectrum" data-status="proposed" data-title="크기 스펙트럼" data-body="|X(f)|. 각 주파수 성분이 얼마나 강한지를 나타냅니다." href="/wiki/domains/signal-processing/?q=%ED%81%AC%EA%B8%B0%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">크기 스펙트럼</a> |X(f)|는 해당 주파수의 양을, <a class="concept-ref" data-concept-id="phase-spectrum" data-status="proposed" data-title="위상 스펙트럼" data-body="∠X(f). 각 주파수 성분의 시간적 정렬 또는 위치 정보를 나타냅니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">위상 스펙트럼</a> ∠X(f)는 그 파동이 어느 타이밍에 놓였는지를 나타냅니다.
+      </p>
+<div class="lab" id="phaseLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 06</div><h3>크기는 그대로인데 위상만 바꾸면 파형이 달라집니다</h3><p>1 Hz와 3 Hz의 양은 고정되어 있습니다. 3 Hz 성분의 위상만 바꾸어 시간 파형이 어떻게 달라지는지 보세요.</p></div></div>
+<div class="lab-controls"><div class="control"><label>3 Hz 성분의 위상 <output id="phaseOut">0°</output></label><input id="phaseSlider" max="180" min="-180" step="1" type="range" value="0"/></div></div>
+<div class="lab-actions"><button class="lab-button" id="phaseRandom" type="button">임의 위상</button><div aria-live="polite" class="lab-readout" id="phaseReadout">크기: 1 Hz = 1.00, 3 Hz = 0.65 · 위상만 0°</div></div>
+<svg aria-labelledby="phaseTitle phaseDesc" id="phaseSvg" role="img" viewbox="0 0 980 440">
+<title id="phaseTitle">같은 크기 스펙트럼과 다른 위상이 만드는 시간 파형</title><desc id="phaseDesc">1헤르츠와 3헤르츠 성분의 크기는 고정하고 3헤르츠의 위상을 바꾸면 왼쪽 시간 파형이 달라지며 오른쪽 크기 막대는 그대로 유지됨</desc>
+<text class="plot-label" x="60" y="45">시간 영역</text><path class="plot-axis" d="M60 220H640"></path><path class="plot-grid" d="M60 80V360M205 80V360M350 80V360M495 80V360M640 80V360"></path>
+<path class="wave-path" id="phaseReference" stroke="#657184" stroke-dasharray="7 6" stroke-width="2"></path>
+<path class="wave-path" id="phaseWave" stroke="#ffffff" stroke-width="3.5"></path>
+<text class="plot-small" x="60" y="390">점선: 위상 0° 기준 · 실선: 현재 파형</text><text class="plot-small" x="60" y="415">0 s</text><text class="plot-small" x="620" y="415">2 s</text>
+<text class="plot-label" x="705" y="45">주파수 영역</text><path class="plot-axis" d="M700 300H930"></path>
+<rect fill="var(--wave-1)" height="170" rx="6" width="42" x="735" y="130"></rect><rect fill="var(--wave-2)" height="110" rx="6" width="42" x="815" y="190"></rect>
+<text class="plot-small" x="739" y="322">1 Hz</text><text class="plot-small" x="819" y="322">3 Hz</text><text class="plot-small" x="715" y="355">크기 막대는 움직이지 않음</text>
+<circle cx="865" cy="115" fill="none" r="48" stroke="#3b4555" stroke-width="2"></circle><line id="phaseDial" stroke="#f4c66a" stroke-linecap="round" stroke-width="4" x1="865" x2="913" y1="115" y2="115"></line><circle cx="865" cy="115" fill="#fff" r="5"></circle>
+<text class="plot-small" x="805" y="62">3 Hz 위상</text><text class="plot-label" id="phaseDialLabel" x="850" y="180">0°</text>
+</svg>
+<div class="lab-caption">크기 스펙트럼만으로는 원래 신호를 완전히 복원할 수 없습니다. 파형의 위치와 모양을 결정하는 위상 정보도 필요합니다.</div>
+</div>
+<div class="callout" data-kind="intuition">
+<span class="callout-title">사진에서도 위상이 중요합니다</span>
+        이미지의 푸리에 변환에서 크기는 “어떤 공간 주파수가 얼마나 있는지”를 말하고, 위상은 “모서리와 구조가 어디에 있는지”를 많이 담습니다. 위상을 잃으면 원래 배치를 되살리기 어렵습니다.
+      </div>
+<p>
+        실수 신호에서는 양의 주파수와 음의 주파수가 서로 켤레 대칭을 이룹니다. <a class="concept-ref" data-concept-id="negative-frequency" data-status="proposed" data-title="음의 주파수" data-body="복소평면에서 양의 주파수와 반대 방향으로 도는 회전입니다. 실수 신호에서는 ±f 성분이 짝을 이룹니다." href="/wiki/domains/signal-processing/?q=%EC%9D%8C%EC%9D%98%20%EC%A3%BC%ED%8C%8C%EC%88%98">음의 주파수</a>는 시간이 거꾸로 흐른다는 뜻이 아니라, 복소평면에서 반대 방향으로 도는 회전을 뜻합니다.
+      </p>
+</section>
+
+<section data-toc-label="대표 변환쌍" id="pairs">
+<div class="section-kicker">Step 7 · Transform pairs</div>
+<h2>짧은 펄스는 넓은 주파수 대역을 필요로 합니다</h2>
+<p class="section-lead">
+        푸리에 변환은 시간 영역의 모양과 주파수 영역의 모양 사이에 반복되는 규칙을 보여 줍니다. 가장 중요한 예 중 하나가 직사각형 펄스와 <a class="concept-ref" data-concept-id="sinc" data-status="proposed" data-title="sinc 함수" data-body="sin(z)/z 형태의 함수입니다. 직사각형 펄스의 푸리에 변환에서 나타나며 중앙 봉우리와 여러 옆 봉우리를 가집니다." href="/wiki/domains/signal-processing/?q=sinc%20%ED%95%A8%EC%88%98">sinc 함수</a>의 쌍입니다.
+      </p>
+<div class="equation">rect(t/τ) ⇄ τ · sinc(πτf),   sinc(z)=sin(z)/z</div>
+<div class="lab" id="pulseLab">
+<div class="lab-head"><div><div class="lab-index">Interactive SVG 07</div><h3>시간 폭과 주파수 폭의 반대 관계</h3><p>펄스의 폭 τ를 줄이면 스펙트럼의 첫 영점이 멀어져 더 넓은 주파수 범위가 필요해집니다.</p></div></div>
+<div class="lab-controls"><div class="control"><label>펄스 폭 τ <output id="widthOut">0.80 s</output></label><input id="pulseWidth" max="1.6" min="0.2" step="0.05" type="range" value="0.8"/></div></div>
+<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="pulseReadout">첫 영점: ±1.25 Hz · 짧을수록 스펙트럼은 넓어집니다</div></div>
+<svg aria-labelledby="pulseTitle pulseDesc" id="pulseSvg" role="img" viewbox="0 0 980 500">
+<title id="pulseTitle">직사각형 펄스와 sinc 스펙트럼</title><desc id="pulseDesc">시간 영역 펄스의 폭을 조절하면 아래 주파수 영역의 정규화된 sinc 스펙트럼 폭이 반대로 변함</desc>
+<text class="plot-label" x="70" y="48">시간 영역 · rect(t/τ)</text><path class="plot-axis" d="M70 205H930"></path><path class="plot-grid" d="M285 70V215M500 70V215M715 70V215"></path>
+<path class="wave-path" id="rectPulse" stroke="#fff" stroke-width="3.5"></path>
+<line id="widthMarkerL" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" y1="95" y2="215"></line><line id="widthMarkerR" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" y1="95" y2="215"></line>
+<text class="plot-small" id="widthLabel" x="470" y="80">τ = 0.80 s</text>
+<text class="plot-label" x="70" y="285">주파수 영역 · |X(f)| / |X(0)|</text><path class="plot-axis" d="M70 455H930M500 310V470"></path>
+<path class="wave-path" id="pulseSpectrum" stroke="var(--wave-1)" stroke-width="3"></path>
+<line id="zeroMarkerL" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" y1="320" y2="455"></line><line id="zeroMarkerR" stroke="#f4c66a" stroke-dasharray="5 5" stroke-width="1.5" y1="320" y2="455"></line>
+<text class="plot-small" id="zeroLabelL" y="480">−1/τ</text><text class="plot-small" id="zeroLabelR" y="480">+1/τ</text>
+</svg>
+<div class="lab-caption">갑자기 켜지고 꺼지는 짧은 사건을 표현하려면 많은 빠른 진동을 함께 써야 합니다. 이것이 시간 해상도와 주파수 대역폭 사이의 기본적인 맞교환입니다.</div>
+</div>
+<div class="grid-3">
+<div class="mini-card"><strong>정현파</strong><p>무한히 오래 지속되는 하나의 정현파는 이상적으로 ±f₀의 두 선으로 나타납니다.</p></div>
+<div class="mini-card"><strong>상수</strong><p>시간에 따라 변하지 않는 값은 0 Hz, 즉 DC 성분에만 있습니다.</p></div>
+<div class="mini-card"><strong>날카로운 변화</strong><p>모서리나 급격한 점프에는 높은 주파수 성분이 많이 필요합니다.</p></div>
+</div>
+</section>
+
+<section data-toc-label="DFT와 FFT" id="discrete">
+<div class="section-kicker">Step 8 · Digital signals</div>
+<h2>푸리에 변환, DFT, FFT는 같은 말이 아닙니다</h2>
+<p class="section-lead">
+        컴퓨터는 무한한 시간의 연속 신호를 직접 계산하지 못합니다. 실제로는 <a class="concept-ref" data-concept-id="sampling" data-status="proposed" data-title="표본화(sampling)" data-body="연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다." href="/wiki/domains/signal-processing/?q=%ED%91%9C%EB%B3%B8%ED%99%94(sampling)">샘플링</a>한 유한한 데이터에 <a class="concept-ref" data-concept-id="dft" data-status="proposed" data-title="이산 푸리에 변환 DFT" data-body="N개의 유한한 샘플을 N개의 복소 주파수 계수로 바꾸는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%9D%B4%EC%82%B0%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20DFT">이산 푸리에 변환</a>을 적용합니다. FFT는 그 DFT를 빠르게 계산하는 알고리즘입니다.
+      </p>
+<div class="table-scroll">
+<table class="comparison-table">
+<thead><tr><th>이름</th><th>입력</th><th>출력 주파수</th><th>핵심 역할</th></tr></thead>
+<tbody>
+<tr><td>푸리에 급수</td><td>연속시간 주기 신호</td><td>이산적인 고조파</td><td>반복 신호를 정현파 합으로 표현</td></tr>
+<tr><td>푸리에 변환</td><td>연속시간 비주기 신호</td><td>연속적인 스펙트럼</td><td>시간 함수와 주파수 함수 사이 변환</td></tr>
+<tr><td>DTFT</td><td>무한 길이 이산시간 신호</td><td>연속·주기적 주파수 함수</td><td>샘플 신호의 이론적 스펙트럼</td></tr>
+<tr><td>DFT</td><td>N개의 유한 샘플</td><td>N개의 주파수 빈</td><td>컴퓨터가 계산할 수 있는 유한 변환</td></tr>
+<tr><td>FFT</td><td>DFT와 동일</td><td>DFT와 동일</td><td>DFT 계산량을 크게 줄이는 알고리즘</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout" data-kind="warning">
+<span class="callout-title">유한 구간을 잘라 보면 생기는 현상</span>
+        관찰 구간 안에 정수 번 반복되지 않는 주파수는 주변 빈으로 퍼져 보입니다. 이를 <a class="concept-ref" data-concept-id="leakage" data-status="proposed" data-title="스펙트럼 누설" data-body="유한 구간에서 잘린 신호의 에너지가 인접한 주파수 빈으로 퍼져 보이는 현상입니다." href="/wiki/domains/signal-processing/?q=%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC%20%EB%88%84%EC%84%A4">스펙트럼 누설</a>이라고 하며, <a class="concept-ref" data-concept-id="window-function" data-status="proposed" data-title="윈도 함수" data-body="신호 구간의 양끝을 부드럽게 줄여 갑작스러운 절단과 스펙트럼 누설을 완화하는 가중 함수입니다." href="/wiki/domains/signal-processing/?q=%EC%9C%88%EB%8F%84%20%ED%95%A8%EC%88%98">윈도 함수</a>로 경계의 갑작스러운 잘림을 완화합니다.
+      </div>
+</section>
+
+<section data-toc-label="활용과 한계" id="applications">
+<div class="section-kicker">Step 9 · Applications &amp; limits</div>
+<h2>푸리에 변환으로 무엇을 할 수 있을까요?</h2>
+<div class="grid-2">
+<div class="mini-card"><strong>소리와 음악</strong><p>음의 높이, 배음, 잡음을 분석하고 이퀄라이저로 특정 대역을 조절합니다.</p></div>
+<div class="mini-card"><strong>정보통신</strong><p>채널이 통과시키는 대역, 변조된 신호, OFDM의 부반송파를 분석합니다.</p></div>
+<div class="mini-card"><strong>영상과 이미지</strong><p>공간적으로 천천히 변하는 영역과 빠르게 변하는 모서리를 분리해 압축·복원·필터링에 활용합니다.</p></div>
+<div class="mini-card"><strong>물리와 공학</strong><p>진동 모드, 회로의 주파수 응답, 파동 방정식의 해를 분석합니다.</p></div>
+</div>
+<div class="equation">시간 영역의 <a class="concept-ref" data-concept-id="convolution" data-status="proposed" data-title="컨볼루션" data-body="한 함수를 뒤집어 이동시키며 다른 함수와 겹쳐 곱한 값을 적분하는 연산입니다. 선형 시불변 시스템의 출력을 표현합니다." href="/wiki/domains/signal-processing/?q=%EC%BB%A8%EB%B3%BC%EB%A3%A8%EC%85%98">컨볼루션</a> ⇄ 주파수 영역의 곱셈<small>이 성질 때문에 복잡한 필터 계산을 스펙트럼끼리 곱하는 간단한 계산으로 바꿀 수 있습니다.</small></div>
+<h3>그러나 푸리에 변환만으로는 ‘언제’ 일어났는지 알기 어렵습니다</h3>
+<p>
+        전체 신호를 한 번에 변환하면 어떤 주파수가 있는지는 알 수 있지만, 그 주파수가 어느 순간에 나타났는지는 직접 드러나지 않습니다. 시간에 따라 음이 바뀌는 음악처럼 비정상 신호에는 짧은 구간씩 변환하는 <a class="concept-ref" data-concept-id="stft" data-status="proposed" data-title="단시간 푸리에 변환 STFT" data-body="신호를 짧은 시간 구간으로 나누어 각 구간의 푸리에 변환을 계산해 시간과 주파수를 함께 표시합니다." href="/wiki/domains/signal-processing/?q=%EB%8B%A8%EC%8B%9C%EA%B0%84%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20STFT">단시간 푸리에 변환</a>이나 웨이블릿을 사용합니다.
+      </p>
+<div class="callout" data-kind="math">
+<span class="callout-title">존재 조건에 대한 정확한 표현</span>
+        모든 함수가 보통의 적분으로 푸리에 변환되는 것은 아닙니다. 하지만 에너지가 유한한 신호, 절대 적분 가능한 신호, 그리고 디랙 델타 같은 대상을 포함하는 일반화 함수의 의미까지 확장하면 대부분의 공학 신호를 일관되게 다룰 수 있습니다.
+      </div>
+</section>
+
+<section data-toc-label="예제와 풀이" id="worked-examples">
+<div class="section-kicker">Step 10 · Worked examples</div>
+<h2>예제로 푸리에 변환의 사고 과정을 확인해 봅시다</h2>
+<p class="section-lead">
+        아래 문제는 공식을 외웠는지보다, <b>시간 표현에서 주파수 성분을 읽고</b>, <b><a class="concept-ref" data-concept-id="orthogonality" data-status="proposed" data-title="직교성" data-body="서로 다른 기준 함수의 내적이 0이 되는 성질입니다. 다른 주파수 성분이 서로 간섭하지 않고 분리되게 합니다." href="/wiki/domains/signal-processing/?q=%EC%A7%81%EA%B5%90%EC%84%B1">직교성</a>으로 계수를 찾고</b>, <b>시간 폭과 대역폭의 관계를 해석하고</b>, <b>컴퓨터의 <a class="concept-ref" data-concept-id="dft" data-status="proposed" data-title="이산 푸리에 변환 DFT" data-body="N개의 유한한 샘플을 N개의 복소 주파수 계수로 바꾸는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%9D%B4%EC%82%B0%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20DFT">DFT</a> 결과를 읽는지</b>를 확인하도록 구성했습니다.
+      </p>
+<div class="example-intro">
+<div class="callout" data-kind="intuition" style="margin:0">
+<span class="callout-title">풀이를 읽는 순서</span>
+          먼저 어떤 표현과 개념을 써야 하는지 고른 뒤, 계산하고, 마지막에 단위·극한·역산·그래프 중 하나로 답을 확인합니다. 정답 숫자보다 이 선택 과정이 푸리에 변환의 실제 사고 방식에 가깝습니다.
+        </div>
+<div class="example-convention">
+<strong>이 절의 표기 약속</strong>
+<span>연속시간 변환은 X(f)=∫x(t)e<sup>−i2πft</sup>dt를 사용하고, sinc(z)=sin(z)/z로 정의합니다.</span>
+</div>
+</div>
+<div class="example-grid">
+<article class="worked">
+<header class="worked-head"><span class="level-badge">Level 1 · 인식</span><h3>정현파의 합에서 스펙트럼 성분 읽기</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<div class="equation">x(t) = 2 cos(2π·3t) + 0.5 sin(2π·7t + π/4)</div>
+<p>이 신호의 한쪽 <a class="concept-ref" data-concept-id="magnitude-spectrum" data-status="proposed" data-title="크기 스펙트럼" data-body="|X(f)|. 각 주파수 성분이 얼마나 강한지를 나타냅니다." href="/wiki/domains/signal-processing/?q=%ED%81%AC%EA%B8%B0%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">크기 스펙트럼</a>에는 어떤 주파수와 진폭이 나타날까요? 두 번째 성분을 코사인 표현으로 바꾸었을 때 위상도 함께 적어 보세요.</p>
+</div>
+<details class="solution" open="">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>각 항에서 반복 속도를 읽습니다.</b><br/><code>2π·3t</code>는 3 Hz, <code>2π·7t</code>는 7 Hz를 뜻합니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>앞의 계수를 진폭으로 읽습니다.</b><br/>3 Hz 성분의 진폭은 2, 7 Hz 성분의 진폭은 0.5입니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>사인을 코사인 기준으로 바꿉니다.</b><br/><code>sin θ = cos(θ−π/2)</code>이므로 <code>sin(2π·7t+π/4)=cos(2π·7t−π/4)</code>입니다.</p></div>
+<div class="table-wrap"><table class="matrix"><thead><tr><th>주파수</th><th>한쪽 스펙트럼 진폭</th><th>코사인 기준 위상</th></tr></thead><tbody><tr><td>3 Hz</td><td>2</td><td>0</td></tr><tr><td>7 Hz</td><td>0.5</td><td>−π/4</td></tr></tbody></table></div>
+<div class="answer"><b>답:</b> 한쪽 크기 스펙트럼에는 3 Hz에서 2, 7 Hz에서 0.5의 봉우리가 나타납니다. 정확한 복원을 위해서는 각 봉우리의 위상도 함께 보관해야 합니다.</div>
+<div class="answer"><b>표현 확인:</b> 실수 신호의 양쪽 복소 스펙트럼에서는 +f와 −f가 켤레쌍으로 나타납니다. 한쪽 진폭 그래프와 양쪽 복소 계수의 높이는 표시 관례가 다르므로 혼동하지 않습니다.</div>
+</div>
+</details>
+</article>
+<article class="worked">
+<header class="worked-head"><span class="level-badge">Level 2 · 직접 적용</span><h3>직교성을 이용해 2 Hz 성분의 계수 찾기</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<div class="equation">x(t) = 3 cos(2π·2t) + cos(2π·5t),   0 ≤ t ≤ 1</div>
+<p>다음 검출식을 사용해 2 Hz 코사인 성분의 계수 a<sub>2</sub>를 구하세요.</p>
+<div class="equation">a<sub>2</sub> = 2∫<sub>0</sub><sup>1</sup> x(t) cos(2π·2t) dt</div>
+</div>
+<details class="solution">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>신호를 검출식에 넣고 두 적분으로 나눕니다.</b><br/>a<sub>2</sub>=6∫cos²(2π·2t)dt + 2∫cos(2π·5t)cos(2π·2t)dt입니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>같은 주파수의 평균 제곱을 계산합니다.</b><br/>정수 번의 주기를 포함하는 1초 구간에서 ∫<sub>0</sub><sup>1</sup>cos²(2π·2t)dt=1/2입니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>다른 주파수의 교차항을 제거합니다.</b><br/>2 Hz와 5 Hz 코사인은 이 구간에서 <a class="concept-ref" data-concept-id="orthogonality" data-status="proposed" data-title="직교성" data-body="서로 다른 기준 함수의 내적이 0이 되는 성질입니다. 다른 주파수 성분이 서로 간섭하지 않고 분리되게 합니다." href="/wiki/domains/signal-processing/?q=%EC%A7%81%EA%B5%90%EC%84%B1">직교</a>하므로 두 함수의 곱을 적분한 값은 0입니다.</p></div>
+<div class="equation">a<sub>2</sub> = 6·(1/2) + 2·0 = 3</div>
+<div class="answer"><b>답:</b> 2 Hz 코사인 성분의 계수는 <b>3</b>입니다. 원래 식의 진폭과 정확히 일치합니다.</div>
+<div class="error-note"><b>흔한 오류:</b> 적분 앞의 정규화 계수 2를 빠뜨리면 1.5가 나옵니다. 기준 함수의 에너지가 1/2이므로 이를 되돌리는 계수가 필요합니다.</div>
+</div>
+</details>
+</article>
+<article class="worked">
+<header class="worked-head"><span class="level-badge" data-level="integration">Level 3 · 통합 추론</span><h3>세 개의 홀수 고조파로 사각파를 근사하기</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<p>진폭이 ±1인 사각파의 푸리에 급수를 처음 세 홀수 고조파까지만 사용하면 다음과 같습니다.</p>
+<div class="equation">S<sub>3</sub>(t) = (4/π)[sin(2πt/T) + (1/3)sin(6πt/T) + (1/5)sin(10πt/T)]</div>
+<p>t=T/4에서 S<sub>3</sub>(t)의 값을 구하고, 실제 사각파의 값 1보다 조금 크게 나오는 이유를 설명하세요.</p>
+</div>
+<details class="solution">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>각 사인의 각도를 계산합니다.</b><br/>t=T/4이면 첫 항은 sin(π/2)=1, 세 번째 고조파는 sin(3π/2)=−1, 다섯 번째 고조파는 sin(5π/2)=1입니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>부호와 계수를 함께 더합니다.</b><br/>괄호 안은 1−1/3+1/5=(15−5+3)/15=13/15입니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>전체 계수 4/π를 곱합니다.</b></p></div>
+<div class="equation">S<sub>3</sub>(T/4) = (4/π)(13/15) = 52/(15π) ≈ 1.103</div>
+<div class="answer"><b>답:</b> 약 <b>1.103</b>입니다. 유한 개의 부드러운 정현파만으로 모서리가 있는 사각파를 근사하므로 잔물결과 넘침이 생깁니다.</div>
+<div class="answer"><b>더 많은 항을 더하면:</b> 평평한 구간에서는 1에 가까워지지만 불연속점 주변에는 <a class="concept-ref" data-concept-id="gibbs" data-status="proposed" data-title="깁스 현상" data-body="불연속 신호를 유한한 푸리에 급수로 근사할 때 점프 주변에 생기는 진동과 넘침입니다." href="/wiki/domains/signal-processing/?q=%EA%B9%81%EC%8A%A4%20%ED%98%84%EC%83%81">깁스 현상</a>의 진동이 남습니다. 진동 구간은 좁아지지만 최대 넘침의 비율은 즉시 0이 되지 않습니다.</div>
+</div>
+</details>
+</article>
+<article class="worked">
+<header class="worked-head"><span class="level-badge" data-level="integration">Level 3 · 관계 해석</span><h3>직사각형 펄스의 폭에서 스펙트럼 영점 찾기</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<p>높이 1, 폭 τ인 중심 대칭 직사각형 펄스의 푸리에 변환이 다음과 같다고 합시다.</p>
+<div class="equation">X(f) = τ sinc(πτf),   sinc(z)=sin(z)/z</div>
+<p>τ=0.25 s일 때 첫 번째 영점은 몇 Hz인가요? 펄스 폭을 0.50 s로 두 배 늘리면 첫 영점과 중심 대역 폭은 어떻게 변할까요?</p>
+</div>
+<details class="solution">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>sinc가 처음 0이 되는 조건을 찾습니다.</b><br/>sin(z)의 첫 영점은 z=±π이므로 πτf=±π입니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>f를 풉니다.</b><br/>f=±1/τ입니다. τ=0.25 s이면 첫 영점은 ±4 Hz입니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>폭을 두 배로 바꿉니다.</b><br/>τ=0.50 s이면 첫 영점은 ±2 Hz입니다.</p></div>
+<div class="answer"><b>답:</b> 첫 영점은 ±4 Hz에서 ±2 Hz로 중심에 가까워지고, 두 영점 사이의 주엽 폭은 8 Hz에서 4 Hz로 절반이 됩니다.</div>
+<div class="answer"><b>관계 확인:</b> 시간에서 긴 펄스는 천천히 변하므로 좁은 주파수 범위로 표현할 수 있고, 짧은 펄스는 급격히 변하므로 넓은 주파수 범위가 필요합니다.</div>
+</div>
+</details>
+</article>
+<article class="worked">
+<header class="worked-head"><span class="level-badge" data-level="transfer">Level 4 · 디지털 전이</span><h3>DFT의 주파수 빈과 스펙트럼 누설 판단하기</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<p>샘플링 주파수 F<sub>s</sub>=64 Hz로 N=64개의 샘플을 수집했습니다. 신호에 10 Hz 코사인이 포함되어 있습니다.</p>
+<ol>
+<li>DFT의 주파수 간격 Δf는 얼마인가요?</li>
+<li>10 Hz 성분은 어떤 빈에 나타나나요?</li>
+<li>신호가 10.5 Hz라면 왜 한 빈에만 모이지 않나요?</li>
+</ol>
+</div>
+<details class="solution">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>빈 간격을 계산합니다.</b><br/>Δf=F<sub>s</sub>/N=64/64=1 Hz입니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>주파수를 빈 번호로 바꿉니다.</b><br/>k=f/Δf=10/1=10이므로 양의 주파수 쪽 k=10에 나타납니다. 실수 코사인은 음의 주파수 짝도 가지므로 전체 DFT 배열에서는 k=N−10=54에도 켤레 성분이 나타납니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>10.5 Hz를 관찰 구간과 비교합니다.</b><br/>관찰 시간은 N/F<sub>s</sub>=1초입니다. 10.5 Hz는 이 구간에서 10.5번 진동하므로 시작과 끝이 자연스럽게 이어지지 않습니다. DFT가 암묵적으로 반복시킬 때 경계가 끊기고 여러 빈으로 에너지가 퍼집니다.</p></div>
+<div class="answer"><b>답:</b> Δf=1 Hz, 10 Hz는 k=10과 대칭 빈 k=54에 나타납니다. 10.5 Hz는 빈 중심 사이에 있고 관찰 구간 경계가 불연속이 되어 <a class="concept-ref" data-concept-id="leakage" data-status="proposed" data-title="스펙트럼 누설" data-body="유한 구간에서 잘린 신호의 에너지가 인접한 주파수 빈으로 퍼져 보이는 현상입니다." href="/wiki/domains/signal-processing/?q=%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC%20%EB%88%84%EC%84%A4">스펙트럼 누설</a>이 발생합니다.</div>
+<div class="error-note"><b>흔한 오류:</b> FFT가 주파수 해상도를 저절로 높여 준다고 생각하기 쉽습니다. FFT는 같은 DFT를 빠르게 계산하는 알고리즘이며, 실제 빈 간격은 F<sub>s</sub>/N으로 정해집니다.</div>
+</div>
+</details>
+</article>
+<article class="worked">
+<header class="worked-head"><span class="level-badge" data-level="integration">Level 3 · 구조 해석</span><h3>같은 크기 스펙트럼이 서로 다른 파형을 만드는 이유</h3></header>
+<div class="problem">
+<div class="problem-label">문제</div>
+<div class="equation">x₁(t) = cos(2πt) + cos(4πt)</div>
+<div class="equation">x₂(t) = cos(2πt) − cos(4πt)</div>
+<ol>
+<li>두 신호의 한쪽 크기 스펙트럼은 같은가요?</li>
+<li>2 Hz 성분의 <a class="concept-ref" data-concept-id="phase" data-status="proposed" data-title="위상(phase)" data-body="반복 신호가 기준에 비해 주기 안에서 얼마나 이동했는지를 나타내는 값입니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81(phase)">위상</a>은 두 신호에서 어떻게 다른가요?</li>
+<li>t=0에서 두 신호의 값을 계산해 실제 파형이 같은지 확인하세요.</li>
+</ol>
+</div>
+<details class="solution">
+<summary>단계별 풀이</summary>
+<div class="solution-body">
+<div class="solution-step"><span>1</span><p><b>각 주파수의 크기를 비교합니다.</b><br/>두 신호 모두 1 Hz와 2 Hz 성분의 진폭이 1입니다. 따라서 한쪽 <a class="concept-ref" data-concept-id="magnitude-spectrum" data-status="proposed" data-title="크기 스펙트럼" data-body="|X(f)|. 각 주파수 성분이 얼마나 강한지를 나타냅니다." href="/wiki/domains/signal-processing/?q=%ED%81%AC%EA%B8%B0%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">크기 스펙트럼</a>은 같습니다.</p></div>
+<div class="solution-step"><span>2</span><p><b>마이너스 부호를 위상 이동으로 읽습니다.</b><br/>−cos(4πt)=cos(4πt+π)이므로 x₂의 2 Hz 성분은 x₁보다 π rad, 즉 180° 이동했습니다.</p></div>
+<div class="solution-step"><span>3</span><p><b>한 시각의 값을 직접 비교합니다.</b><br/>x₁(0)=1+1=2이고 x₂(0)=1−1=0입니다. 같은 크기의 같은 주파수들을 가져도 합쳐지는 타이밍이 다르면 전체 파형은 달라집니다.</p></div>
+<div class="answer"><b>답:</b> 크기 스펙트럼은 같지만 <a class="concept-ref" data-concept-id="phase-spectrum" data-status="proposed" data-title="위상 스펙트럼" data-body="∠X(f). 각 주파수 성분의 시간적 정렬 또는 위치 정보를 나타냅니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">위상 스펙트럼</a>이 다릅니다. 따라서 일반적인 역변환으로 원래 신호를 복원하려면 크기와 위상이 모두 필요합니다.</div>
+<div class="answer"><b>검산:</b> t=0의 값만 비교해도 두 신호가 같지 않음을 즉시 확인할 수 있습니다. 이는 “주파수의 양만 알면 원래 모양을 안다”는 오해를 반박합니다.</div>
+</div>
+</details>
+</article>
+</div>
+<div class="independent-practice">
+<h3>독립 연습 — 풀이를 보기 전에 먼저 답해 보세요</h3>
+<p>아래 문항은 앞의 예제를 숫자만 바꾼 것이 아니라, 표현과 조건을 조금 달리해 같은 원리를 전이할 수 있는지 확인합니다.</p>
+<div class="practice-list">
+<details>
+<summary>연습 1 · 주기가 0.2초인 주기 신호의 기본 주파수와 처음 네 고조파는?</summary>
+<div class="practice-solution"><p><b>풀이:</b> f₀=1/T₀=1/0.2=5 Hz입니다. 고조파는 기본 주파수의 정수배이므로 5, 10, 15, 20 Hz입니다. 스펙트럼 선 사이 간격도 5 Hz입니다.</p></div>
+</details>
+<details>
+<summary>연습 2 · x(t)=3cos(2π·4t−π/3)의 한쪽 스펙트럼과 양쪽 복소 계수는?</summary>
+<div class="practice-solution"><p><b>풀이:</b> 한쪽 스펙트럼은 4 Hz에서 진폭 3, 위상 −π/3(−60°)입니다. 양쪽 복소 스펙트럼은 +4 Hz에 1.5∠−60°, −4 Hz에 1.5∠+60°가 있습니다. 실수 신호이므로 두 계수는 켤레쌍입니다.</p></div>
+</details>
+<details>
+<summary>연습 3 · 높이 1, 폭 0.25초인 직사각형 펄스의 X(0)과 첫 영점은?</summary>
+<div class="practice-solution"><p><b>풀이:</b> X(0)은 시간 신호의 전체 면적이므로 1×0.25=0.25입니다. 첫 영점은 |f|=1/τ=1/0.25=4 Hz이므로 ±4 Hz입니다.</p></div>
+</details>
+<details>
+<summary>연습 4 · 신호를 0.1초 늦추면 5 Hz 성분의 크기와 위상은 어떻게 변하나요?</summary>
+<div class="practice-solution"><p><b>풀이:</b> 시간 이동 성질은 x(t−t₀) ⇄ X(f)e<sup>−i2πft₀</sup>입니다. 크기는 변하지 않고 위상에 −2πft₀가 더해집니다. f=5 Hz, t₀=0.1 s이면 −2π·5·0.1=−π rad=−180°입니다.</p></div>
+</details>
+</div>
+</div>
+<div class="practice-bridge">
+<b>예제에서 확인한 연결:</b> 정현파 읽기 → 크기·위상 스펙트럼 → 직교성을 통한 계수 추출 → 푸리에 급수 근사 → 시간·주파수 폭의 반대 관계 → 유한 샘플의 DFT와 누설. 이 순서를 자신의 말로 다시 설명할 수 있다면, 공식 하나를 암기한 수준을 넘어 푸리에 변환의 작동 원리를 연결해서 이해한 것입니다.
+      </div>
+</section>
+
+<section data-toc-label="흔한 오해" id="misconceptions">
+<div class="section-kicker">Misconceptions · Boundaries</div>
+<h2>푸리에 변환을 이해할 때 자주 생기는 오해</h2>
+<p class="section-lead">아래 문장은 일부 상황에서는 그럴듯해 보이지만, 전제와 표현 방식을 빠뜨리면 잘못된 결론으로 이어집니다.</p>
+<div class="grid-2">
+<article class="mini-card"><strong>“크기 스펙트럼만 알면 원래 신호를 복원할 수 있다.”</strong><p>일반적으로 거짓입니다. <a class="concept-ref" data-concept-id="phase-spectrum" data-status="proposed" data-title="위상 스펙트럼" data-body="∠X(f). 각 주파수 성분의 시간적 정렬 또는 위치 정보를 나타냅니다." href="/wiki/domains/signal-processing/?q=%EC%9C%84%EC%83%81%20%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC">위상 스펙트럼</a>이 달라지면 같은 크기 성분으로도 전혀 다른 파형이 만들어집니다.</p></article>
+<article class="mini-card"><strong>“FFT는 푸리에 변환과 다른 결과를 낸다.”</strong><p><a class="concept-ref" data-concept-id="fft" data-status="proposed" data-title="FFT와 연산량" data-body="DFT의 결과를 바꾸지 않으면서 계산 횟수를 크게 줄이는 알고리즘 계열입니다." href="/wiki/domains/signal-processing/?q=FFT%EC%99%80%20%EC%97%B0%EC%82%B0%EB%9F%89">FFT</a>는 <a class="concept-ref" data-concept-id="dft" data-status="proposed" data-title="이산 푸리에 변환 DFT" data-body="N개의 유한한 샘플을 N개의 복소 주파수 계수로 바꾸는 변환입니다." href="/wiki/domains/signal-processing/?q=%EC%9D%B4%EC%82%B0%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20DFT">DFT</a>를 빠르게 계산하는 알고리즘 계열입니다. 입력과 정규화 관례가 같다면 목표 결과는 동일합니다.</p></article>
+<article class="mini-card"><strong>“주파수 그래프의 봉우리는 항상 실제 정현파 하나를 뜻한다.”</strong><p>유한 구간 관측, <a class="concept-ref" data-concept-id="window-function" data-status="proposed" data-title="윈도 함수" data-body="신호 구간의 양끝을 부드럽게 줄여 갑작스러운 절단과 스펙트럼 누설을 완화하는 가중 함수입니다." href="/wiki/domains/signal-processing/?q=%EC%9C%88%EB%8F%84%20%ED%95%A8%EC%88%98">윈도 함수</a>, 잡음과 비정상 신호에서는 봉우리 폭과 옆 봉우리를 함께 해석해야 합니다.</p></article>
+<article class="mini-card"><strong>“주기 신호에만 푸리에 분석을 적용할 수 있다.”</strong><p>주기 신호는 <a class="concept-ref" data-concept-id="fourier-series" data-status="published" data-title="푸리에 급수" data-body="반복되는 파형을 서로 다른 정수배 주파수 성분의 크기와 위상으로 표현하는 방법입니다." href="/wiki/signal-communications/signal-analysis/fourier-series/">푸리에 급수</a>의 이산 선 스펙트럼으로, 비주기 신호는 푸리에 변환의 연속 스펙트럼으로 다룹니다.</p></article>
+<article class="mini-card"><strong>“시간 해상도와 주파수 해상도를 동시에 무한히 높일 수 있다.”</strong><p>관측 구간과 창 길이에는 절충이 있습니다. 시간에 따라 성분이 변한다면 <a class="concept-ref" data-concept-id="stft" data-status="proposed" data-title="단시간 푸리에 변환 STFT" data-body="신호를 짧은 시간 구간으로 나누어 각 구간의 푸리에 변환을 계산해 시간과 주파수를 함께 표시합니다." href="/wiki/domains/signal-processing/?q=%EB%8B%A8%EC%8B%9C%EA%B0%84%20%ED%91%B8%EB%A6%AC%EC%97%90%20%EB%B3%80%ED%99%98%20STFT">STFT</a> 같은 시간–주파수 표현을 사용합니다.</p></article>
+<article class="mini-card"><strong>“음의 주파수는 물리적으로 음수 번 진동한다는 뜻이다.”</strong><p><a class="concept-ref" data-concept-id="negative-frequency" data-status="proposed" data-title="음의 주파수" data-body="복소평면에서 양의 주파수와 반대 방향으로 도는 회전입니다. 실수 신호에서는 ±f 성분이 짝을 이룹니다." href="/wiki/domains/signal-processing/?q=%EC%9D%8C%EC%9D%98%20%EC%A3%BC%ED%8C%8C%EC%88%98">음의 주파수</a>는 복소평면에서 반대 방향으로 회전하는 성분입니다. 실수 신호에서는 양·음 주파수가 켤레 대칭을 이룹니다.</p></article>
+</div>
+</section>
+
+<section data-toc-label="핵심 정리" id="summary">
+<div class="section-kicker">Step 11 · Mental model</div>
+<h2>머릿속에 남겨야 할 여섯 단계</h2>
+<div class="checklist">
+<div class="check-item"><div class="check-icon">1</div><div><strong>신호는 여러 정현파의 합으로 표현할 수 있다.</strong><br/>복잡한 모양은 서로 다른 진폭·주파수·위상의 파동들이 중첩된 결과일 수 있습니다.</div></div>
+<div class="check-item"><div class="check-icon">2</div><div><strong>반복 신호에서는 푸리에 급수를 사용한다.</strong><br/>기본 주파수의 정수배인 고조파들이 이산적으로 나타납니다.</div></div>
+<div class="check-item"><div class="check-icon">3</div><div><strong>오일러 공식은 사인과 코사인을 회전 하나로 묶는다.</strong><br/>복소 지수는 진폭과 위상을 함께 다루기 좋은 기준 파동입니다.</div></div>
+<div class="check-item"><div class="check-icon">4</div><div><strong>직교성 덕분에 주파수를 하나씩 분리할 수 있다.</strong><br/>후보 파동과 곱하고 적분하면 같은 주파수만 남고 다른 주파수는 상쇄됩니다.</div></div>
+<div class="check-item"><div class="check-icon">5</div><div><strong>반복 주기를 무한히 늘리면 합이 적분으로 바뀐다.</strong><br/>이산적인 푸리에 급수 계수가 연속적인 푸리에 변환 X(f)가 됩니다.</div></div>
+<div class="check-item"><div class="check-icon">6</div><div><strong>X(f)의 크기와 위상을 모두 알면 역변환으로 복원할 수 있다.</strong><br/>푸리에 변환은 정보를 버리는 것이 아니라 같은 신호를 다른 좌표로 표현합니다.</div></div>
+</div>
+<h3>빠른 개념 확인</h3>
+<div class="quiz">
+<details><summary>왜 푸리에 변환 공식에 2π가 들어가나요?</summary><p>f는 초당 회전 수이고, 한 회전은 2π 라디안이므로 회전 각도는 2πft가 됩니다. 각주파수 ω를 사용하면 2π 대신 ωt로 씁니다.</p></details>
+<details><summary>직교성은 푸리에 계수를 찾는 데 어떤 역할을 하나요?</summary><p>원래 신호를 특정 기준 파동과 곱해 한 구간 적분할 때, 다른 주파수들의 기여를 0으로 상쇄하고 같은 주파수의 기여만 남깁니다.</p></details>
+<details><summary>푸리에 급수와 푸리에 변환의 가장 큰 차이는 무엇인가요?</summary><p>푸리에 급수는 주기 신호를 이산적인 고조파 계수로 표현하고, 푸리에 변환은 비주기 신호를 연속적인 주파수 함수로 표현합니다. 변환은 급수에서 반복 주기를 무한히 늘린 극한으로 이해할 수 있습니다.</p></details>
+<details><summary>크기 스펙트럼만 알면 원래 파형을 복원할 수 있나요?</summary><p>일반적으로는 아닙니다. 각 주파수 성분의 위치 관계를 담는 위상도 필요합니다.</p></details>
+</div>
+
+  <figure class="document-visual semantic-media" data-media-id="fourier-spectrum-overview"><img src="/wiki/signal-communications/signal-analysis/fourier-transform/assets/media/fourier-spectrum-overview/universal.490083c32197.svg" alt="시간 영역의 복합 파형이 주파수별 스펙트럼으로 분해되는 개요" data-media-responsive data-media-variants="%5B%7B%22id%22%3A%22universal%22%2C%22src%22%3A%22%2Fwiki%2Fsignal-communications%2Fsignal-analysis%2Ffourier-transform%2Fassets%2Fmedia%2Ffourier-spectrum-overview%2Funiversal.490083c32197.svg%22%2C%22themeIds%22%3A%5B%22*%22%5D%2C%22colorModes%22%3A%5B%22*%22%5D%7D%5D"><figcaption><strong>푸리에 변환의 시간 영역과 주파수 영역 관계</strong><span class="media-purpose">푸리에 변환의 시간 영역과 주파수 영역 관계</span></figcaption></figure>
+</section>
+</div><section id="document-connections"><div class="section-kicker">Knowledge graph · Local 1-hop view</div><h2>현재 문서의 직접 관계만 표시합니다</h2><div class="local-graph"><svg viewBox="0 0 900 420" role="img" aria-label="푸리에 변환 중심의 직접 개념 관계"><defs><marker id="local-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><path d="M450 210L450.0 65.0" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#local-arrow)"/><path d="M450 210L735.8 282.5" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#local-arrow)"/><path d="M450 210L164.2 282.5" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#local-arrow)"/><rect x="350" y="174" width="200" height="72" rx="18" fill="var(--brand)"/><text x="450" y="207" text-anchor="middle" fill="#fff" font-size="15" font-weight="900">푸리에 변환</text><text x="450" y="229" text-anchor="middle" fill="#fff" font-size="10">central concept</text><a href="/wiki/signal-communications/digital-signal-processing/pcm/"><rect x="360.0" y="37.0" width="180" height="56" rx="12" fill="var(--paper)" stroke="var(--line-strong)"/><text x="450.0" y="63.0" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="800">PCM</text><text x="450.0" y="82.0" text-anchor="middle" fill="var(--muted)" font-size="9">preparesFor</text></a><a href="/wiki/signal-communications/signal-foundations/euler-formula/"><rect x="645.8" y="254.5" width="180" height="56" rx="12" fill="var(--paper)" stroke="var(--line-strong)"/><text x="735.8" y="280.5" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="800">오일러 공식</text><text x="735.8" y="299.5" text-anchor="middle" fill="var(--muted)" font-size="9">incoming:relatedTo</text></a><a href="/wiki/signal-communications/signal-analysis/fourier-series/"><rect x="74.2" y="254.5" width="180" height="56" rx="12" fill="var(--paper)" stroke="var(--line-strong)"/><text x="164.2" y="280.5" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="800">푸리에 급수</text><text x="164.2" y="299.5" text-anchor="middle" fill="var(--muted)" font-size="9">incoming:relatedTo</text></a></svg></div><div class="local-relation-list"><a class="relation-card-v2 surface-panel" href="/wiki/signal-communications/digital-signal-processing/pcm/"><strong>PCM</strong><small>preparesFor · 아날로그 신호가 표본화·양자화·부호화를 거쳐 디지털 비트열이 되고 다시 복원되는 과정을 수식과 SVG 실험으로 연결합니다.</small></a><a class="relation-card-v2 surface-panel" href="/wiki/signal-communications/signal-foundations/euler-formula/"><strong>오일러 공식</strong><small>incoming:relatedTo · e^{jθ}=cosθ+j sinθ가 복소평면의 회전과 정현파 표현을 어떻게 연결하는지 설명합니다.</small></a><a class="relation-card-v2 surface-panel" href="/wiki/signal-communications/signal-analysis/fourier-series/"><strong>푸리에 급수</strong><small>incoming:relatedTo · 반복되는 파형을 서로 다른 정수배 주파수 성분의 크기와 위상으로 표현하는 방법입니다.</small></a></div></section><section id="pending-concepts"><div class="section-kicker">Reference concepts · Catalog nodes</div><h2>참조되었지만 아직 독립 문서가 없는 개념</h2><p class="section-lead">동일 concept ID는 문서 발행 후 자동으로 실제 경로로 전환됩니다.</p><div class="glossary-grid"><article class="glossary-card" id="concept-time-domain"><h3>시간 영역</h3><p>가로축을 시간으로 두고 신호의 값이 시간에 따라 어떻게 변하는지 보는 표현입니다.</p><span class="status">proposed · time-domain</span></article><article class="glossary-card" id="concept-frequency-domain"><h3>주파수 영역</h3><p>신호를 구성하는 주파수별 크기와 위상을 좌표로 삼아 보는 표현입니다.</p><span class="status">proposed · frequency-domain</span></article><article class="glossary-card" id="concept-frequency"><h3>주파수</h3><p>1초 동안 반복되는 횟수이며 단위는 Hz입니다.</p><span class="status">proposed · frequency</span></article><article class="glossary-card" id="concept-phase"><h3>위상(phase)</h3><p>반복 신호가 기준에 비해 주기 안에서 얼마나 이동했는지를 나타내는 값입니다.</p><span class="status">proposed · phase</span></article><article class="glossary-card" id="concept-inverse-fourier-transform"><h3>역푸리에 변환</h3><p>주파수별 계수 X(f)를 모두 다시 합쳐 시간 영역 신호 x(t)를 복원하는 변환입니다.</p><span class="status">proposed · inverse-fourier-transform</span></article><article class="glossary-card" id="concept-sampling"><h3>표본화(sampling)</h3><p>연속 시간 신호의 값을 일정한 시간 간격으로 측정해 이산 시간 수열로 만드는 과정입니다.</p><span class="status">proposed · sampling</span></article><article class="glossary-card" id="concept-signal"><h3>신호</h3><p>시간이나 공간에 따라 변하면서 정보를 담는 물리량 또는 수치열입니다.</p><span class="status">proposed · signal</span></article><article class="glossary-card" id="concept-periodicity"><h3>주기성</h3><p>일정한 시간 T가 지난 뒤 같은 모양이 반복되는 성질입니다. x(t+T)=x(t)로 씁니다.</p><span class="status">proposed · periodicity</span></article><article class="glossary-card" id="concept-sinusoid"><h3>정현파</h3><p>사인 또는 코사인 함수로 나타나는 가장 기본적인 부드러운 반복 파형입니다.</p><span class="status">proposed · sinusoid</span></article><article class="glossary-card" id="concept-amplitude"><h3>진폭(amplitude)</h3><p>신호가 기준값에서 얼마나 크게 벗어나는지를 나타내는 크기입니다.</p><span class="status">proposed · amplitude</span></article><article class="glossary-card" id="concept-complex-number"><h3>복소수</h3><p>실수 부분과 허수 부분을 함께 가진 수입니다. 평면 위의 점 또는 크기와 각도를 가진 화살표로 볼 수 있습니다.</p><span class="status">proposed · complex-number</span></article><article class="glossary-card" id="concept-orthogonality"><h3>직교성</h3><p>서로 다른 기준 함수의 내적이 0이 되는 성질입니다. 다른 주파수 성분이 서로 간섭하지 않고 분리되게 합니다.</p><span class="status">proposed · orthogonality</span></article><article class="glossary-card" id="concept-integral"><h3>적분</h3><p>아주 작은 구간의 값들을 연속적으로 모두 더하는 연산입니다. 면적, 누적량, 평균 비교를 계산합니다.</p><span class="status">proposed · integral</span></article><article class="glossary-card" id="concept-spectrum"><h3>스펙트럼(spectrum)</h3><p>주파수에 따라 성분의 크기와 위상이 어떻게 분포하는지를 나타낸 결과입니다.</p><span class="status">proposed · spectrum</span></article><article class="glossary-card" id="concept-filter"><h3>필터</h3><p>특정 주파수 성분을 통과시키거나 줄이는 시스템입니다.</p><span class="status">proposed · filter</span></article><article class="glossary-card" id="concept-dft"><h3>이산 푸리에 변환 DFT</h3><p>N개의 유한한 샘플을 N개의 복소 주파수 계수로 바꾸는 변환입니다.</p><span class="status">proposed · dft</span></article><article class="glossary-card" id="concept-superposition"><h3>중첩</h3><p>여러 신호가 동시에 있을 때 같은 시각의 값을 더해 전체 신호를 만드는 원리입니다.</p><span class="status">proposed · superposition</span></article><article class="glossary-card" id="concept-gibbs"><h3>깁스 현상</h3><p>불연속 신호를 유한한 푸리에 급수로 근사할 때 점프 주변에 생기는 진동과 넘침입니다.</p><span class="status">proposed · gibbs</span></article><article class="glossary-card" id="concept-angular-frequency"><h3>각주파수</h3><p>회전 각도의 변화 속도입니다. ω=2πf이며 단위는 rad/s입니다.</p><span class="status">proposed · angular-frequency</span></article><article class="glossary-card" id="concept-inner-product"><h3>내적</h3><p>두 함수가 얼마나 닮았는지 측정하는 곱셈과 적분의 조합입니다. 푸리에 계수는 신호와 기준 파동의 내적입니다.</p><span class="status">proposed · inner-product</span></article><article class="glossary-card" id="concept-magnitude-spectrum"><h3>크기 스펙트럼</h3><p>|X(f)|. 각 주파수 성분이 얼마나 강한지를 나타냅니다.</p><span class="status">proposed · magnitude-spectrum</span></article><article class="glossary-card" id="concept-phase-spectrum"><h3>위상 스펙트럼</h3><p>∠X(f). 각 주파수 성분의 시간적 정렬 또는 위치 정보를 나타냅니다.</p><span class="status">proposed · phase-spectrum</span></article><article class="glossary-card" id="concept-negative-frequency"><h3>음의 주파수</h3><p>복소평면에서 양의 주파수와 반대 방향으로 도는 회전입니다. 실수 신호에서는 ±f 성분이 짝을 이룹니다.</p><span class="status">proposed · negative-frequency</span></article><article class="glossary-card" id="concept-sinc"><h3>sinc 함수</h3><p>sin(z)/z 형태의 함수입니다. 직사각형 펄스의 푸리에 변환에서 나타나며 중앙 봉우리와 여러 옆 봉우리를 가집니다.</p><span class="status">proposed · sinc</span></article></div></section><section id="sources"><div class="section-kicker">Primary references</div><h2>표준과 공식 문서</h2><div class="source-list"><article class="source-item"><a href="https://dlmf.nist.gov/1.14" target="_blank" rel="noreferrer">NIST DLMF §1.14 — Integral Transforms</a><p>푸리에 변환의 정의, 역변환과 관련 공식을 확인하기 위한 NIST의 수학 참고 문서입니다.</p></article><article class="source-item"><a href="https://dlmf.nist.gov/1.8" target="_blank" rel="noreferrer">NIST DLMF §1.8 — Fourier Series</a><p>푸리에 급수와 계수, 짝함수·홀함수 성질을 확인하기 위한 1차 수학 참고 문서입니다.</p></article><article class="source-item"><a href="https://numpy.org/doc/stable/reference/routines.fft.html" target="_blank" rel="noreferrer">NumPy — Discrete Fourier Transform</a><p>DFT와 FFT의 정의·표기·계산 관례를 실제 수치 계산 문맥에서 확인하기 위한 공식 문서입니다.</p></article></div></section><footer class="footer"><div>문서 ID <span class="inline-code">fourier-transform</span> · 버전 <span class="inline-code">1.0.0</span> · 갱신 2026-08-02</div></footer></main></div><div class="concept-tooltip" data-open="false" role="tooltip"><strong></strong><span></span><em></em></div><footer class="site-footer"><p><span class="status-dot" aria-hidden="true"></span> Static build ready for GitHub Pages</p><p><a href="/">© 2026 Jeongdo Kim</a></p></footer><script src="/scripts/site.js" defer></script><script src="/scripts/v2.js" defer></script><script src="/wiki/signal-communications/signal-analysis/fourier-transform/labs.js/" defer></script></body></html>

@@ -1,0 +1,95 @@
+/* --------------------------------------------------------------------------
+   Theme package: Pixel Portfolio
+   The original prototype is preserved as an optional theme. The aliases below
+   implement the shared token contract used by rich wiki documents.
+   -------------------------------------------------------------------------- */
+:root {
+  --bg: var(--paper);
+  --paper-2: var(--paper-strong);
+  --paper-3: var(--purple-soft);
+  --soft: #978e9f;
+  --line-strong: var(--ink);
+  --brand: var(--purple);
+  --brand-2: #7f4bc8;
+  --cyan: var(--blue);
+  --green: #168b68;
+  --orange: #c95f22;
+  --viz-bg: #11151d;
+  --viz-panel: #171c26;
+  --viz-grid: #2c3442;
+  --viz-axis: #69758a;
+  --viz-text: #e9edf5;
+  --viz-muted: #a8b1c2;
+}
+html[data-color-mode="dark"] {
+  color-scheme: dark;
+  --paper: #15121b;
+  --paper-strong: #201b28;
+  --ink: #f4eef9;
+  --ink-soft: #d0c7d7;
+  --muted: #a89eaf;
+  --line: #f4eef9;
+  --line-soft: #4c4256;
+  --purple: #ba8cff;
+  --purple-soft: #35264a;
+  --mint: #72ddba;
+  --mint-soft: #1d3c34;
+  --blue: #82c5ff;
+  --blue-soft: #21374b;
+  --yellow: #ffd97e;
+  --yellow-soft: #44391f;
+  --red: #ff8b83;
+  --bg: var(--paper);
+  --paper-2: var(--paper-strong);
+  --paper-3: var(--purple-soft);
+  --soft: #8f8498;
+  --line-strong: var(--ink);
+  --brand: var(--purple);
+  --brand-2: #d2b3ff;
+  --cyan: var(--blue);
+  --green: var(--mint);
+  --orange: #ffad71;
+  --shadow: 6px 6px 0 #060507;
+  --shadow-small: 3px 3px 0 #060507;
+}
+.theme-tools { display:flex; align-items:center; gap:7px; }
+.theme-picker { display:flex; align-items:center; gap:6px; }
+.theme-picker select,
+.color-mode-button {
+  min-height:38px;
+  color:var(--ink);
+  background:var(--paper-strong);
+  border:3px solid var(--ink);
+  border-radius:0;
+  box-shadow:2px 2px 0 var(--ink);
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+}
+.theme-picker select { max-width:118px; padding:0 26px 0 8px; }
+.color-mode-button { min-width:38px; padding:0 9px; }
+.landing-theme-tools { position:absolute; top:clamp(18px,3vw,38px); right:clamp(18px,3vw,42px); z-index:8; }
+.reading-progress { position:fixed; inset:0 auto auto 0; z-index:1200; width:0; height:4px; background:linear-gradient(90deg,var(--purple),var(--blue)); }
+.visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0 0 0 0)!important; white-space:nowrap!important; border:0!important; }
+.wiki-document-page .hero,
+.wiki-document-page .card,
+.wiki-document-page .mini-card,
+.wiki-document-page .domain-card,
+.wiki-document-page .relation-card,
+.wiki-document-page .callout,
+.wiki-document-page .worked,
+.wiki-document-page .glossary-card,
+.wiki-document-page .source-item,
+.wiki-document-page .step,
+.wiki-document-page .concept-map-wrap { border-width:3px; border-radius:0; box-shadow:var(--shadow-small); }
+.wiki-document-page .chip,
+.wiki-document-page .tag,
+.wiki-document-page .relation-link,
+.wiki-document-page .inline-code { border-width:2px; border-radius:0; font-family:var(--font-mono); }
+.wiki-document-page .toc a:hover,
+.wiki-document-page .toc a[aria-current="true"] { box-shadow:inset 5px 0 0 var(--ink); background:var(--yellow-soft); color:var(--ink); }
+@media (max-width: 760px) {
+  .theme-picker select { width:92px; }
+  .landing-theme-tools { top:14px; right:14px; }
+}

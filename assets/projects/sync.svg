@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">모바일 지식 저장소 동기화 프로젝트 모형</title>
+  <desc id="desc">스마트폰, Git 저장소, 노트 문서가 안전한 동기화 화살표로 연결된 픽셀 아트</desc>
+  <rect width="800" height="450" fill="#1e1b26"/>
+  <g stroke="#f7f4ef" stroke-width="8">
+    <rect x="80" y="65" width="180" height="320" rx="0" fill="#64b5f6"/>
+    <rect x="105" y="105" width="130" height="220" fill="#f7f4ef"/>
+    <circle cx="170" cy="355" r="13" fill="#f7f4ef"/>
+    <rect x="520" y="80" width="210" height="140" fill="#a866ff"/>
+    <rect x="520" y="250" width="210" height="120" fill="#63d7b3"/>
+    <path d="M300 150H470M440 120L475 150L440 180M470 300H300M330 270L295 300L330 330" fill="none"/>
+  </g>
+  <text x="120" y="225" font-family="ui-monospace,monospace" font-size="25" font-weight="700" fill="#1e1b26">TERMUX</text>
+  <text x="562" y="160" font-family="ui-monospace,monospace" font-size="30" font-weight="700" fill="#1e1b26">GIT</text>
+  <text x="545" y="325" font-family="ui-monospace,monospace" font-size="24" font-weight="700" fill="#1e1b26">OBSIDIAN</text>
+</svg>
