@@ -16,21 +16,6 @@
   },
   {
     "type": "concept",
-    "id": "802-11",
-    "title": "802.11",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "802.11에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "networking",
-    "domain": "networking",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "802-15",
     "title": "802.15",
     "aliases": [],
@@ -162,7 +147,14 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "wdm-f59b3e5",
+      "pon",
+      "pdh-sonet-sdh-125-s",
+      "mspp",
+      "concept-4b85659955f2"
+    ]
   },
   {
     "type": "concept",
@@ -237,7 +229,23 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-331027bdd2d6",
+      "concept-57c69adad542",
+      "concept-54e68f3c2ecf",
+      "concept-921e2830d7c9",
+      "concept-2080cb41d7f3",
+      "dos-ddos",
+      "concept-72252ba14eb0",
+      "ids",
+      "ips",
+      "stateful",
+      "stateless",
+      "ipsec",
+      "tls",
+      "ssh"
+    ]
   },
   {
     "type": "concept",
@@ -245,14 +253,18 @@
     "title": "네트워크 관리: SNMP와 TMN",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "네트워크 관리: SNMP와 TMN에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "snmp",
+      "tmn"
+    ]
   },
   {
     "type": "concept",
@@ -365,7 +377,7 @@
     "title": "듀얼 스택",
     "aliases": [],
     "status": "proposed",
-    "kind": "data-structure",
+    "kind": "atomic",
     "profile": "data-structure",
     "summary": "듀얼 스택에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
@@ -387,7 +399,12 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "pdh",
+      "sonet",
+      "sdh"
+    ]
   },
   {
     "type": "concept",
@@ -402,7 +419,13 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "input-port",
+      "switching-fabric",
+      "output-port",
+      "routing-processor"
+    ]
   },
   {
     "type": "concept",
@@ -417,7 +440,12 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "rip-routing-information-protocol",
+      "ospf-open-shortest-path-first",
+      "bgp"
+    ]
   },
   {
     "type": "concept",
@@ -432,7 +460,14 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "star-topology",
+      "bus-topology",
+      "ring-topology",
+      "mesh-topology",
+      "tree-topology"
+    ]
   },
   {
     "type": "concept",
@@ -468,7 +503,9 @@
     "type": "concept",
     "id": "ieee-802-11",
     "title": "무선랜 IEEE 802.11",
-    "aliases": [],
+    "aliases": [
+      "802.11"
+    ],
     "status": "proposed",
     "kind": "standard",
     "profile": "standard-specification",
@@ -530,14 +567,18 @@
     "title": "브로드캐스트 도메인과 충돌 도메인",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "브로드캐스트 도메인과 충돌 도메인에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "broadcast-domain",
+      "collision-domain"
+    ]
   },
   {
     "type": "concept",
@@ -602,7 +643,7 @@
   {
     "type": "concept",
     "id": "cidr",
-    "title": "서브네팅과 CIDR",
+    "title": "CIDR(Classless Inter-Domain Routing)",
     "aliases": [],
     "status": "proposed",
     "kind": "atomic",
@@ -687,7 +728,12 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "olt",
+      "onu-ont",
+      "splitter"
+    ]
   },
   {
     "type": "concept",
@@ -772,14 +818,18 @@
     "title": "신뢰성과 가용성",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "신뢰성과 가용성에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "reliability",
+      "concept-0b643d3a7b09"
+    ]
   },
   {
     "type": "concept",
@@ -877,14 +927,19 @@
     "title": "유선 전송매체와 전송 장애 (UTP·광섬유·누화)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "유선 전송매체와 전송 장애 (UTP·광섬유·누화)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "utp",
+      "concept-4b85659955f2",
+      "concept-f7bffa097c52"
+    ]
   },
   {
     "type": "concept",
@@ -1192,24 +1247,11 @@
   },
   {
     "type": "concept",
-    "id": "concept-c68295412527",
-    "title": "포트",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "포트에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "networking",
-    "domain": "networking",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "port",
     "title": "포트 번호",
-    "aliases": [],
+    "aliases": [
+      "포트"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1271,8 +1313,8 @@
     "title": "프로토콜의 3요소",
     "aliases": [],
     "status": "proposed",
-    "kind": "taxonomy",
-    "profile": "taxonomy-collection",
+    "kind": "atomic",
+    "profile": "foundational-definition",
     "summary": "프로토콜의 3요소에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
@@ -1481,7 +1523,7 @@
     "title": "BcN(Broadband convergence Network, 광대역통합망)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "BcN(Broadband convergence Network, 광대역통합망)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
@@ -1526,14 +1568,18 @@
     "title": "CSMA/CD와 CSMA/CA (매체 접근 제어)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "CSMA/CD와 CSMA/CA (매체 접근 제어)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "csma-cd",
+      "csma-ca"
+    ]
   },
   {
     "type": "concept",
@@ -1616,14 +1662,21 @@
     "title": "DoS/DDoS",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "DoS/DDoS에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "land",
+      "smurf",
+      "teardrop",
+      "syn-flooding",
+      "ping-death"
+    ]
   },
   {
     "type": "concept",
@@ -1676,14 +1729,18 @@
     "title": "HDLC와 ARQ 오류 제어",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "HDLC와 ARQ 오류 제어에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "hdlc",
+      "arq"
+    ]
   },
   {
     "type": "concept",
@@ -1736,14 +1793,19 @@
     "title": "ICMP와 ping·traceroute",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "ICMP와 ping·traceroute에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "icmp",
+      "ping",
+      "traceroute"
+    ]
   },
   {
     "type": "concept",
@@ -1766,14 +1828,22 @@
     "title": "IEEE 802 표준",
     "aliases": [],
     "status": "proposed",
-    "kind": "standard",
+    "kind": "taxonomy",
     "profile": "standard-specification",
     "summary": "IEEE 802 표준에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "802-3",
+      "ieee-802-11",
+      "802-15",
+      "802-16",
+      "llc-ieee-802-2",
+      "vlan-ieee-802-1q"
+    ]
   },
   {
     "type": "concept",
@@ -1781,14 +1851,19 @@
     "title": "IGMP와 멀티캐스트·IPTV",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "IGMP와 멀티캐스트·IPTV에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "igmp",
+      "multicast",
+      "iptv"
+    ]
   },
   {
     "type": "concept",
@@ -1818,7 +1893,12 @@
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "iot",
+      "usn",
+      "wpan"
+    ]
   },
   {
     "type": "concept",
@@ -1886,14 +1966,18 @@
     "title": "IPv4 헤더 필드와 IP의 성질",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "IPv4 헤더 필드와 IP의 성질에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ipv4-header-fields",
+      "ip"
+    ]
   },
   {
     "type": "concept",
@@ -1901,14 +1985,19 @@
     "title": "IPv4→IPv6 전환 기술 (듀얼 스택·터널링·헤더 변환)",
     "aliases": [],
     "status": "proposed",
-    "kind": "data-structure",
+    "kind": "composite",
     "profile": "data-structure",
     "summary": "IPv4→IPv6 전환 기술 (듀얼 스택·터널링·헤더 변환)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-8e34e3b939f6",
+      "concept-e2a5af7d5943",
+      "concept-58f3e4df5d73"
+    ]
   },
   {
     "type": "concept",
@@ -1916,7 +2005,7 @@
     "title": "ITS(지능형 교통시스템)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "ITS(지능형 교통시스템)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
@@ -1931,7 +2020,7 @@
     "title": "LAN(Local Area Network, 근거리 통신망)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "LAN(Local Area Network, 근거리 통신망)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
@@ -1979,21 +2068,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "로컬 링크에서 네트워크 인터페이스를 식별하기 위해 사용하는 데이터 링크 계층 주소입니다.",
-    "primaryDomain": "networking",
-    "domain": "networking",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "mac",
-    "title": "MAC 주소",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "MAC 주소에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
@@ -2078,7 +2152,16 @@
       "network-architecture"
     ],
     "route": "computer-networks/network-architecture/osi-7-layer",
-    "url": "/wiki/computer-networks/network-architecture/osi-7-layer/"
+    "url": "/wiki/computer-networks/network-architecture/osi-7-layer/",
+    "atoms": [
+      "application-layer",
+      "presentation-layer",
+      "session-layer",
+      "transport-layer",
+      "network-layer",
+      "data-link-layer",
+      "physical-layer"
+    ]
   },
   {
     "type": "concept",
@@ -2236,14 +2319,18 @@
     "title": "RTP·RTCP 실시간 미디어 전송",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "RTP·RTCP 실시간 미디어 전송에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "rtp",
+      "rtcp"
+    ]
   },
   {
     "type": "concept",
@@ -2266,14 +2353,18 @@
     "title": "SDN과 OpenFlow (소프트웨어 정의 네트워킹)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "SDN과 OpenFlow (소프트웨어 정의 네트워킹)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "sdn",
+      "openflow"
+    ]
   },
   {
     "type": "concept",
@@ -2401,14 +2492,19 @@
     "title": "TCP 3-way handshake와 seq/ack",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "TCP 3-way handshake와 seq/ack에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "three-way-handshake",
+      "sequence-number",
+      "acknowledgment"
+    ]
   },
   {
     "type": "concept",
@@ -2443,7 +2539,7 @@
   {
     "type": "concept",
     "id": "tcp",
-    "title": "TCP 혼잡제어와 슬로 스타트",
+    "title": "TCP(전송 제어 프로토콜)",
     "aliases": [
       "TCP"
     ],
@@ -2463,14 +2559,21 @@
     "title": "TCP/IP 모델",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "layer-model",
     "profile": "foundational-definition",
     "summary": "인터넷 프로토콜 모음을 링크·인터넷·전송·응용 계층으로 설명하는 실용적 계층 모델입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "application-layer",
+      "transport-layer",
+      "network-layer",
+      "data-link-layer",
+      "physical-layer"
+    ]
   },
   {
     "type": "concept",
@@ -2489,7 +2592,11 @@
       "transport-layer"
     ],
     "route": "computer-networks/transport/tcp-udp",
-    "url": "/wiki/computer-networks/transport/tcp-udp/"
+    "url": "/wiki/computer-networks/transport/tcp-udp/",
+    "atoms": [
+      "tcp",
+      "udp"
+    ]
   },
   {
     "type": "concept",
@@ -2632,7 +2739,7 @@
     "title": "WAN(Wide Area Network, 광역 통신망)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "WAN(Wide Area Network, 광역 통신망)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "networking",
@@ -2725,6 +2832,531 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "Zing(징)에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "arq",
+    "title": "ARQ 오류 제어",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수신측이 오류를 검출하면 송신측에 재전송을 요청해 데이터를 정확히 전달하는 오류 제어 방식입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "broadcast-domain",
+    "title": "브로드캐스트 도메인",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "하나의 브로드캐스트 프레임이 도달할 수 있는 네트워크 장치들의 범위입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "bus-topology",
+    "title": "버스형 토폴로지(bus topology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "모든 노드가 하나의 공유 전송 매체(백본)에 연결되어 신호를 주고받는 네트워크 연결 형태입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "collision-domain",
+    "title": "충돌 도메인",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "여러 장치가 동시에 신호를 전송하면 충돌이 발생할 수 있는 네트워크 구간의 범위입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "csma-ca",
+    "title": "CSMA/CA",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "매체가 비어 있음을 확인한 뒤에도 충돌을 사전에 회피하기 위해 임의 시간만큼 대기한 뒤 전송하는 매체 접근 제어 방식으로, 충돌을 직접 감지하기 어려운 무선 환경에서 사용됩니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "csma-cd",
+    "title": "CSMA/CD",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전송 전 매체가 비어 있는지 확인하고, 전송 중에도 충돌을 감지하면 즉시 전송을 중단하고 재전송하는 매체 접근 제어 방식입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "hdlc",
+    "title": "HDLC",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "동기식 직렬 통신에서 프레임 단위로 데이터를 전달하는 비트 지향 데이터 링크 계층 프로토콜입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "icmp",
+    "title": "ICMP",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "IP 네트워크에서 오류 상황을 알리거나 진단 메시지를 주고받기 위해 사용되는 프로토콜입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "igmp",
+    "title": "IGMP",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "호스트가 특정 멀티캐스트 그룹에 가입하거나 탈퇴하는 것을 라우터에 알리는 데 사용되는 프로토콜입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "input-port",
+    "title": "입력 포트(input port)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "라우터나 스위치에서 외부로부터 들어오는 패킷을 수신하는 지점입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "iot",
+    "title": "IoT",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다양한 사물에 통신 기능을 내장해 인터넷을 통해 데이터를 주고받고 상호작용하게 하는 기술 및 그 사물들의 네트워크입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ipv4-header-fields",
+    "title": "IPv4 헤더 필드",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "IPv4 패킷의 헤더를 구성하는 항목들로, 출발지·목적지 주소를 비롯해 패킷 처리에 필요한 제어 정보를 담습니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "mesh-topology",
+    "title": "그물형(메시) 토폴로지(mesh topology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "각 노드가 여러 다른 노드와 직접 연결되어 하나의 경로가 끊어져도 다른 경로로 통신할 수 있는 네트워크 연결 형태입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "olt",
+    "title": "OLT(Optical Line Terminal)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수동형 광가입자망에서 통신사업자 국사 측에 위치해 여러 가입자의 광신호를 하나의 광섬유로 다중화해 송수신하는 장비입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "onu-ont",
+    "title": "ONU/ONT(Optical Network Unit/Terminal)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수동형 광가입자망에서 가입자 측에 설치되어 광신호를 전기 신호로 변환해 주는 종단 장치입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "openflow",
+    "title": "OpenFlow",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "SDN 환경에서 컨트롤러가 스위치의 패킷 전달(포워딩) 동작을 원격으로 제어할 수 있게 하는 표준 프로토콜입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "output-port",
+    "title": "출력 포트(output port)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "라우터나 스위치에서 처리된 패킷을 외부로 내보내는 지점입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "pdh",
+    "title": "PDH",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "여러 회선의 클록이 완전히 동기화되어 있지 않은 상태에서 비트 삽입으로 속도를 맞춰 다중화하는 준동기식 디지털 전송 방식입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ping",
+    "title": "ping",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "ICMP 메시지를 이용해 특정 호스트까지 통신이 가능한지와 왕복 지연을 확인하는 진단 도구입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "reliability",
+    "title": "신뢰성",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "네트워크가 데이터를 손실이나 오류 없이 목적지까지 정확하게 전달할 수 있는 정도입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ring-topology",
+    "title": "링형 토폴로지(ring topology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "각 노드가 인접한 두 노드와 연결되어 전체적으로 고리 모양을 이루며, 신호가 정해진 방향으로 순환하는 네트워크 연결 형태입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "routing-processor",
+    "title": "라우팅 처리기(routing processor)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "라우터에서 라우팅 테이블을 계산·유지하며 패킷을 어느 출력 포트로 보낼지 결정하는 제어 기능을 담당하는 부분입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "sdn",
+    "title": "SDN",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "네트워크의 제어 기능(컨트롤 플레인)을 데이터 전달 기능(데이터 플레인)에서 분리해 소프트웨어로 중앙에서 제어할 수 있게 하는 네트워크 아키텍처입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "snmp",
+    "title": "SNMP",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "네트워크 장비 각각의 상태를 관리 시스템이 조회하고 설정을 변경할 수 있게 하는 네트워크 관리 프로토콜입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "sonet",
+    "title": "SONET",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "광섬유를 통해 여러 회선을 동기식으로 다중화해 전송하는 디지털 전송 표준입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "splitter",
+    "title": "광분배기(splitter)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "하나의 광신호를 여러 갈래로 나누어 여러 가입자에게 전달하는 수동 광소자입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "star-topology",
+    "title": "성형 토폴로지(star topology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "모든 노드가 중앙의 허브나 스위치에 개별적으로 연결되는 네트워크 연결 형태입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "subnetting",
+    "title": "서브네팅(subnetting)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "하나의 네트워크 주소 공간을 여러 개의 작은 네트워크로 나누는 것입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "switching-fabric",
+    "title": "스위칭 패브릭(switching fabric)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "라우터나 스위치 내부에서 입력 포트로 들어온 패킷을 목적지에 맞는 출력 포트로 실제로 옮기는 상호연결 구조입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "tcp-slow-start",
+    "title": "TCP 슬로우 스타트",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "TCP 연결 초기에 혼잡 윈도우를 작은 값에서 시작해 점진적으로 늘려가며 네트워크의 수용 능력을 탐색하는 혼잡 제어 방식입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "tmn",
+    "title": "TMN",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "통신망 전체를 통합적으로 감시·제어·관리하기 위한 프레임워크로, 개별 장비를 조회·설정하는 SNMP와 달리 관리 체계 자체를 다룹니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "traceroute",
+    "title": "traceroute",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "출발지에서 목적지까지 패킷이 거쳐 가는 경로상의 각 라우터를 확인하는 진단 도구입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "tree-topology",
+    "title": "트리형 토폴로지(tree topology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "성형 네트워크들이 계층적으로 연결되어 나무 모양의 구조를 이루는 네트워크 연결 형태입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "usn",
+    "title": "USN(Ubiquitous Sensor Network)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "센서를 이용해 사물이나 주변 환경의 정보를 감지하고 네트워크로 전달해 언제 어디서나 그 정보를 이용할 수 있게 하는 네트워크입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "wpan",
+    "title": "근거리 무선망(WPAN)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "개인이 소유한 기기들을 짧은 거리에서 무선으로 연결하는 근거리 무선 네트워크입니다.",
     "primaryDomain": "networking",
     "domain": "networking",
     "topics": [],

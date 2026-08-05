@@ -80,14 +80,19 @@
     "title": "5G 3대 사용 시나리오",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "5G 3대 사용 시나리오에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "embb",
+      "urllc",
+      "mmtc"
+    ]
   },
   {
     "type": "concept",
@@ -95,20 +100,26 @@
     "title": "5G NSA와 SA 구축 방식",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "5G NSA와 SA 구축 방식에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "5g-nsa",
+      "5g-sa"
+    ]
   },
   {
     "type": "concept",
     "id": "feeder",
     "title": "급전선(feeder)",
-    "aliases": [],
+    "aliases": [
+      "급전선"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -166,33 +177,23 @@
   },
   {
     "type": "concept",
-    "id": "bandwidth-ca81d35",
-    "title": "대역폭(Bandwidth)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "대역폭(Bandwidth)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "fhss-dsss-cdma",
     "title": "대역확산(FHSS·DSSS)과 CDMA 전력제어",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "대역확산(FHSS·DSSS)과 CDMA 전력제어에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "fhss",
+      "dsss",
+      "cdma-power-control"
+    ]
   },
   {
     "type": "concept",
@@ -200,29 +201,40 @@
     "title": "디지털 변조 방식 (ASK·FSK·PSK·QAM)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "디지털 변조 방식 (ASK·FSK·PSK·QAM)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ask",
+      "fsk",
+      "psk",
+      "qam"
+    ]
   },
   {
     "type": "concept",
     "id": "eirp",
     "title": "링크 버짓과 EIRP",
-    "aliases": [],
+    "aliases": [
+      "EIRP"
+    ],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "링크 버짓과 EIRP에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "link-budget"
+    ]
   },
   {
     "type": "concept",
@@ -245,14 +257,18 @@
     "title": "밀리미터파와 빔포밍",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "밀리미터파와 빔포밍에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "mmwave",
+      "beamforming"
+    ]
   },
   {
     "type": "concept",
@@ -263,21 +279,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "반송파(carrier)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "modulation-mobile-communications",
-    "title": "변조(Modulation)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "변조(Modulation)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
@@ -320,14 +321,18 @@
     "title": "심벌율과 비트레이트",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "심벌율과 비트레이트에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "symbol-rate",
+      "bit-rate"
+    ]
   },
   {
     "type": "concept",
@@ -365,14 +370,19 @@
     "title": "위성통신 기초 (정지궤도·LEO/MEO/GEO)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "위성통신 기초 (정지궤도·LEO/MEO/GEO)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "leo",
+      "meo",
+      "geo"
+    ]
   },
   {
     "type": "concept",
@@ -395,14 +405,18 @@
     "title": "위치등록과 측위 기술",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "위치등록과 측위 기술에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "location-registration",
+      "positioning-technology"
+    ]
   },
   {
     "type": "concept",
@@ -432,7 +446,14 @@
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "1g",
+      "2g",
+      "3g",
+      "4g-lte",
+      "5g"
+    ]
   },
   {
     "type": "concept",
@@ -440,14 +461,18 @@
     "title": "이동통신 핸드오버 (soft/hard)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "이동통신 핸드오버 (soft/hard)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "soft",
+      "hard"
+    ]
   },
   {
     "type": "concept",
@@ -462,7 +487,12 @@
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "base-station",
+      "core-network",
+      "mobile-station"
+    ]
   },
   {
     "type": "concept",
@@ -492,22 +522,10 @@
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-63e4f5df1675",
-    "title": "정지궤도",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "정지궤도에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "4g-lte"
+    ]
   },
   {
     "type": "concept",
@@ -541,21 +559,6 @@
   },
   {
     "type": "concept",
-    "id": "qam-5a31734",
-    "title": "직교 진폭 변조 (QAM)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "직교 진폭 변조 (QAM)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "core-network",
     "title": "코어망(core network)",
     "aliases": [],
@@ -575,14 +578,18 @@
     "title": "페이딩과 다이버시티",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "페이딩과 다이버시티에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "fading",
+      "diversity"
+    ]
   },
   {
     "type": "concept",
@@ -725,14 +732,18 @@
     "title": "FDD와 TDD 듀플렉스",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "FDD와 TDD 듀플렉스에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "fdd",
+      "tdd"
+    ]
   },
   {
     "type": "concept",
@@ -783,7 +794,10 @@
     "type": "concept",
     "id": "geo",
     "title": "GEO(정지궤도)",
-    "aliases": [],
+    "aliases": [
+      "정지궤도",
+      "정지궤도(GEO)"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -815,14 +829,21 @@
     "title": "GNSS",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "GNSS에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "gps",
+      "glonass",
+      "galileo",
+      "beidou",
+      "qzss"
+    ]
   },
   {
     "type": "concept",
@@ -852,7 +873,12 @@
     "domain": "mobile-communications",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "gps",
+      "gnss",
+      "gnss-augmentation-systems"
+    ]
   },
   {
     "type": "concept",
@@ -963,7 +989,9 @@
     "type": "concept",
     "id": "qam",
     "title": "QAM",
-    "aliases": [],
+    "aliases": [
+      "직교 진폭 변조 (QAM)"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1013,6 +1041,201 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "URLLC에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "5g-nsa",
+    "title": "NSA(Non-Standalone)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "코어망을 4G/LTE(EPC)와 공유하는 5G 비단독 구축 방식",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "5g-sa",
+    "title": "SA(Standalone)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "5G 전용 코어망(5GC)을 사용하는 5G 단독 구축 방식",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "beamforming",
+    "title": "빔포밍(Beamforming)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다중 안테나 신호의 위상·크기를 조정해 특정 방향으로 전파 에너지를 집중시키는 기법",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "cdma-power-control",
+    "title": "CDMA 전력제어",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "CDMA 시스템에서 원근문제(near-far problem)를 해결하기 위한 개방·폐루프 전력제어 기법",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "diversity",
+    "title": "다이버시티(Diversity)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "페이딩으로 인한 성능 저하를 줄이기 위해 시간/주파수/공간적으로 독립적인 다중 신호경로를 활용하는 기법",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "fading",
+    "title": "페이딩(Fading)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다중경로·이동성 등으로 수신 신호 세기가 시간에 따라 변동하는 현상",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "fdd",
+    "title": "FDD(Frequency Division Duplex)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "상향링크와 하향링크에 서로 다른 주파수를 사용하는 듀플렉스 방식",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "gnss-augmentation-systems",
+    "title": "GNSS 보강 시스템(Augmentation System)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "SBAS/DGPS 등 위성항법 측위 정확도를 향상시키기 위한 보조 시스템",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "link-budget",
+    "title": "링크 버짓(Link Budget)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "송신전력부터 수신전력까지 이득·손실 요소를 합산해 링크 성립 여부를 계산하는 절차",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "mmwave",
+    "title": "밀리미터파(mmWave)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "24GHz 이상 고주파 대역. 넓은 대역폭을 제공하나 전파 손실이 커 5G 후보 주파수로 사용",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "positioning-technology",
+    "title": "측위 기술(Positioning Technology)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "단말의 위치를 추정하는 기술(예: TA/AoA/TDOA, GNSS 연동 측위 등)",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "symbol-rate",
+    "title": "심벌율(Symbol Rate)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "단위 시간당 전송되는 심벌의 개수(보오, baud)",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "tdd",
+    "title": "TDD(Time Division Duplex)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "상향링크와 하향링크가 동일 주파수를 시간을 나눠 사용하는 듀플렉스 방식",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],

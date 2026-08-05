@@ -19,7 +19,9 @@ itself the authoritative worklist that agents will turn into documents.
 - `catalog/<domain>.json` — canonical concept 카탈로그, 도메인당 하나의 JSON 배열.
   **위키 개념 메타데이터의 단일 편집 지점.** 항목 스키마는 기존 샤드 스키마를
   그대로 따른다 (`type/id/title/aliases/status/kind/profile/summary/
-  primaryDomain/domain/topics/route/url`).
+  primaryDomain/domain/topics/route/url`). 선택 필드 `atoms`(2026-08-05 확장):
+  합성·상위 개념 항목이 구성 원자 항목의 id 배열을 기록한다 — 원자성 원칙과
+  판정 절차는 `guides/atomicity-rubric.md`가 규범이다.
 - `guides/` — 문서 작성 가이드라인, 시각화·테마 계약, 템플릿 청사진.
   1,157개 문서 프로그램에서 작성 에이전트가 읽는 규범 문서.
 

@@ -1,0 +1,17 @@
+{
+  "_charter": "collections 축 정의부 (knowledge/guides/taxonomy.md 축 2). 항목의 collections: [<slug>] 필드가 여기 정의된 슬러그를 참조한다. examSubject 컬렉션은 사용자가 시험 과목 구성 근거를 제공하기 전까지 비워 둔다 — 추정으로 채우지 않는다 (2026-08-05).",
+  "collections": [
+    {
+      "id": "computer-general",
+      "type": "studyTrack",
+      "title": "컴퓨터일반 통합 복습",
+      "description": "databases · operating-systems · algorithms-data-structures · computer-architecture를 시험 흐름대로 재결합하는 트랙. 구성은 topicDomain 재분류 후 자동 집계."
+    },
+    {
+      "id": "general-knowledge-bank",
+      "type": "studyTrack",
+      "title": "일반상식 뱅크",
+      "description": "general-knowledge 도메인 전체의 별칭 컬렉션."
+    }
+  ]
+}

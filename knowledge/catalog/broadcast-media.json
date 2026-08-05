@@ -102,22 +102,12 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "bandwidth-05575d5",
-    "title": "대역폭(bandwidth)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "대역폭(bandwidth)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "broadcast-media",
-    "domain": "broadcast-media",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "synchronization",
+      "frequency-reuse",
+      "guard-interval"
+    ]
   },
   {
     "type": "concept",
@@ -215,14 +205,18 @@
     "title": "비월 주사와 순차 주사",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "비월 주사와 순차 주사에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "interlaced-scan",
+      "progressive-scan"
+    ]
   },
   {
     "type": "concept",
@@ -235,36 +229,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "1초 동안 생성되거나 전송되는 비트 수입니다. PCM에서는 표본화 주파수×표본당 비트 수×채널 수로 계산합니다.",
-    "primaryDomain": "broadcast-media",
-    "domain": "broadcast-media",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-15b44951fea9",
-    "title": "비트심도",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "비트심도에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "broadcast-media",
-    "domain": "broadcast-media",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "rgb-285b4b4",
-    "title": "색의 표현 (RGB)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "색의 표현 (RGB)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
@@ -292,14 +256,19 @@
     "title": "색차 서브샘플링 (4:4:4 / 4:2:2 / 4:2:0)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "색차 서브샘플링 (4:4:4 / 4:2:2 / 4:2:0)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "4-4-4",
+      "4-2-2",
+      "4-2-0"
+    ]
   },
   {
     "type": "concept",
@@ -322,7 +291,7 @@
     "title": "스트리밍(streaming)",
     "aliases": [],
     "status": "proposed",
-    "kind": "data-structure",
+    "kind": "atomic",
     "profile": "data-structure",
     "summary": "스트리밍(streaming)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
@@ -344,7 +313,11 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "analog-video-signal-level",
+      "color-bar"
+    ]
   },
   {
     "type": "concept",
@@ -397,14 +370,18 @@
     "title": "코덱과 컨테이너",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "코덱과 컨테이너에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "codec",
+      "container"
+    ]
   },
   {
     "type": "concept",
@@ -440,7 +417,9 @@
     "type": "concept",
     "id": "concept-e2ce8ac8acb5",
     "title": "픽셀",
-    "aliases": [],
+    "aliases": [
+      "화소"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -509,22 +488,12 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-12d817d983a7",
-    "title": "화소",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "화소에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "broadcast-media",
-    "domain": "broadcast-media",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "home-gateway",
+      "wall-pad",
+      "home-automation"
+    ]
   },
   {
     "type": "concept",
@@ -532,14 +501,20 @@
     "title": "확장현실 스펙트럼 (VR·AR·MR·홀로그램)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "확장현실 스펙트럼 (VR·AR·MR·홀로그램)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "vr",
+      "ar",
+      "mr",
+      "concept-535a0f148ec0"
+    ]
   },
   {
     "type": "concept",
@@ -584,7 +559,11 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "atsc",
+      "dvb"
+    ]
   },
   {
     "type": "concept",
@@ -712,14 +691,19 @@
     "title": "IPTV와 콘텐츠 보안 (CAS·DRM)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "IPTV와 콘텐츠 보안 (CAS·DRM)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "cas",
+      "drm",
+      "iptv"
+    ]
   },
   {
     "type": "concept",
@@ -749,7 +733,12 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "i-frame",
+      "p-frame",
+      "concept-7dac8f14ab18"
+    ]
   },
   {
     "type": "concept",
@@ -869,7 +858,13 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "raid-0",
+      "raid-1",
+      "raid-5",
+      "raid-6"
+    ]
   },
   {
     "type": "concept",
@@ -899,7 +894,11 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "smpte-st-2110",
+      "ptp"
+    ]
   },
   {
     "type": "concept",
@@ -914,7 +913,13 @@
     "domain": "broadcast-media",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "codec",
+      "h-323",
+      "sip",
+      "multipoint-control-unit"
+    ]
   },
   {
     "type": "concept",
@@ -925,6 +930,246 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "VR(가상현실)에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "analog-video-signal-level",
+    "title": "아날로그 영상 신호 레벨",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "아날로그 비디오 신호의 동기·블랭킹·영상 레벨을 IRE/전압 단위로 규정한 기준.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "color-bar",
+    "title": "컬러바(color bar)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "영상 신호 색상·레벨 기준 확인용 표준 테스트 패턴(예: SMPTE 컬러바).",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "frequency-reuse",
+    "title": "주파수 재사용(frequency reuse)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "동일 주파수를 여러 송신소에서 반복 사용하여 주파수 자원을 절약하는 기법.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "guard-interval",
+    "title": "보호구간(guard interval)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "인접 심볼 간 지연 확산으로 인한 간섭을 방지하기 위해 심볼 사이에 두는 여유 구간.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "i-frame",
+    "title": "I 프레임(I-frame)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다른 프레임 참조 없이 자체적으로 완전히 부호화되는 프레임(인트라 프레임).",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "interlaced-scan",
+    "title": "비월 주사(interlaced scan)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "한 프레임을 홀수·짝수 필드로 나누어 번갈아 주사하는 방식.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "iptv",
+    "title": "IPTV",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "인터넷 프로토콜(IP) 네트워크를 통해 방송·주문형 비디오를 제공하는 서비스.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "p-frame",
+    "title": "P 프레임(P-frame)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "이전 프레임을 참조하여 예측 부호화하는 프레임.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "progressive-scan",
+    "title": "순차 주사(progressive scan)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "한 프레임의 모든 라인을 순서대로 한 번에 주사하는 방식.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ptp",
+    "title": "PTP(Precision Time Protocol)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "네트워크 장비 간 정밀 시각 동기화를 제공하는 프로토콜(IEEE 1588).",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "smpte-st-2110",
+    "title": "SMPTE ST 2110",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "IP 네트워크 상에서 비디오·오디오·데이터를 개별 essence 스트림으로 전송하는 표준군.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "synchronization",
+    "title": "동기화(synchronization)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다중 송신소가 동일 신호를 동일 시각/주파수로 송출하도록 시각·위상을 일치시키는 것.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "home-gateway",
+    "title": "홈게이트웨이(Home Gateway)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "홈네트워크에서 외부 통신망과 세대 내부 네트워크를 연결하고 각종 홈네트워크 기기를 관리하는 장치입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "wall-pad",
+    "title": "월패드(Wall Pad)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "세대 내부에 설치되어 조명·난방 등 기기를 제어하고 방문자 확인 등 각종 홈네트워크 서비스를 이용할 수 있게 하는 세대 단말기입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "home-automation",
+    "title": "홈오토메이션(Home Automation)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "조명, 난방, 가스 차단 등 세대 내 기기를 자동 또는 원격으로 제어하는 기능입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "multipoint-control-unit",
+    "title": "MCU(Multipoint Control Unit)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "세 곳 이상의 화상회의 참가 지점을 동시에 연결해 각 지점의 영상·음성 신호를 합성해 배분하는 장치입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],

@@ -87,7 +87,13 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "mdf",
+      "idf",
+      "backbone-cabling",
+      "concept-18c89cd050a0"
+    ]
   },
   {
     "type": "concept",
@@ -177,7 +183,12 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-172e13a42d5c",
+      "concept-064042a5bf74",
+      "concept-08ee5aa8fd16"
+    ]
   },
   {
     "type": "concept",
@@ -222,7 +233,12 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-035afcc72d3f",
+      "concept-c0c8ca2d61bc",
+      "concept-9a4a71238bd6"
+    ]
   },
   {
     "type": "concept",
@@ -348,7 +364,9 @@
     "type": "concept",
     "id": "concept-88acb206f1ab",
     "title": "연결기기 인증",
-    "aliases": [],
+    "aliases": [
+      "정보통신망 연결기기 인증(Certification for Network-Connected Devices)"
+    ],
     "status": "proposed",
     "kind": "regulation",
     "profile": "regulation-policy",
@@ -462,7 +480,12 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-d4f032c9d220",
+      "concept-18ee8d06ea46",
+      "concept-1ca505eed21c"
+    ]
   },
   {
     "type": "concept",
@@ -552,22 +575,13 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "certification-for-network-connected-devices",
-    "title": "정보통신망 연결기기 인증(Certification for Network-Connected Devices)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "regulation",
-    "profile": "regulation-policy",
-    "summary": "정보통신망 연결기기 인증(Certification for Network-Connected Devices)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "telecom-regulations",
-    "domain": "telecom-regulations",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "contract-for-work",
+      "concept-e4998263de9f",
+      "construction-capability-evaluation",
+      "concept-341187d5c719"
+    ]
   },
   {
     "type": "concept",
@@ -597,7 +611,11 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "isms",
+      "concept-88acb206f1ab"
+    ]
   },
   {
     "type": "concept",
@@ -717,7 +735,14 @@
     "domain": "telecom-regulations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "photoelectric",
+      "ionization",
+      "flame",
+      "fixed-temperature",
+      "rate-rise"
+    ]
   },
   {
     "type": "concept",

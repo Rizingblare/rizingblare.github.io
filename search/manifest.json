@@ -1,12 +1,12 @@
 {
   "generatedAt": "2026-08-02T18:17:54.381Z",
-  "catalogCount": 1250,
+  "catalogCount": 1403,
   "rawItemCount": 1157,
   "content": "/search/content.json",
   "wiki": [
     {
       "id": "foundations",
-      "count": 39,
+      "count": 41,
       "url": "/search/wiki/foundations.json"
     },
     {
@@ -16,57 +16,57 @@
     },
     {
       "id": "networking",
-      "count": 181,
+      "count": 213,
       "url": "/search/wiki/networking.json"
     },
     {
       "id": "computer-science",
-      "count": 227,
+      "count": 253,
       "url": "/search/wiki/computer-science.json"
     },
     {
       "id": "electronics-circuits",
-      "count": 60,
+      "count": 76,
       "url": "/search/wiki/electronics-circuits.json"
     },
     {
       "id": "broadcast-media",
-      "count": 62,
+      "count": 74,
       "url": "/search/wiki/broadcast-media.json"
     },
     {
       "id": "mobile-communications",
-      "count": 68,
+      "count": 77,
       "url": "/search/wiki/mobile-communications.json"
     },
     {
       "id": "programming",
-      "count": 26,
+      "count": 36,
       "url": "/search/wiki/programming.json"
     },
     {
       "id": "radio-antenna",
-      "count": 81,
+      "count": 79,
       "url": "/search/wiki/radio-antenna.json"
     },
     {
       "id": "telecom-regulations",
-      "count": 51,
+      "count": 50,
       "url": "/search/wiki/telecom-regulations.json"
     },
     {
       "id": "software-engineering",
-      "count": 95,
+      "count": 109,
       "url": "/search/wiki/software-engineering.json"
     },
     {
       "id": "information-security",
-      "count": 41,
+      "count": 44,
       "url": "/search/wiki/information-security.json"
     },
     {
       "id": "current-affairs",
-      "count": 196,
+      "count": 228,
       "url": "/search/wiki/current-affairs.json"
     }
   ]

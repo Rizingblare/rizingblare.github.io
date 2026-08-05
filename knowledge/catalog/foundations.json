@@ -5,14 +5,18 @@
     "title": "네트워크와 패킷",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "네트워크와 패킷에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-d09e977b090b",
+      "concept-c12647234ab8"
+    ]
   },
   {
     "type": "concept",
@@ -20,14 +24,18 @@
     "title": "논리 게이트와 참·거짓",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "논리 게이트와 참·거짓에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "logic-gate",
+      "concept-d4bda7c71c5e"
+    ]
   },
   {
     "type": "concept",
@@ -140,14 +148,18 @@
     "title": "반도체와 다이오드",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "반도체와 다이오드에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-40f5c8093251",
+      "concept-36d9f1d82032"
+    ]
   },
   {
     "type": "concept",
@@ -155,29 +167,18 @@
     "title": "변수와 자료형",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "변수와 자료형에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-e462842fe7fa",
-    "title": "변조란 무엇인가",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "변조란 무엇인가에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "foundations",
-    "domain": "foundations",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-541034c474b7",
+      "concept-fff1619dbd29"
+    ]
   },
   {
     "type": "concept",
@@ -200,14 +201,18 @@
     "title": "비트와 부호화",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "비트와 부호화에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "bit",
+      "encoding"
+    ]
   },
   {
     "type": "concept",
@@ -230,14 +235,18 @@
     "title": "삼각함수 sin·cos과 라디안",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "삼각함수 sin·cos과 라디안에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "trigonometric-function-sin-cos",
+      "radian"
+    ]
   },
   {
     "type": "concept",
@@ -260,14 +269,18 @@
     "title": "신호와 주파수",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "신호와 주파수에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "signal",
+      "frequency"
+    ]
   },
   {
     "type": "concept",
@@ -282,7 +295,11 @@
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "analog-signal",
+      "digital-signal"
+    ]
   },
   {
     "type": "concept",
@@ -290,7 +307,7 @@
     "title": "알고리즘이란 무엇인가",
     "aliases": [],
     "status": "proposed",
-    "kind": "algorithm",
+    "kind": "atomic",
     "profile": "algorithm",
     "summary": "알고리즘이란 무엇인가에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
@@ -357,7 +374,11 @@
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "base-station",
+      "core-network"
+    ]
   },
   {
     "type": "concept",
@@ -372,7 +393,14 @@
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "array",
+      "lifo-fifo",
+      "tree",
+      "graph",
+      "linked-list"
+    ]
   },
   {
     "type": "concept",
@@ -395,14 +423,19 @@
     "title": "전압·전류·저항",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "전압·전류·저항에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-6663b25b49d5",
+      "concept-3ca43bdf62ef",
+      "concept-7e7900336788"
+    ]
   },
   {
     "type": "concept",
@@ -410,14 +443,18 @@
     "title": "조건문과 반복문",
     "aliases": [],
     "status": "proposed",
-    "kind": "theorem",
+    "kind": "composite",
     "profile": "equation-derivation",
     "summary": "조건문과 반복문에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-7fd3a96349ff",
+      "concept-4d05e84de9c9"
+    ]
   },
   {
     "type": "concept",
@@ -425,14 +462,18 @@
     "title": "직류와 교류",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "직류와 교류에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-9e51f4f4d92e",
+      "concept-791549f8a44f"
+    ]
   },
   {
     "type": "concept",
@@ -455,14 +496,19 @@
     "title": "클라이언트·서버와 포트",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "클라이언트·서버와 포트에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-b367c7d58dda",
+      "concept-7d585c3842de",
+      "port"
+    ]
   },
   {
     "type": "concept",
@@ -470,14 +516,18 @@
     "title": "통신 채널과 신호대잡음비",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "통신 채널과 신호대잡음비에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "channel",
+      "signal-to-noise-ratio"
+    ]
   },
   {
     "type": "concept",
@@ -500,14 +550,18 @@
     "title": "프로토콜과 헤더",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "프로토콜과 헤더에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-51e09d47fc7b",
+      "concept-999150ec9bb6"
+    ]
   },
   {
     "type": "concept",
@@ -515,14 +569,18 @@
     "title": "픽셀당 비트와 비트심도",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "픽셀당 비트와 비트심도에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-f168a8dec27d",
+      "bit-depth"
+    ]
   },
   {
     "type": "concept",
@@ -545,20 +603,26 @@
     "title": "IP 주소와 MAC 주소",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "IP 주소와 MAC 주소에 대한 독립 문서 후보입니다.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ip-address",
+      "mac-address"
+    ]
   },
   {
     "type": "concept",
     "id": "rgb",
     "title": "RGB 색 표현",
-    "aliases": [],
+    "aliases": [
+      "색의 표현 (RGB)"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -578,6 +642,51 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "YCbCr에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "foundations",
+    "domain": "foundations",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "linked-list",
+    "title": "연결 리스트(linked list)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "노드가 다음 노드를 가리키는 포인터로 연결된 선형 자료구조.",
+    "primaryDomain": "foundations",
+    "domain": "foundations",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "radian",
+    "title": "라디안(radian)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "호의 길이와 반지름의 비로 각을 나타내는 각도 단위.",
+    "primaryDomain": "foundations",
+    "domain": "foundations",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "trigonometric-function-sin-cos",
+    "title": "삼각함수(sin·cos)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "직각삼각형 또는 단위원을 기준으로 각을 비율로 대응시키는 sin·cos 함수.",
     "primaryDomain": "foundations",
     "domain": "foundations",
     "topics": [],

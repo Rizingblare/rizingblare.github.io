@@ -125,7 +125,7 @@
     "title": "벨-라파둘라 모델(Bell-LaPadula)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "벨-라파둘라 모델(Bell-LaPadula)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "information-security",
@@ -170,7 +170,7 @@
     "title": "비바 모델(Biba)",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "비바 모델(Biba)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "information-security",
@@ -200,14 +200,19 @@
     "title": "스미싱(Smishing)/파밍(Pharming)/피싱(Phishing)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "스미싱(Smishing)/파밍(Pharming)/피싱(Phishing)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "information-security",
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-921e2830d7c9",
+      "concept-2080cb41d7f3",
+      "smishing"
+    ]
   },
   {
     "type": "concept",
@@ -237,7 +242,13 @@
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-f2c20a71c353",
+      "concept-8ea0adc21b78",
+      "concept-689f39a5e1e5",
+      "hsm"
+    ]
   },
   {
     "type": "concept",
@@ -245,7 +256,7 @@
     "title": "시큐어 코딩(secure coding)",
     "aliases": [],
     "status": "proposed",
-    "kind": "data-structure",
+    "kind": "atomic",
     "profile": "data-structure",
     "summary": "시큐어 코딩(secure coding)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "information-security",
@@ -260,14 +271,19 @@
     "title": "악성코드 유형 구별 (바이러스·웜·트로이 목마)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "악성코드 유형 구별 (바이러스·웜·트로이 목마)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "information-security",
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-38b5772e1520",
+      "worm",
+      "trojan"
+    ]
   },
   {
     "type": "concept",
@@ -312,7 +328,14 @@
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "know",
+      "have",
+      "be",
+      "do",
+      "aaa"
+    ]
   },
   {
     "type": "concept",
@@ -327,7 +350,12 @@
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "dac",
+      "mac-aaf381a",
+      "rbac"
+    ]
   },
   {
     "type": "concept",
@@ -357,7 +385,12 @@
     "domain": "information-security",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-a1715e1b118a",
+      "concept-6b94845ce723",
+      "concept-0b643d3a7b09"
+    ]
   },
   {
     "type": "concept",
@@ -608,6 +641,51 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "TPM에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "information-security",
+    "domain": "information-security",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "aaa",
+    "title": "AAA (Authentication, Authorization, Accounting)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "인증·인가·과금(감사)의 3단계로 네트워크 접근을 통제하는 프레임워크.",
+    "primaryDomain": "information-security",
+    "domain": "information-security",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "smishing",
+    "title": "스미싱(Smishing)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "문자메시지(SMS)에 악성 링크를 담아 개인정보 탈취나 악성코드 설치를 유도하는 피싱 공격 기법.",
+    "primaryDomain": "information-security",
+    "domain": "information-security",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "worm",
+    "title": "웜(Worm)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "숙주 파일 없이 스스로 복제하며 네트워크를 통해 자율적으로 전파되는 악성코드.",
     "primaryDomain": "information-security",
     "domain": "information-security",
     "topics": [],

@@ -1,21 +1,6 @@
 [
   {
     "type": "concept",
-    "id": "377",
-    "title": "377Ω",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "377Ω에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "concept-cede979447aa",
     "title": "감도",
     "aliases": [],
@@ -35,14 +20,19 @@
     "title": "개구면 안테나 (파라볼라·카세그레인·혼)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "개구면 안테나 (파라볼라·카세그레인·혼)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-9135ffcc07b6",
+      "cassegrain",
+      "horn-antenna"
+    ]
   },
   {
     "type": "concept",
@@ -65,14 +55,18 @@
     "title": "급전선과 임피던스 정합",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "급전선과 임피던스 정합에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "feeder",
+      "impedance-matching"
+    ]
   },
   {
     "type": "concept",
@@ -155,14 +149,20 @@
     "title": "레이다 기초 (펄스 원리·레이다 방정식·분해능·오차)",
     "aliases": [],
     "status": "proposed",
-    "kind": "theorem",
+    "kind": "composite",
     "profile": "equation-derivation",
     "summary": "레이다 기초 (펄스 원리·레이다 방정식·분해능·오차)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-befebb1ce0eb",
+      "concept-175f0042b47f",
+      "concept-c5c7f562e4e0",
+      "concept-8160473a9061"
+    ]
   },
   {
     "type": "concept",
@@ -200,14 +200,20 @@
     "title": "마이크로파 소자 (이상기·아이솔레이터·도파관·능동관 대비)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "마이크로파 소자 (이상기·아이솔레이터·도파관·능동관 대비)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-38e5a93b14ce",
+      "concept-14350c8954d7",
+      "waveguide",
+      "concept-e791e0faf09e"
+    ]
   },
   {
     "type": "concept",
@@ -222,7 +228,13 @@
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "los",
+      "concept-882ed17d58e8",
+      "fresnel",
+      "concept-f3ae3db51e8b"
+    ]
   },
   {
     "type": "concept",
@@ -275,14 +287,19 @@
     "title": "방향 탐지와 무선 항법 (루프·고니오미터·쌍곡선 항법)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "방향 탐지와 무선 항법 (루프·고니오미터·쌍곡선 항법)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-985a46b888cb",
+      "goniometer",
+      "concept-13f93ef35405"
+    ]
   },
   {
     "type": "concept",
@@ -357,7 +374,11 @@
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "s-parameter",
+      "two-port-network"
+    ]
   },
   {
     "type": "concept",
@@ -410,14 +431,19 @@
     "title": "송신기 성능 요소 (주파수 안정도·스퓨리어스·변조특성)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "송신기 성능 요소 (주파수 안정도·스퓨리어스·변조특성)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-0baed518287d",
+      "concept-059f6c335667",
+      "concept-2e08dc7a662e"
+    ]
   },
   {
     "type": "concept",
@@ -425,14 +451,20 @@
     "title": "수신기 성능 요소 (감도·선택도·충실도·안정도)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "수신기 성능 요소 (감도·선택도·충실도·안정도)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-cede979447aa",
+      "concept-0b819919eb84",
+      "concept-296635053fd3",
+      "concept-33fd7a020b26"
+    ]
   },
   {
     "type": "concept",
@@ -560,35 +592,28 @@
     "title": "안테나 기초 파라미터 (이득·반치각·복사저항·실효고)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "안테나 기초 파라미터 (이득·반치각·복사저항·실효고)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-73079a441390",
-    "title": "야기",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "야기에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-a18dd757cf9a",
+      "concept-df26f0a727db",
+      "concept-031cd6734515",
+      "concept-28abb106b599"
+    ]
   },
   {
     "type": "concept",
     "id": "yagi-uda",
     "title": "야기-우다 안테나(Yagi-Uda)",
-    "aliases": [],
+    "aliases": [
+      "야기"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -633,26 +658,13 @@
     "type": "concept",
     "id": "concept-a18dd757cf9a",
     "title": "이득",
-    "aliases": [],
+    "aliases": [
+      "이득 G"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "이득에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-e62249632155",
-    "title": "이득 G",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "이득 G에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
@@ -710,14 +722,19 @@
     "title": "전자기파 기초 (파면·편파·377Ω)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "전자기파 기초 (파면·편파·377Ω)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-37e84f53b8ac",
+      "polarization",
+      "wave-impedance-377"
+    ]
   },
   {
     "type": "concept",
@@ -725,14 +742,18 @@
     "title": "전자파 적합성 (EMC = EMI + EMS)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "전자파 적합성 (EMC = EMI + EMS)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "emi",
+      "ems"
+    ]
   },
   {
     "type": "concept",
@@ -740,14 +761,19 @@
     "title": "전파 전파 (지상파·상공파·수정 굴절률)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "전파 전파 (지상파·상공파·수정 굴절률)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-db6a2caba537",
+      "concept-8b00be42c69d",
+      "concept-b2f7cbfa3547"
+    ]
   },
   {
     "type": "concept",
@@ -766,24 +792,11 @@
   },
   {
     "type": "concept",
-    "id": "concept-df6c0e6902b7",
-    "title": "제펠린",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "제펠린에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "zeppelin",
     "title": "제펠린 안테나(Zeppelin)",
-    "aliases": [],
+    "aliases": [
+      "제펠린"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -815,14 +828,20 @@
     "title": "주파수대별 선형 안테나 (다이폴·제펠린·턴스타일·야기)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "주파수대별 선형 안테나 (다이폴·제펠린·턴스타일·야기)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-a722f6d0fdee",
+      "zeppelin",
+      "concept-16381a3f0b47",
+      "yagi-uda"
+    ]
   },
   {
     "type": "concept",
@@ -886,24 +905,11 @@
   },
   {
     "type": "concept",
-    "id": "concept-e862034338e7",
-    "title": "카세그레인",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "카세그레인에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "cassegrain",
     "title": "카세그레인 안테나(Cassegrain)",
-    "aliases": [],
+    "aliases": [
+      "카세그레인"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -948,7 +954,9 @@
     "type": "concept",
     "id": "wave-impedance-377",
     "title": "파동 임피던스(Wave Impedance) 377Ω",
-    "aliases": [],
+    "aliases": [
+      "377Ω"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1081,21 +1089,6 @@
   },
   {
     "type": "concept",
-    "id": "hertz",
-    "title": "헤르츠(Hertz)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "헤르츠(Hertz)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "cross-modulation",
     "title": "혼변조(Cross Modulation)",
     "aliases": [],
@@ -1133,21 +1126,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "dBi에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "radio-antenna",
-    "domain": "radio-antenna",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "eirp-a16dd0d",
-    "title": "EIRP",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "EIRP에 대한 독립 문서 후보입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],
@@ -1208,6 +1186,81 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "TVWS(TV White Space)에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "radio-antenna",
+    "domain": "radio-antenna",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "emi",
+    "title": "EMI(전자파 간섭)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전자기기가 방출하는 전자파가 다른 기기의 정상적인 동작을 방해하는 현상입니다.",
+    "primaryDomain": "radio-antenna",
+    "domain": "radio-antenna",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ems",
+    "title": "EMS(전자파 내성)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전자기기가 외부의 전자파 간섭을 받아도 정상적인 성능을 유지할 수 있는 능력입니다.",
+    "primaryDomain": "radio-antenna",
+    "domain": "radio-antenna",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "horn-antenna",
+    "title": "혼 안테나(Horn Antenna)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "도파관의 단면을 나팔 모양으로 점차 넓혀 전자파를 자유 공간으로 효율적으로 방사하도록 만든 안테나입니다.",
+    "primaryDomain": "radio-antenna",
+    "domain": "radio-antenna",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "s-parameter",
+    "title": "S 파라미터(Scattering Parameter)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "고주파 회로망의 각 포트에서 입사파와 반사파의 비율로 신호의 전달·반사 특성을 나타내는 파라미터입니다.",
+    "primaryDomain": "radio-antenna",
+    "domain": "radio-antenna",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "two-port-network",
+    "title": "2포트 회로망(Two-Port Network)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "입력 한 쌍과 출력 한 쌍, 총 두 쌍의 단자를 갖는 회로망으로, 입출력 관계를 파라미터로 나타내 해석하는 회로 모델입니다.",
     "primaryDomain": "radio-antenna",
     "domain": "radio-antenna",
     "topics": [],

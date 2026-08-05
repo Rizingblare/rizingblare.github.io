@@ -110,14 +110,19 @@
     "title": "가상화·클라우드·분산 컴퓨팅",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "가상화·클라우드·분산 컴퓨팅에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "virtualization",
+      "cloud-computing",
+      "distributed-computing"
+    ]
   },
   {
     "type": "concept",
@@ -245,14 +250,18 @@
     "title": "결합도와 응집도",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "결합도와 응집도에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-b831cd9b3426",
+      "concept-3b2c21f667d1"
+    ]
   },
   {
     "type": "concept",
@@ -297,7 +306,12 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-e5ca9e6ce93f",
+      "concept-354c191142b6",
+      "concept-e477ff55e56d"
+    ]
   },
   {
     "type": "concept",
@@ -308,21 +322,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "둘 이상의 트랜잭션이 서로가 보유한 자원을 기다려 누구도 진행할 수 없는 상태입니다.",
-    "primaryDomain": "computer-science",
-    "domain": "computer-science",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-92ef621431f8",
-    "title": "교착상태 4가지 필요조건",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "theorem",
-    "profile": "equation-derivation",
-    "summary": "교착상태 4가지 필요조건에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
@@ -447,7 +446,15 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ram-random-access-memory",
+      "rom-read-only-memory",
+      "sram",
+      "dram",
+      "concept-28e620f9cccd",
+      "memory-bandwidth"
+    ]
   },
   {
     "type": "concept",
@@ -620,7 +627,7 @@
     "title": "데이터 사전과 시스템 카탈로그",
     "aliases": [],
     "status": "proposed",
-    "kind": "composite",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "데이터 사전과 시스템 카탈로그에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
@@ -672,7 +679,13 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-f48c48385aa0",
+      "concept-ebddf3df76c0",
+      "concept-3bb33e223557",
+      "concept-9d5b8c35b7eb"
+    ]
   },
   {
     "type": "concept",
@@ -680,14 +693,19 @@
     "title": "데이터베이스 정규화 (1NF·2NF·3NF)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "데이터베이스 정규화 (1NF·2NF·3NF)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "1nf",
+      "2nf",
+      "3nf"
+    ]
   },
   {
     "type": "concept",
@@ -695,20 +713,27 @@
     "title": "데이터베이스 키의 계층 (슈퍼키→후보키→기본키)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "데이터베이스 키의 계층 (슈퍼키→후보키→기본키)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "super-key",
+      "candidate-key",
+      "primary-key"
+    ]
   },
   {
     "type": "concept",
     "id": "database",
     "title": "데이터베이스(Database)",
-    "aliases": [],
+    "aliases": [
+      "DB"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -972,7 +997,12 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-25340c93ebb7",
+      "concept-fbc8ad581fd1",
+      "concept-d2f9f747070b"
+    ]
   },
   {
     "type": "concept",
@@ -1070,14 +1100,18 @@
     "title": "반가산기와 반감산기",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "반가산기와 반감산기에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "half-adder",
+      "half-subtractor"
+    ]
   },
   {
     "type": "concept",
@@ -1130,14 +1164,19 @@
     "title": "버블/삽입/선택",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "버블/삽입/선택에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-e83b59d97487",
+      "concept-0d635eda295a",
+      "concept-96e414e68cce"
+    ]
   },
   {
     "type": "concept",
@@ -1280,14 +1319,18 @@
     "title": "분산 데이터베이스와 투명성",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "분산 데이터베이스와 투명성에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "distributed-database",
+      "distributed-transparency"
+    ]
   },
   {
     "type": "concept",
@@ -1302,7 +1345,11 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "de-morgan",
+      "concept-164a8256db55"
+    ]
   },
   {
     "type": "concept",
@@ -1325,14 +1372,18 @@
     "title": "블랙박스·화이트박스 테스트",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "블랙박스·화이트박스 테스트에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "black-box-testing",
+      "white-box-testing"
+    ]
   },
   {
     "type": "concept",
@@ -1340,14 +1391,19 @@
     "title": "비교·일치·다수결 회로",
     "aliases": [],
     "status": "proposed",
-    "kind": "comparison",
+    "kind": "taxonomy",
     "profile": "comparison",
     "summary": "비교·일치·다수결 회로에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "comparator-circuit",
+      "coincidence-circuit",
+      "majority-circuit"
+    ]
   },
   {
     "type": "concept",
@@ -1505,14 +1561,18 @@
     "title": "세마포어와 뮤텍스",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "세마포어와 뮤텍스에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "semaphore",
+      "mutex"
+    ]
   },
   {
     "type": "concept",
@@ -1595,14 +1655,18 @@
     "title": "스택과 큐 (LIFO·FIFO)",
     "aliases": [],
     "status": "proposed",
-    "kind": "algorithm",
+    "kind": "taxonomy",
     "profile": "algorithm",
     "summary": "스택과 큐 (LIFO·FIFO)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "lifo",
+      "fifo-first-in-first-out"
+    ]
   },
   {
     "type": "concept",
@@ -1683,7 +1747,9 @@
     "type": "concept",
     "id": "ai-on-device-ai",
     "title": "온디바이스 AI(on-device AI)",
-    "aliases": [],
+    "aliases": [
+      "온디바이스 AI"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1872,7 +1938,12 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-170c17c885e2",
+      "concept-4c109f98381e",
+      "concept-7b067a0f00c4"
+    ]
   },
   {
     "type": "concept",
@@ -2120,14 +2191,20 @@
     "title": "조합논리 대표 블록 (멀티플렉서·디멀티플렉서·인코더·디코더)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "조합논리 대표 블록 (멀티플렉서·디멀티플렉서·인코더·디코더)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-7c6d2010a1b9",
+      "concept-658da74e96a4",
+      "concept-728cbda5f801",
+      "concept-6be74ed2a941"
+    ]
   },
   {
     "type": "concept",
@@ -2322,7 +2399,12 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "dijkstra",
+      "bellman-ford",
+      "floyd-warshall"
+    ]
   },
   {
     "type": "concept",
@@ -2373,16 +2455,22 @@
     "type": "concept",
     "id": "concept-35342de3de2b",
     "title": "카운터 (동기·비동기)",
-    "aliases": [],
+    "aliases": [
+      "counters-sync-async"
+    ],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "카운터 (동기·비동기)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "synchronous-counter",
+      "asynchronous-counter"
+    ]
   },
   {
     "type": "concept",
@@ -2420,20 +2508,27 @@
     "title": "코드 체계 (BCD·3초과·그레이)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "taxonomy",
     "profile": "foundational-definition",
     "summary": "코드 체계 (BCD·3초과·그레이)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "bcd-8421",
+      "concept-3cf896edc469",
+      "gray"
+    ]
   },
   {
     "type": "concept",
     "id": "coffman",
     "title": "코프만 조건(Coffman)",
-    "aliases": [],
+    "aliases": [
+      "교착상태 4가지 필요조건"
+    ],
     "status": "proposed",
     "kind": "theorem",
     "profile": "equation-derivation",
@@ -2635,14 +2730,18 @@
     "title": "프로세스와 스레드",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "comparison",
     "profile": "foundational-definition",
     "summary": "프로세스와 스레드에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "process-os",
+      "thread-os"
+    ]
   },
   {
     "type": "concept",
@@ -2687,7 +2786,12 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "sr-flip-flop",
+      "d-flip-flop",
+      "t-flip-flop"
+    ]
   },
   {
     "type": "concept",
@@ -2702,7 +2806,11 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "hash-table",
+      "collision-resolution"
+    ]
   },
   {
     "type": "concept",
@@ -2839,7 +2947,11 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "b-tree",
+      "b-plus-tree"
+    ]
   },
   {
     "type": "concept",
@@ -2903,21 +3015,6 @@
   },
   {
     "type": "concept",
-    "id": "counters-sync-async",
-    "title": "counters-sync-async",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "counters-sync-async에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "computer-science",
-    "domain": "computer-science",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "cpu-alu",
     "title": "CPU 구조 기초 (제어장치·ALU·레지스터·버스)",
     "aliases": [],
@@ -2929,7 +3026,13 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-9c8a39b60432",
+      "alu",
+      "register",
+      "concept-fb84fa7f86ea"
+    ]
   },
   {
     "type": "concept",
@@ -3085,26 +3188,13 @@
     "type": "concept",
     "id": "jk",
     "title": "JK",
-    "aliases": [],
+    "aliases": [
+      "JK 플립플롭"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "JK에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "computer-science",
-    "domain": "computer-science",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "jk-4b41659",
-    "title": "JK 플립플롭",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "JK 플립플롭에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
@@ -3379,7 +3469,13 @@
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ddl",
+      "dml",
+      "dcl",
+      "grant-revoke"
+    ]
   },
   {
     "type": "concept",
@@ -3387,14 +3483,19 @@
     "title": "SQL 집계와 GROUP BY·HAVING",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "SQL 집계와 GROUP BY·HAVING에 대한 독립 문서 후보입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "aggregate-function",
+      "group-by",
+      "having"
+    ]
   },
   {
     "type": "concept",
@@ -3405,6 +3506,441 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "SRAM에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "asynchronous-counter",
+    "title": "비동기 카운터(Asynchronous Counter)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "앞 단 플립플롭의 출력이 다음 단의 클록으로 전달되어 순차적으로 상태가 바뀌는 카운터입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "b-plus-tree",
+    "title": "B+ tree",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "리프 노드에만 데이터를 저장하고 리프를 연결 리스트로 잇는 B-tree의 변형입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "b-tree",
+    "title": "B-tree",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "각 노드가 여러 키와 자식을 가지며 균형을 유지하는 다진 탐색 트리입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "black-box-testing",
+    "title": "블랙박스 테스트(Black-box Testing)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "내부 구현을 보지 않고 입력과 출력만으로 기능을 검증하는 테스트 기법입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "cloud-computing",
+    "title": "클라우드 컴퓨팅(Cloud Computing)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "네트워크를 통해 컴퓨팅 자원을 필요한 만큼 온디맨드로 제공받는 서비스 모델입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "coincidence-circuit",
+    "title": "일치 회로(Coincidence Circuit)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "두 입력 비트가 같은지를 판정하는 조합논리 회로입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "collision-resolution",
+    "title": "충돌 해결(Collision Resolution)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "서로 다른 키가 같은 해시값을 가질 때 이를 처리하는 기법(체이닝·개방 주소법 등)입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "comparator-circuit",
+    "title": "비교기 회로(Comparator)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "두 이진수의 크기를 비교해 대소·같음을 판정하는 조합논리 회로입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "distributed-computing",
+    "title": "분산 컴퓨팅(Distributed Computing)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "여러 독립된 컴퓨터가 네트워크로 연결되어 하나의 작업을 협력해 처리하는 방식입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "grant-revoke",
+    "title": "GRANT/REVOKE",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "DCL에서 사용자에게 권한을 부여하거나 회수하는 SQL 명령입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "half-adder",
+    "title": "반가산기(Half Adder)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "캐리 입력 없이 두 1비트를 더해 합과 캐리를 출력하는 조합논리 회로입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "half-subtractor",
+    "title": "반감산기(Half Subtractor)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "빌림 입력 없이 두 1비트를 빼서 차와 빌림을 출력하는 조합논리 회로입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "hash-table",
+    "title": "해시 테이블(Hash Table)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "해시 함수로 키를 배열 인덱스에 매핑해 평균 O(1) 접근을 제공하는 자료구조입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "majority-circuit",
+    "title": "다수결 회로(Majority Circuit)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "여러 입력 중 1의 개수가 더 많은 쪽을 출력하는 조합논리 회로입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "mutex",
+    "title": "뮤텍스(Mutex)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "한 번에 한 스레드만 임계 구역에 진입하도록 보장하는 상호 배제 잠금입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "process-os",
+    "title": "프로세스(Process)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "운영체제가 자원을 할당하는 실행 중인 프로그램의 단위입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "semaphore",
+    "title": "세마포어(Semaphore)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "정수 카운터로 여러 프로세스·스레드의 공유 자원 접근을 조율하는 동기화 도구입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "synchronous-counter",
+    "title": "동기 카운터(Synchronous Counter)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "모든 플립플롭이 같은 클록 신호에 동시에 반응해 상태를 바꾸는 카운터입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "thread-os",
+    "title": "스레드(Thread)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "같은 프로세스 내에서 자원을 공유하며 독립적으로 스케줄링되는 실행 흐름입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "virtualization",
+    "title": "가상화(Virtualization)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "물리적 자원을 논리적으로 분할·추상화하여 여러 독립 실행 환경을 제공하는 기술입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "white-box-testing",
+    "title": "화이트박스 테스트(White-box Testing)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "내부 코드 구조와 논리 경로를 바탕으로 설계하는 테스트 기법입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "sr-flip-flop",
+    "title": "SR 플립플롭",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "Set과 Reset 두 입력으로 출력 상태를 설정하거나 초기화하는 가장 기본적인 플립플롭입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "d-flip-flop",
+    "title": "D 플립플롭",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "클록 신호가 인가되는 순간의 입력값을 그대로 출력으로 저장하는 플립플롭입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "t-flip-flop",
+    "title": "T 플립플롭",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "클록이 인가될 때마다 입력값에 따라 이전 출력 상태를 그대로 유지하거나 반전시키는 플립플롭입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "distributed-database",
+    "title": "분산 데이터베이스(Distributed Database)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "물리적으로 여러 사이트에 나뉘어 저장된 데이터를 하나의 논리적 데이터베이스처럼 관리하는 시스템입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "distributed-transparency",
+    "title": "분산 투명성(Distributed Transparency)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "사용자가 데이터가 여러 위치에 나뉘어 저장·관리되고 있다는 사실을 의식하지 않고 마치 하나의 시스템을 다루듯 이용할 수 있게 하는 성질입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "aggregate-function",
+    "title": "집계 함수(Aggregate Function)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "여러 행의 값을 입력받아 합계·평균·개수 등 하나의 요약된 값으로 계산해내는 함수입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "group-by",
+    "title": "GROUP BY",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "지정한 열의 값이 같은 행들을 하나의 그룹으로 묶는 SQL 절입니다.",
+    "primaryDomain": "computer-science",
+    "domain": "computer-science",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "having",
+    "title": "HAVING",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "GROUP BY로 묶인 그룹에 대해 집계 결과를 기준으로 그룹 자체를 필터링하는 SQL 절입니다.",
     "primaryDomain": "computer-science",
     "domain": "computer-science",
     "topics": [],

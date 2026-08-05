@@ -50,7 +50,7 @@
     "title": "노턴 등가",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "theorem",
     "profile": "foundational-definition",
     "summary": "노턴 등가에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
@@ -200,7 +200,7 @@
     "title": "슈미트 트리거",
     "aliases": [],
     "status": "proposed",
-    "kind": "data-structure",
+    "kind": "atomic",
     "profile": "data-structure",
     "summary": "슈미트 트리거에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
@@ -245,14 +245,18 @@
     "title": "옴의 법칙과 전력",
     "aliases": [],
     "status": "proposed",
-    "kind": "theorem",
+    "kind": "composite",
     "profile": "equation-derivation",
     "summary": "옴의 법칙과 전력에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ohms-law",
+      "power-w"
+    ]
   },
   {
     "type": "concept",
@@ -320,14 +324,18 @@
     "title": "이상 변압기와 임피던스 정합",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "이상 변압기와 임피던스 정합에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ideal-transformer",
+      "impedance-matching"
+    ]
   },
   {
     "type": "concept",
@@ -335,14 +343,18 @@
     "title": "이상적 연산증폭기와 가상 단락",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "이상적 연산증폭기와 가상 단락에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "ideal-op-amp",
+      "virtual-short"
+    ]
   },
   {
     "type": "concept",
@@ -492,7 +504,11 @@
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "rectifier-circuit",
+      "smoothing-filter"
+    ]
   },
   {
     "type": "concept",
@@ -515,14 +531,18 @@
     "title": "제너 다이오드와 정전압",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "제너 다이오드와 정전압에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-e85a8bee6737",
+      "voltage-regulator-circuit"
+    ]
   },
   {
     "type": "concept",
@@ -545,14 +565,18 @@
     "title": "증폭기 급수와 푸시풀",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "증폭기 급수와 푸시풀에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "amplifier-class",
+      "push-pull-amplifier"
+    ]
   },
   {
     "type": "concept",
@@ -575,14 +599,18 @@
     "title": "직렬/병렬(series/parallel)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "직렬/병렬(series/parallel)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "series-connection",
+      "parallel-connection"
+    ]
   },
   {
     "type": "concept",
@@ -605,14 +633,18 @@
     "title": "차동증폭기와 CMRR",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "차동증폭기와 CMRR에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "differential-amplifier",
+      "common-mode-rejection-ratio"
+    ]
   },
   {
     "type": "concept",
@@ -650,14 +682,18 @@
     "title": "키르히호프 법칙",
     "aliases": [],
     "status": "proposed",
-    "kind": "theorem",
+    "kind": "composite",
     "profile": "equation-derivation",
     "summary": "키르히호프 법칙에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "kcl",
+      "kvl"
+    ]
   },
   {
     "type": "concept",
@@ -680,7 +716,7 @@
     "title": "테브냉 등가",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "theorem",
     "profile": "foundational-definition",
     "summary": "테브냉 등가에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
@@ -702,7 +738,12 @@
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-6663b25b49d5",
+      "concept-7e7900336788",
+      "series-parallel"
+    ]
   },
   {
     "type": "concept",
@@ -768,7 +809,10 @@
     "type": "concept",
     "id": "hz",
     "title": "헤르츠(Hz)",
-    "aliases": [],
+    "aliases": [
+      "헤르츠(Hertz)",
+      "헤르츠"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -792,7 +836,12 @@
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-6663b25b49d5",
+      "concept-3ca43bdf62ef",
+      "concept-7e7900336788"
+    ]
   },
   {
     "type": "concept",
@@ -837,7 +886,11 @@
     "domain": "electronics-circuits",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "threshold-voltage-v-th",
+      "mosfet-operating-regions"
+    ]
   },
   {
     "type": "concept",
@@ -893,6 +946,246 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "RLC 직렬 공진에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "amplifier-class",
+    "title": "증폭기 급수(amplifier class)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "바이어스 조건에 따라 증폭기를 A급·B급·AB급·C급 등으로 분류하는 동작급 개념.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "differential-amplifier",
+    "title": "차동증폭기(differential amplifier)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "두 입력 신호의 차이를 증폭하는 증폭기 토폴로지.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ideal-op-amp",
+    "title": "이상적 연산증폭기(ideal op-amp)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "무한대의 입력 임피던스, 0의 출력 임피던스, 무한대의 개루프 이득을 갖는다고 가정하는 이상화된 연산증폭기 모델.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ideal-transformer",
+    "title": "이상 변압기(ideal transformer)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "손실이 없고 권수비에 따라 1차·2차 전압·전류가 변환된다고 가정하는 이상화된 변압기 모델.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "impedance-matching",
+    "title": "임피던스 정합(impedance matching)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "반사·손실을 줄이거나 전력 전달을 최대화하기 위해 부하 임피던스를 소스 임피던스에 맞추는 기법. 최대 전력 전달 정리(concept-f82de063af5b)와 관련.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "kvl",
+    "title": "키르히호프 전압 법칙(KVL)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "닫힌 루프를 따라 한 바퀴 돌 때 전압 강하의 합이 0이라는 법칙.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "mosfet-operating-regions",
+    "title": "MOSFET 동작 영역",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "게이트-소스 전압과 문턱 전압의 관계에 따라 MOSFET이 차단·트라이오드(선형)·포화 영역 중 어디서 동작하는지를 나타내는 구분.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ohms-law",
+    "title": "옴의 법칙(Ohm's law)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "저항성 소자에서 전압 V, 전류 I, 저항 R 사이에 V=IR이 성립한다는 법칙.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "parallel-connection",
+    "title": "병렬(parallel connection)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "소자들이 동일한 두 노드 사이에 나란히 연결되어 동일한 전압이 걸리는 연결 방식.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "push-pull-amplifier",
+    "title": "푸시풀 증폭기(push-pull amplifier)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "두 소자가 신호의 양(+)·음(-) 반주기를 교대로 증폭하여 출력을 합성하는 증폭기 출력단 구성.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "rectifier-circuit",
+    "title": "정류회로(rectifier circuit)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "다이오드를 이용해 교류를 맥동하는 직류로 변환하는 회로(반파·전파 정류).",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "series-connection",
+    "title": "직렬(series connection)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "소자들이 하나의 전류 경로로 순차 연결되어 동일한 전류가 흐르는 연결 방식.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "smoothing-filter",
+    "title": "평활회로(smoothing filter)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "정류된 맥동 직류의 리플을 커패시터 등으로 완화해 평탄한 직류에 가깝게 만드는 회로.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "virtual-short",
+    "title": "가상 단락(virtual short)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "부귀환이 걸린 이상적 연산증폭기에서 두 입력 단자 전압이 사실상 같아지는 것으로 취급하는 회로 해석 기법.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "voltage-regulator-circuit",
+    "title": "정전압 회로(voltage regulator circuit)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "제너 다이오드의 항복 영역을 이용해 출력 전압을 일정하게 유지하는 회로.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "common-mode-rejection-ratio",
+    "title": "CMRR(Common-Mode Rejection Ratio)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "차동증폭기가 두 입력에 공통으로 실린 동상 신호는 억제하고 차동 신호만 증폭하는 능력을 나타내는 지표입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],

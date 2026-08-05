@@ -46,21 +46,6 @@
   },
   {
     "type": "concept",
-    "id": "concept-9a20172dc04c",
-    "title": "급전선",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "급전선에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "basis",
     "title": "기저 함수",
     "aliases": [],
@@ -125,7 +110,9 @@
     "type": "concept",
     "id": "nyquist-shannon",
     "title": "나이퀴스트–섀넌 표본화 정리",
-    "aliases": [],
+    "aliases": [
+      "표본화 정리"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -230,7 +217,10 @@
     "type": "concept",
     "id": "signal-bandwidth",
     "title": "대역폭",
-    "aliases": [],
+    "aliases": [
+      "대역폭(bandwidth)",
+      "대역폭(Bandwidth)"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -277,14 +267,19 @@
     "title": "델타-시그마 변조",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "델타-시그마 변조에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "oversampling",
+      "noise-shaping",
+      "quantization"
+    ]
   },
   {
     "type": "concept",
@@ -367,20 +362,27 @@
     "title": "반사계수와 정재파비(VSWR)",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "반사계수와 정재파비(VSWR)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "reflection-coefficient",
+      "standing-wave-ratio"
+    ]
   },
   {
     "type": "concept",
     "id": "modulation-signal-processing",
     "title": "변조(modulation)",
-    "aliases": [],
+    "aliases": [
+      "변조(Modulation)",
+      "변조란 무엇인가"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -468,21 +470,6 @@
   },
   {
     "type": "concept",
-    "id": "concept-24e241a63f47",
-    "title": "부호화",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "부호화에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "encoding",
     "title": "부호화",
     "aliases": [],
@@ -500,7 +487,9 @@
     "type": "concept",
     "id": "bit-depth",
     "title": "비트 깊이",
-    "aliases": [],
+    "aliases": [
+      "비트심도"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -528,43 +517,15 @@
   },
   {
     "type": "concept",
-    "id": "concept-ecc863231305",
-    "title": "사인파",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "사인파에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "shannon",
     "title": "섀넌 용량(Shannon)",
-    "aliases": [],
+    "aliases": [
+      "섀넌 채널 용량"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "섀넌 용량(Shannon)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-bdefdd0ada93",
-    "title": "섀넌 채널 용량",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "섀넌 채널 용량에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
@@ -592,14 +553,20 @@
     "title": "슈퍼헤테로다인 수신기",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "슈퍼헤테로다인 수신기에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "local-oscillator",
+      "mixer",
+      "if",
+      "filter"
+    ]
   },
   {
     "type": "concept",
@@ -652,7 +619,9 @@
     "type": "concept",
     "id": "signal-to-noise-ratio",
     "title": "신호 대 잡음비",
-    "aliases": [],
+    "aliases": [
+      "SNR"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -676,7 +645,11 @@
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "signal-average-power",
+      "parseval"
+    ]
   },
   {
     "type": "concept",
@@ -747,21 +720,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "표본화 전에 나이퀴스트 주파수보다 높은 성분을 줄여 에일리어싱을 방지하는 아날로그 저역통과 필터입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-f553e3049bc3",
-    "title": "양자화",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "양자화에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
@@ -920,7 +878,12 @@
       "signal-foundations"
     ],
     "route": "signal-communications/signal-foundations/euler-formula",
-    "url": "/wiki/signal-communications/signal-foundations/euler-formula/"
+    "url": "/wiki/signal-communications/signal-foundations/euler-formula/",
+    "atoms": [
+      "complex-number",
+      "imaginary-unit",
+      "sinusoid"
+    ]
   },
   {
     "type": "concept",
@@ -1042,7 +1005,11 @@
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "noise-figure",
+      "system-noise"
+    ]
   },
   {
     "type": "concept",
@@ -1140,35 +1107,26 @@
     "title": "정합 필터와 상관 검출",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "정합 필터와 상관 검출에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-1fe2f51231dd",
-    "title": "정현파",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "정현파에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "matched-filter",
+      "correlation-detection"
+    ]
   },
   {
     "type": "concept",
     "id": "sinusoid",
     "title": "정현파",
-    "aliases": [],
+    "aliases": [
+      "사인파"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1290,7 +1248,9 @@
     "type": "concept",
     "id": "channel",
     "title": "채널",
-    "aliases": [],
+    "aliases": [
+      "통신 채널"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -1378,21 +1338,6 @@
   },
   {
     "type": "concept",
-    "id": "concept-c79a5755417d",
-    "title": "통신 채널",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "통신 채널에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "characteristic-impedance-z0",
     "title": "특성 임피던스(Characteristic Impedance, Z₀)",
     "aliases": [],
@@ -1445,21 +1390,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "포락선(envelope)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-6d42761abaa4",
-    "title": "표본화 정리",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "theorem",
-    "profile": "equation-derivation",
-    "summary": "표본화 정리에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
@@ -1528,7 +1458,15 @@
       "signal-analysis"
     ],
     "route": "signal-communications/signal-analysis/fourier-series",
-    "url": "/wiki/signal-communications/signal-analysis/fourier-series/"
+    "url": "/wiki/signal-communications/signal-analysis/fourier-series/",
+    "atoms": [
+      "basis",
+      "inner-product",
+      "orthogonality",
+      "periodicity",
+      "fourier-coefficient",
+      "sinusoid"
+    ]
   },
   {
     "type": "concept",
@@ -1547,7 +1485,15 @@
       "signal-analysis"
     ],
     "route": "signal-communications/signal-analysis/fourier-transform",
-    "url": "/wiki/signal-communications/signal-analysis/fourier-transform/"
+    "url": "/wiki/signal-communications/signal-analysis/fourier-transform/",
+    "atoms": [
+      "inner-product",
+      "basis",
+      "orthogonality",
+      "fourier-coefficient",
+      "time-domain",
+      "frequency-domain"
+    ]
   },
   {
     "type": "concept",
@@ -1600,14 +1546,18 @@
     "title": "해밍 거리와 오류 정정",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "해밍 거리와 오류 정정에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "concept-aa48fe83e4ab",
+      "error-correction"
+    ]
   },
   {
     "type": "concept",
@@ -1618,21 +1568,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "제곱하면 −1이 되는 수입니다. 복소평면에서 90도 회전을 표현하는 역할을 합니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-a40073a1402d",
-    "title": "헤르츠",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "헤르츠에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
@@ -1675,14 +1610,18 @@
     "title": "AM 변조와 검파",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "AM 변조와 검파에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "am-modulation",
+      "concept-d7d4e5d0aedc"
+    ]
   },
   {
     "type": "concept",
@@ -1737,14 +1676,18 @@
     "title": "FIR·IIR 디지털 필터",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "FIR·IIR 디지털 필터에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "fir",
+      "iir"
+    ]
   },
   {
     "type": "concept",
@@ -1752,14 +1695,18 @@
     "title": "FM 변조와 검파",
     "aliases": [],
     "status": "proposed",
-    "kind": "atomic",
+    "kind": "composite",
     "profile": "foundational-definition",
     "summary": "FM 변조와 검파에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
     "route": null,
-    "url": null
+    "url": null,
+    "atoms": [
+      "fm-modulation",
+      "concept-d7d4e5d0aedc"
+    ]
   },
   {
     "type": "concept",
@@ -1793,7 +1740,12 @@
       "digital-signal-processing"
     ],
     "route": "signal-communications/digital-signal-processing/pcm",
-    "url": "/wiki/signal-communications/digital-signal-processing/pcm/"
+    "url": "/wiki/signal-communications/digital-signal-processing/pcm/",
+    "atoms": [
+      "sampling",
+      "quantization",
+      "encoding"
+    ]
   },
   {
     "type": "concept",
@@ -1804,21 +1756,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "sin(z)/z 형태의 함수입니다. 직사각형 펄스의 푸리에 변환에서 나타나며 중앙 봉우리와 여러 옆 봉우리를 가집니다.",
-    "primaryDomain": "signal-processing",
-    "domain": "signal-processing",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "snr",
-    "title": "SNR",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "SNR에 대한 독립 문서 후보입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
@@ -1864,6 +1801,156 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "북미와 일본의 G.711 계열에서 널리 쓰이는 로그형 컴팬딩 법칙입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "am-modulation",
+    "title": "AM 변조",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "반송파의 진폭을 기저대역 신호에 비례해 변화시키는 변조 방식입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "correlation-detection",
+    "title": "상관 검출",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수신 신호와 기준 파형의 상관값을 계산해 신호 유무나 심볼을 판정하는 검출 방식입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "error-correction",
+    "title": "오류 정정",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수신 데이터에 포함된 오류를 검출할 뿐 아니라 정정 부호를 이용해 원래 값을 복원하는 기법입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "fm-modulation",
+    "title": "FM 변조",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "반송파의 순시 주파수를 기저대역 신호에 비례해 변화시키는 변조 방식입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "matched-filter",
+    "title": "정합 필터",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "알려진 파형과의 상관을 극대화하도록 설계된, 시간 반전·지연된 템플릿과의 컨볼루션 필터입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "noise-figure",
+    "title": "잡음지수(NF)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "시스템이 입력 대비 출력에서 신호대잡음비를 얼마나 열화시키는지를 dB로 나타낸 지표입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "reflection-coefficient",
+    "title": "반사계수",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전송선에서 입사파에 대한 반사파의 복소 비율입니다. 임피던스 부정합의 크기와 위상을 나타냅니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "signal-average-power",
+    "title": "신호 평균 전력",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "신호 크기 제곱을 구간에 걸쳐 평균한 값으로, 신호가 전달하는 평균 에너지율을 나타냅니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "standing-wave-ratio",
+    "title": "정재파비(VSWR)",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전송선상 정재파의 최대 전압과 최소 전압의 비율로, 반사계수 크기로부터 계산되는 부정합 지표입니다.",
+    "primaryDomain": "signal-processing",
+    "domain": "signal-processing",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "system-noise",
+    "title": "시스템 잡음",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "수신기·증폭기 등 시스템 자체가 더하는 잡음 전력 또는 등가 잡음 온도입니다.",
     "primaryDomain": "signal-processing",
     "domain": "signal-processing",
     "topics": [],
