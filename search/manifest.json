@@ -1,52 +1,42 @@
 {
   "generatedAt": "2026-08-02T18:17:54.381Z",
-  "catalogCount": 1403,
+  "catalogCount": 1399,
   "rawItemCount": 1157,
   "content": "/search/content.json",
   "wiki": [
     {
-      "id": "foundations",
-      "count": 41,
-      "url": "/search/wiki/foundations.json"
-    },
-    {
       "id": "signal-processing",
-      "count": 123,
+      "count": 141,
       "url": "/search/wiki/signal-processing.json"
     },
     {
       "id": "networking",
-      "count": 213,
+      "count": 221,
       "url": "/search/wiki/networking.json"
     },
     {
-      "id": "computer-science",
-      "count": 253,
-      "url": "/search/wiki/computer-science.json"
-    },
-    {
       "id": "electronics-circuits",
-      "count": 76,
+      "count": 79,
       "url": "/search/wiki/electronics-circuits.json"
     },
     {
       "id": "broadcast-media",
-      "count": 74,
+      "count": 77,
       "url": "/search/wiki/broadcast-media.json"
     },
     {
       "id": "mobile-communications",
-      "count": 77,
+      "count": 68,
       "url": "/search/wiki/mobile-communications.json"
     },
     {
       "id": "programming",
-      "count": 36,
+      "count": 42,
       "url": "/search/wiki/programming.json"
     },
     {
       "id": "radio-antenna",
-      "count": 79,
+      "count": 83,
       "url": "/search/wiki/radio-antenna.json"
     },
     {
@@ -56,18 +46,38 @@
     },
     {
       "id": "software-engineering",
-      "count": 109,
+      "count": 140,
       "url": "/search/wiki/software-engineering.json"
     },
     {
       "id": "information-security",
-      "count": 44,
+      "count": 46,
       "url": "/search/wiki/information-security.json"
     },
     {
-      "id": "current-affairs",
+      "id": "algorithms-data-structures",
+      "count": 37,
+      "url": "/search/wiki/algorithms-data-structures.json"
+    },
+    {
+      "id": "computer-architecture",
+      "count": 79,
+      "url": "/search/wiki/computer-architecture.json"
+    },
+    {
+      "id": "databases",
+      "count": 74,
+      "url": "/search/wiki/databases.json"
+    },
+    {
+      "id": "general-knowledge",
       "count": 228,
-      "url": "/search/wiki/current-affairs.json"
+      "url": "/search/wiki/general-knowledge.json"
+    },
+    {
+      "id": "operating-systems",
+      "count": 34,
+      "url": "/search/wiki/operating-systems.json"
     }
   ]
 }

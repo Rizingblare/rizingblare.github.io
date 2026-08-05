@@ -1,6 +1,36 @@
 [
   {
     "type": "concept",
+    "id": "concept-eb804abb92ac",
+    "title": "암호 기초",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "암호 기초에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "information-security",
+    "domain": "information-security",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "rsa",
+    "title": "RSA",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "RSA에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "information-security",
+    "domain": "information-security",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
     "id": "concept-0b643d3a7b09",
     "title": "가용성",
     "aliases": [],

@@ -1,6 +1,25 @@
 [
   {
     "type": "concept",
+    "id": "concept-871d0004387c",
+    "title": "이동통신망의 기본 구조",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "이동통신망의 기본 구조에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "mobile-communications",
+    "domain": "mobile-communications",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "base-station",
+      "core-network"
+    ]
+  },
+  {
+    "type": "concept",
     "id": "1g",
     "title": "1G",
     "aliases": [],
@@ -115,23 +134,6 @@
   },
   {
     "type": "concept",
-    "id": "feeder",
-    "title": "급전선(feeder)",
-    "aliases": [
-      "급전선"
-    ],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "급전선(feeder)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "concept-151767199e60",
     "title": "기지국 주요기능",
     "aliases": [],
@@ -193,47 +195,6 @@
       "fhss",
       "dsss",
       "cdma-power-control"
-    ]
-  },
-  {
-    "type": "concept",
-    "id": "ask-fsk-psk-qam",
-    "title": "디지털 변조 방식 (ASK·FSK·PSK·QAM)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "taxonomy",
-    "profile": "foundational-definition",
-    "summary": "디지털 변조 방식 (ASK·FSK·PSK·QAM)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null,
-    "atoms": [
-      "ask",
-      "fsk",
-      "psk",
-      "qam"
-    ]
-  },
-  {
-    "type": "concept",
-    "id": "eirp",
-    "title": "링크 버짓과 EIRP",
-    "aliases": [
-      "EIRP"
-    ],
-    "status": "proposed",
-    "kind": "composite",
-    "profile": "foundational-definition",
-    "summary": "링크 버짓과 EIRP에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null,
-    "atoms": [
-      "link-budget"
     ]
   },
   {
@@ -309,40 +270,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "셀 섹터화(Cell Sectorization, 3섹터 안테나)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "concept-6dd796bd671c",
-    "title": "심벌율과 비트레이트",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "composite",
-    "profile": "foundational-definition",
-    "summary": "심벌율과 비트레이트에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null,
-    "atoms": [
-      "symbol-rate",
-      "bit-rate"
-    ]
-  },
-  {
-    "type": "concept",
-    "id": "antenna",
-    "title": "안테나(antenna)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "안테나(antenna)에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
@@ -496,21 +423,6 @@
   },
   {
     "type": "concept",
-    "id": "noise",
-    "title": "잡음(Noise)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "잡음(Noise)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "ps-lte",
     "title": "재난안전통신망(PS-LTE)",
     "aliases": [],
@@ -638,21 +550,6 @@
   },
   {
     "type": "concept",
-    "id": "ask",
-    "title": "ASK",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "ASK에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "beidou",
     "title": "BeiDou(베이더우)",
     "aliases": [],
@@ -754,21 +651,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "FHSS에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "fsk",
-    "title": "FSK",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "FSK에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],
@@ -964,38 +846,6 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "OFDM과 순환 전치 (CP)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "psk",
-    "title": "PSK",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "PSK에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "mobile-communications",
-    "domain": "mobile-communications",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
-    "id": "qam",
-    "title": "QAM",
-    "aliases": [
-      "직교 진폭 변조 (QAM)"
-    ],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "QAM에 대한 독립 문서 후보입니다.",
     "primaryDomain": "mobile-communications",
     "domain": "mobile-communications",
     "topics": [],

@@ -220,23 +220,6 @@
   },
   {
     "type": "concept",
-    "id": "bit-rate",
-    "title": "비트레이트(bit rate)",
-    "aliases": [
-      "비트 전송률"
-    ],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "1초 동안 생성되거나 전송되는 비트 수입니다. PCM에서는 표본화 주파수×표본당 비트 수×채널 수로 계산합니다.",
-    "primaryDomain": "broadcast-media",
-    "domain": "broadcast-media",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "concept-11f0125f3bfc",
     "title": "색차 분리",
     "aliases": [],
@@ -1170,6 +1153,72 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "세 곳 이상의 화상회의 참가 지점을 동시에 연결해 각 지점의 영상·음성 신호를 합성해 배분하는 장치입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "concept-af93c3b16f26",
+    "title": "디지털 영상이란",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "디지털 영상이란에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "concept-ff5891ab5b8b",
+    "title": "픽셀당 비트와 비트심도",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "픽셀당 비트와 비트심도에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-f168a8dec27d",
+      "bit-depth"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "rgb",
+    "title": "RGB 색 표현",
+    "aliases": [
+      "색의 표현 (RGB)"
+    ],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "RGB 색 표현에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "broadcast-media",
+    "domain": "broadcast-media",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ycbcr",
+    "title": "YCbCr",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "YCbCr에 대한 독립 문서 후보입니다.",
     "primaryDomain": "broadcast-media",
     "domain": "broadcast-media",
     "topics": [],

@@ -807,24 +807,6 @@
   },
   {
     "type": "concept",
-    "id": "hz",
-    "title": "헤르츠(Hz)",
-    "aliases": [
-      "헤르츠(Hertz)",
-      "헤르츠"
-    ],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "헤르츠(Hz)에 대한 독립 문서 후보입니다.",
-    "primaryDomain": "electronics-circuits",
-    "domain": "electronics-circuits",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "circuit",
     "title": "회로(circuit)",
     "aliases": [],
@@ -1014,21 +996,6 @@
   },
   {
     "type": "concept",
-    "id": "impedance-matching",
-    "title": "임피던스 정합(impedance matching)",
-    "aliases": [],
-    "status": "proposed",
-    "kind": "atomic",
-    "profile": "foundational-definition",
-    "summary": "반사·손실을 줄이거나 전력 전달을 최대화하기 위해 부하 임피던스를 소스 임피던스에 맞추는 기법. 최대 전력 전달 정리(concept-f82de063af5b)와 관련.",
-    "primaryDomain": "electronics-circuits",
-    "domain": "electronics-circuits",
-    "topics": [],
-    "route": null,
-    "url": null
-  },
-  {
-    "type": "concept",
     "id": "kvl",
     "title": "키르히호프 전압 법칙(KVL)",
     "aliases": [],
@@ -1186,6 +1153,98 @@
     "kind": "atomic",
     "profile": "foundational-definition",
     "summary": "차동증폭기가 두 입력에 공통으로 실린 동상 신호는 억제하고 차동 신호만 증폭하는 능력을 나타내는 지표입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "concept-bcef1d6b578d",
+    "title": "반도체와 다이오드",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "반도체와 다이오드에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-40f5c8093251",
+      "concept-36d9f1d82032"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "concept-00e4e7daa7c4",
+    "title": "신호와 주파수",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "신호와 주파수에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "signal",
+      "frequency"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "concept-9516c9098632",
+    "title": "전압·전류·저항",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "전압·전류·저항에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-6663b25b49d5",
+      "concept-3ca43bdf62ef",
+      "concept-7e7900336788"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "concept-cf93bfbddeec",
+    "title": "직류와 교류",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "직류와 교류에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "electronics-circuits",
+    "domain": "electronics-circuits",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-9e51f4f4d92e",
+      "concept-791549f8a44f"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "concept-ff0ddbb7656e",
+    "title": "커패시터란 무엇인가",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "커패시터란 무엇인가에 대한 독립 문서 후보입니다.",
     "primaryDomain": "electronics-circuits",
     "domain": "electronics-circuits",
     "topics": [],

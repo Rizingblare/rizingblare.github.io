@@ -1,6 +1,143 @@
 [
   {
     "type": "concept",
+    "id": "concept-a7ad9e1704bb",
+    "title": "네트워크와 패킷",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "네트워크와 패킷에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-d09e977b090b",
+      "concept-c12647234ab8"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "router",
+    "title": "라우터",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "IP 패킷의 목적지 주소와 라우팅 정보를 이용해 다른 네트워크로 전달하는 장치입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "multicast",
+    "title": "멀티캐스트",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "멀티캐스트에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "ethernet",
+    "title": "이더넷",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "이더넷에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "concept-10d66fb768ae",
+    "title": "전송 방식",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "atomic",
+    "profile": "foundational-definition",
+    "summary": "전송 방식에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null
+  },
+  {
+    "type": "concept",
+    "id": "concept-5b1900def25f",
+    "title": "클라이언트·서버와 포트",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "클라이언트·서버와 포트에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-b367c7d58dda",
+      "concept-7d585c3842de",
+      "port"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "concept-fdeb59c9aa83",
+    "title": "프로토콜과 헤더",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "프로토콜과 헤더에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "concept-51e09d47fc7b",
+      "concept-999150ec9bb6"
+    ]
+  },
+  {
+    "type": "concept",
+    "id": "ip-mac",
+    "title": "IP 주소와 MAC 주소",
+    "aliases": [],
+    "status": "proposed",
+    "kind": "composite",
+    "profile": "foundational-definition",
+    "summary": "IP 주소와 MAC 주소에 대한 독립 문서 후보입니다.",
+    "primaryDomain": "networking",
+    "domain": "networking",
+    "topics": [],
+    "route": null,
+    "url": null,
+    "atoms": [
+      "ip-address",
+      "mac-address"
+    ]
+  },
+  {
+    "type": "concept",
     "id": "three-way-handshake",
     "title": "3-way handshake",
     "aliases": [],
@@ -584,7 +721,9 @@
     "type": "concept",
     "id": "broadcast",
     "title": "브로드캐스트(broadcast)",
-    "aliases": [],
+    "aliases": [
+      "브로드캐스트"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",
@@ -910,7 +1049,9 @@
     "type": "concept",
     "id": "unicast",
     "title": "유니캐스트(unicast)",
-    "aliases": [],
+    "aliases": [
+      "유니캐스트"
+    ],
     "status": "proposed",
     "kind": "atomic",
     "profile": "foundational-definition",

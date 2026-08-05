@@ -36,9 +36,9 @@ time-sensitive items. RF boundary atoms follow an explicit ownership table.
 | telecom-regulations | 대한민국 법규·인증·설비 기준 | 유지(응집 확인됨) |
 | general-knowledge | 일반상식·시사 스터디뱅크 | 구 current-affairs |
 
-**해체**: `foundations` — 전 항목(원자성 병합 후 41건)을 실제 전공 호스트로
-이동. "여러 도메인의 선수 개념"이라는 성질은 `profile: foundational-definition`이
-이미 표현한다.
+**해체**: `foundations` — 해체 시점 41건 = 전공 호스트로 이동 37건 + 기존
+canonical과의 중복 통합 4건 (2026-08-06 실행 완료). "여러 도메인의 선수
+개념"이라는 성질은 `profile: foundational-definition`이 이미 표현한다.
 
 ### RF 경계 소유 규칙 (동일 개념의 canonical 소유자)
 
@@ -66,7 +66,8 @@ topicDomain과 독립적으로 항목을 재집계하는 컬렉션. 정의부는
 
 - `contentType: "time-sensitive"` — 시점 의존 항목(구 current-affairs의 사건·
   제도·기록형). 개념형 항목(오프사이드, DSR 등)은 붙이지 않는다.
-- `validAsOf: "YYYY-MM"` — 시점형 항목의 기준 시점(알 수 있을 때만).
+- `validAsOf: "YYYY" 또는 "YYYY-MM"` — 시점형 항목의 기준 시점. 제목·요약에
+  리터럴로 실재하는 값만 기입한다(추정 금지).
 - 구 `kind: current-affairs`는 kind 오용이므로 실제 kind(atomic/taxonomy)로
   교정하고 시점성은 contentType이 표현한다.
 
