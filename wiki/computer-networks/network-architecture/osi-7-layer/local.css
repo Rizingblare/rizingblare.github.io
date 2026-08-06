@@ -1,0 +1,30 @@
+/* OSI 7 Layer — 문서 전용 스타일 */
+
+/* 계층 스택 개요 도해. 색은 토큰만 사용하여 두 테마 × 두 모드에서 함께 움직인다. */
+/* 인라인 이전 래스터 판에 걸려 있던 max-height 상한을 유지해,
+   데스크톱에서 도해가 과도하게 높아지지 않게 한다. */
+.wiki-document-page .layer-stack { display:block; width:100%; height:auto; max-height:min(70vh,620px); }
+.wiki-document-page .layer-stack .stack-row rect { rx:10; stroke-width:2; }
+.wiki-document-page .layer-stack .stack-row text {
+  fill:var(--ink); font:700 23px Inter,system-ui,sans-serif; dominant-baseline:alphabetic;
+}
+.wiki-document-page .layer-stack .upper rect {
+  fill:color-mix(in srgb,var(--brand) 16%,var(--paper));
+  stroke:color-mix(in srgb,var(--brand) 50%,var(--line));
+}
+.wiki-document-page .layer-stack .transport rect {
+  fill:color-mix(in srgb,var(--brand-2) 16%,var(--paper));
+  stroke:color-mix(in srgb,var(--brand-2) 50%,var(--line));
+}
+.wiki-document-page .layer-stack .network rect {
+  fill:color-mix(in srgb,var(--cyan) 16%,var(--paper));
+  stroke:color-mix(in srgb,var(--cyan) 50%,var(--line));
+}
+.wiki-document-page .layer-stack .link rect {
+  fill:color-mix(in srgb,var(--green) 16%,var(--paper));
+  stroke:color-mix(in srgb,var(--green) 50%,var(--line));
+}
+.wiki-document-page .layer-stack .physical rect {
+  fill:color-mix(in srgb,var(--orange) 16%,var(--paper));
+  stroke:color-mix(in srgb,var(--orange) 50%,var(--line));
+}

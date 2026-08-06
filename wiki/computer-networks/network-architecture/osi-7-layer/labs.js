@@ -32,8 +32,10 @@
     present.forEach((idx)=>{
       const part=layers[idx];const bw=w*part.size/total;
       svg.append(el('rect',{x,y,width:bw,height:h,rx:idx===present[0]?15:0,fill:part.color,opacity:.92,stroke:'#0f1520','stroke-width':2}));
-      txt(svg,x+bw/2,y+44,part.short,'plot-label','middle');
-      txt(svg,x+bw/2,y+70,`${part.size} B`,'plot-small','middle');
+      // 헤더 블록은 밝은 파스텔 면이므로 라벨은 어두운 잉크로 고정한다.
+      // 클래스 CSS가 presentation attribute를 이기므로 style로 덮어쓴다.
+      svg.append(el('text',{x:x+bw/2,y:y+44,class:'plot-label','text-anchor':'middle',style:'fill:#101620'},part.short));
+      svg.append(el('text',{x:x+bw/2,y:y+70,class:'plot-small','text-anchor':'middle',style:'fill:#101620;font-size:12.5px;font-weight:700'},`${part.size} B`));
       x+=bw;
     });
     const arrowY=295;
