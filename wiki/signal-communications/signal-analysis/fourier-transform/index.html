@@ -102,7 +102,7 @@
 <div class="lab-actions">
 <button aria-pressed="false" class="lab-button" id="superPlay" type="button">▶ 시간 이동</button>
 <button class="lab-button" id="superReset" type="button">초기값</button>
-<div aria-live="polite" class="lab-readout" id="superReadout">t = 0.50 s · 0.00 + 0.00 + 0.00 = 0.00</div>
+<div aria-live="polite" class="lab-readout" id="superReadout" role="status">t = 0.50 s · 0.00 + 0.00 + 0.00 = 0.00</div>
 </div>
 <svg aria-labelledby="superTitle superDesc" id="superSvg" role="img" viewbox="0 0 980 590">
 <title id="superTitle">세 정현파와 그 합으로 만든 복합 신호</title>
@@ -151,7 +151,7 @@
 <div class="lab-controls">
 <div class="control"><label>사용할 홀수 고조파 수 <output id="termsOut">5개</output></label><input id="terms" max="25" min="1" step="1" type="range" value="5"/></div>
 </div>
-<div class="lab-actions"><button class="lab-button" id="termsReset" type="button">1개부터 보기</button><div aria-live="polite" class="lab-readout" id="seriesReadout">1, 3, 5, 7, 9번째 고조파 사용</div></div>
+<div class="lab-actions"><button class="lab-button" id="termsReset" type="button">1개부터 보기</button><div aria-live="polite" class="lab-readout" id="seriesReadout" role="status">1, 3, 5, 7, 9번째 고조파 사용</div></div>
 <svg aria-labelledby="seriesTitle seriesDesc" id="seriesSvg" role="img" viewbox="0 0 980 500">
 <title id="seriesTitle">푸리에 급수로 사각파를 근사하는 그래프</title><desc id="seriesDesc">홀수 고조파를 더할수록 정현파의 합이 목표 사각파에 가까워지고 아래에는 각 고조파 계수의 크기가 막대로 표시됨</desc>
 <path class="plot-grid" d="M70 80H940M70 150H940M70 220H940M70 290H940M70 380H940M70 450H940"></path>
@@ -180,7 +180,7 @@
 <div class="lab" id="eulerLab">
 <div class="lab-head"><div><div class="lab-index">Interactive SVG 03</div><h3>회전하는 화살표의 그림자가 사인과 코사인이 되는 과정</h3><p>각도를 움직여 원 위의 점, 코사인 값, 사인 값이 동시에 어떻게 변하는지 확인하세요.</p></div></div>
 <div class="lab-controls"><div class="control"><label>회전 각도 θ <output id="angleOut">45°</output></label><input id="angle" max="360" min="0" step="1" type="range" value="45"/></div></div>
-<div class="lab-actions"><button aria-pressed="false" class="lab-button" id="eulerPlay" type="button">▶ 회전</button><button class="lab-button" id="eulerReset" type="button">0°</button><div aria-live="polite" class="lab-readout" id="eulerReadout">cos θ = 0.707 · sin θ = 0.707</div></div>
+<div class="lab-actions"><button aria-pressed="false" class="lab-button" id="eulerPlay" type="button">▶ 회전</button><button class="lab-button" id="eulerReset" type="button">0°</button><div aria-live="polite" class="lab-readout" id="eulerReadout" role="status">cos θ = 0.707 · sin θ = 0.707</div></div>
 <svg aria-labelledby="eulerTitle eulerDesc" id="eulerSvg" role="img" viewbox="0 0 980 470">
 <title id="eulerTitle">오일러 공식의 회전 벡터와 사인 코사인 투영</title><desc id="eulerDesc">복소평면의 단위원 위를 도는 벡터를 실수축과 허수축에 투영한 값이 코사인과 사인이 되고, 오른쪽 파형의 같은 각도 위치에 표시됨</desc>
 <circle cx="245" cy="235" fill="none" r="132" stroke="#3a4352" stroke-width="2"></circle>
@@ -224,7 +224,7 @@
 <div class="lab" id="orthLab">
 <div class="lab-head"><div><div class="lab-index">Interactive SVG 04</div><h3>주파수 탐지기: 곱하고 적분하기</h3><p>원래 신호에는 1, 3, 5 Hz가 들어 있습니다. 후보 주파수를 바꾸며 검출값이 언제 커지는지 확인하세요.</p></div></div>
 <div class="lab-controls"><div class="control"><label>검사할 후보 주파수 <output id="candidateOut">3 Hz</output></label><input id="candidate" max="8" min="1" step="1" type="range" value="3"/></div></div>
-<div class="lab-actions"><button class="lab-button" id="candidateScan" type="button">1→8 Hz 자동 스캔</button><div aria-live="polite" class="lab-readout" id="orthReadout">검출값 0.650 · 3 Hz 성분이 존재합니다</div></div>
+<div class="lab-actions"><button aria-pressed="false" class="lab-button" id="candidateScan" type="button">1→8 Hz 자동 스캔</button><div aria-live="polite" class="lab-readout" id="orthReadout" role="status">검출값 0.650 · 3 Hz 성분이 존재합니다</div></div>
 <svg aria-labelledby="orthTitle orthDesc" id="orthSvg" role="img" viewbox="0 0 980 600">
 <title id="orthTitle">직교성을 이용한 주파수 성분 탐지</title><desc id="orthDesc">원래 신호, 후보 정현파, 두 파형의 곱, 1에서 8 헤르츠까지 적분한 검출값을 차례로 보여 줌</desc>
 <path class="plot-grid" d="M90 50V540M300 50V540M510 50V540M720 50V540M930 50V540"></path>
@@ -262,7 +262,7 @@
 <div class="lab" id="limitLab">
 <div class="lab-head"><div><div class="lab-index">Interactive SVG 05</div><h3>푸리에 급수의 선들이 연속 스펙트럼이 되는 극한</h3><p>폭 1초인 펄스를 아주 긴 주기로 반복한다고 가정합니다. T를 키우면 주파수 표본 간격 1/T가 줄어듭니다.</p></div></div>
 <div class="lab-controls"><div class="control"><label>가상의 반복 주기 T <output id="periodOut">6.0 s</output></label><input id="virtualPeriod" max="14" min="2" step="0.25" type="range" value="6"/></div></div>
-<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="limitReadout">Δf = 0.167 Hz · 정규화된 계수들이 연속 곡선을 표본화합니다</div></div>
+<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="limitReadout" role="status">Δf = 0.167 Hz · 정규화된 계수들이 연속 곡선을 표본화합니다</div></div>
 <svg aria-labelledby="limitTitle limitDesc" id="limitSvg" role="img" viewbox="0 0 980 500">
 <title id="limitTitle">푸리에 급수에서 푸리에 변환으로 가는 극한</title><desc id="limitDesc">시간 영역에서 펄스를 둘러싼 반복 구간이 길어질수록 주파수 영역의 이산 선들이 촘촘해져 연속 sinc 스펙트럼을 채우는 모습</desc>
 <text class="plot-label" x="70" y="48">시간 영역 · 한 반복 구간</text>
@@ -306,7 +306,7 @@
 <div class="lab" id="phaseLab">
 <div class="lab-head"><div><div class="lab-index">Interactive SVG 06</div><h3>크기는 그대로인데 위상만 바꾸면 파형이 달라집니다</h3><p>1 Hz와 3 Hz의 양은 고정되어 있습니다. 3 Hz 성분의 위상만 바꾸어 시간 파형이 어떻게 달라지는지 보세요.</p></div></div>
 <div class="lab-controls"><div class="control"><label>3 Hz 성분의 위상 <output id="phaseOut">0°</output></label><input id="phaseSlider" max="180" min="-180" step="1" type="range" value="0"/></div></div>
-<div class="lab-actions"><button class="lab-button" id="phaseRandom" type="button">임의 위상</button><div aria-live="polite" class="lab-readout" id="phaseReadout">크기: 1 Hz = 1.00, 3 Hz = 0.65 · 위상만 0°</div></div>
+<div class="lab-actions"><button class="lab-button" id="phaseRandom" type="button">임의 위상</button><div aria-live="polite" class="lab-readout" id="phaseReadout" role="status">크기: 1 Hz = 1.00, 3 Hz = 0.65 · 위상만 0°</div></div>
 <svg aria-labelledby="phaseTitle phaseDesc" id="phaseSvg" role="img" viewbox="0 0 980 440">
 <title id="phaseTitle">같은 크기 스펙트럼과 다른 위상이 만드는 시간 파형</title><desc id="phaseDesc">1헤르츠와 3헤르츠 성분의 크기는 고정하고 3헤르츠의 위상을 바꾸면 왼쪽 시간 파형이 달라지며 오른쪽 크기 막대는 그대로 유지됨</desc>
 <text class="plot-label" x="60" y="45">시간 영역</text><path class="plot-axis" d="M60 220H640"></path><path class="plot-grid" d="M60 80V360M205 80V360M350 80V360M495 80V360M640 80V360"></path>
@@ -340,7 +340,7 @@
 <div class="lab" id="pulseLab">
 <div class="lab-head"><div><div class="lab-index">Interactive SVG 07</div><h3>시간 폭과 주파수 폭의 반대 관계</h3><p>펄스의 폭 τ를 줄이면 스펙트럼의 첫 영점이 멀어져 더 넓은 주파수 범위가 필요해집니다.</p></div></div>
 <div class="lab-controls"><div class="control"><label>펄스 폭 τ <output id="widthOut">0.80 s</output></label><input id="pulseWidth" max="1.6" min="0.2" step="0.05" type="range" value="0.8"/></div></div>
-<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="pulseReadout">첫 영점: ±1.25 Hz · 짧을수록 스펙트럼은 넓어집니다</div></div>
+<div class="lab-actions"><div aria-live="polite" class="lab-readout" id="pulseReadout" role="status">첫 영점: ±1.25 Hz · 짧을수록 스펙트럼은 넓어집니다</div></div>
 <svg aria-labelledby="pulseTitle pulseDesc" id="pulseSvg" role="img" viewbox="0 0 980 500">
 <title id="pulseTitle">직사각형 펄스와 sinc 스펙트럼</title><desc id="pulseDesc">시간 영역 펄스의 폭을 조절하면 아래 주파수 영역의 정규화된 sinc 스펙트럼 폭이 반대로 변함</desc>
 <text class="plot-label" x="70" y="48">시간 영역 · rect(t/τ)</text><path class="plot-axis" d="M70 205H930"></path><path class="plot-grid" d="M285 70V215M500 70V215M715 70V215"></path>

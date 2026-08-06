@@ -120,7 +120,19 @@
     flush(); return segs;
   }
   function detectorScore(n){const N=6000;let s=0;for(let i=0;i<N;i++){const t=(i+.5)/N;s+=orthSignalFn(t)*Math.sin(TAU*n*t);}return 2*s/N;}
-  let scanTimer=0;
+  let scanTimer=0, orthScanRunning=false;
+  const scanBtn=$('candidateScan'), scanDefaultLabel=scanBtn.textContent;
+  function setOrthScanRunning(running){
+    orthScanRunning=running;
+    scanBtn.setAttribute('aria-pressed',String(running));
+    scanBtn.textContent=running?'⏹ 스캔 중지':scanDefaultLabel;
+  }
+  function finishOrthScan(){
+    let bestN=1,bestAbs=-Infinity;
+    for(let k=1;k<=8;k++){const s=Math.abs(detectorScore(k));if(s>bestAbs){bestAbs=s;bestN=k;}}
+    $('candidate').value=bestN;updateOrth();
+    $('orthReadout').textContent+=` · 스캔 완료 · ${bestN} Hz에서 적분 최대 — 신호에 ${bestN} Hz 성분이 있음`;
+  }
   function updateOrth(){
     const n=+$('candidate').value,x0=90,x1=930;
     $('orthSignal').setAttribute('d',linePath(orthSignalFn,x0,x1,105,30,800));
@@ -137,7 +149,19 @@
     });
     const score=scores[n-1];$('candidateOut').textContent=n+' Hz';$('basisLabel').textContent=`sin(2π·${n}t)`;$('orthReadout').textContent=`검출값 ${fmt(score)} · ${Math.abs(score)>.08?n+' Hz 성분이 존재합니다':'거의 0 · 해당 성분이 없습니다'}`;
   }
-  $('candidate').addEventListener('input',updateOrth);$('candidateScan').addEventListener('click',()=>{clearInterval(scanTimer);let n=1;$('candidate').value=n;updateOrth();scanTimer=setInterval(()=>{n++;if(n>8){clearInterval(scanTimer);return;}$('candidate').value=n;updateOrth();},650);});updateOrth();
+  $('candidate').addEventListener('input',updateOrth);
+  scanBtn.addEventListener('click',()=>{
+    clearInterval(scanTimer);
+    if(orthScanRunning){setOrthScanRunning(false);return;}
+    setOrthScanRunning(true);
+    let n=1;$('candidate').value=n;updateOrth();
+    scanTimer=setInterval(()=>{
+      n++;
+      if(n>8){clearInterval(scanTimer);setOrthScanRunning(false);finishOrthScan();return;}
+      $('candidate').value=n;updateOrth();
+    },650);
+  });
+  updateOrth();
 
   // 05 · Series to transform
   function updateLimit(){
@@ -178,7 +202,7 @@
 
   // Stop animations when page is hidden.
   document.addEventListener('visibilitychange',()=>{
-    if(document.hidden){superRunning=false;eulerRunning=false;cancelAnimationFrame(superRaf);cancelAnimationFrame(eulerRaf);$('superPlay').textContent='▶ 시간 이동';$('eulerPlay').textContent='▶ 회전';}
+    if(document.hidden){superRunning=false;eulerRunning=false;cancelAnimationFrame(superRaf);cancelAnimationFrame(eulerRaf);$('superPlay').textContent='▶ 시간 이동';$('eulerPlay').textContent='▶ 회전';if(orthScanRunning){clearInterval(scanTimer);setOrthScanRunning(false);}}
   });
 
   document.dispatchEvent(new CustomEvent('knowledge:lab-ready'));
