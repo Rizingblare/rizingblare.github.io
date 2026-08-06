@@ -15,14 +15,16 @@
 <section id="concept-graph" data-toc-label="개념 지도">
   <div class="section-kicker">Concept graph · Dependency first</div>
   <h2>PCM을 이해하는 데 필요한 개념 그래프</h2>
-  <p class="section-lead">아래 그래프에서 왼쪽은 입력 신호와 선행 조건, 가운데는 PCM의 세 핵심 연산, 오른쪽은 결과와 품질·용량의 확장 개념입니다.</p>
+  <p class="section-lead">아래 그래프에서 왼쪽 열은 입력 신호와 선행 조건, 가운데 가로줄은 PCM의 세 핵심 연산이고, 그 아래 두 줄은 각 연산이 결정하는 파라미터와 품질·비용의 확장 개념입니다. 화살표가 가리키는 쪽이 의존하는 쪽입니다.</p>
   <div class="concept-map-wrap">
     <svg class="concept-map" viewBox="0 0 1040 610" role="img" aria-labelledby="pcmMapTitle pcmMapDesc">
-      <title id="pcmMapTitle">PCM 개념 의존 관계</title><desc id="pcmMapDesc">아날로그 신호와 주파수 대역이 안티에일리어싱 필터와 표본화를 거쳐 양자화, 부호화, 비트열과 복원으로 이어지는 그래프</desc>
+      <title id="pcmMapTitle">PCM 개념 의존 관계</title><desc id="pcmMapDesc">개념 12개와 방향 간선 13개로 이루어진 의존 관계 그래프입니다. 초록 계열은 선행 개념(아날로그 신호·주파수 대역·안티에일리어싱), 진한 브랜드색은 핵심 연산(표본화·양자화·부호화), 보라 계열은 각 연산이 결정하는 파라미터(나이퀴스트 조건·비트 깊이·비트 전송률), 청록 계열은 결과와 확장(복원·컴팬딩·저장 및 전송 비용)입니다. 선행 개념 셋이 표본화로 들어가고, 표본화에서 양자화, 양자화에서 부호화로 이어지며, 세 연산은 각각 바로 아래의 파라미터를 결정합니다. 부호화의 비트열은 복원의 입력이 되고, 양자화는 컴팬딩으로 갈라지며, 파라미터 셋은 저장 및 전송 비용으로 모입니다.</desc>
       <defs><marker id="map-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
-      <path class="map-edge" d="M180 105C260 105 260 160 340 175"/><path class="map-edge" d="M180 215C260 215 270 205 340 195"/><path class="map-edge" d="M180 325C270 325 285 235 350 215"/>
-      <path class="map-edge core" d="M490 190H605"/><path class="map-edge core" d="M745 190H850"/><path class="map-edge" d="M920 245V330"/><path class="map-edge" d="M675 245V330"/><path class="map-edge" d="M420 245V330"/>
-      <path class="map-edge" d="M490 385C590 385 690 430 805 450"/><path class="map-edge" d="M745 385C780 385 805 420 835 445"/><path class="map-edge" d="M920 385V445"/>
+      <g aria-hidden="true"><g class="map-node pre"><rect x="30" y="18" width="26" height="18"/></g><text x="64" y="32" style="fill:var(--muted);font:600 13px Inter,system-ui,sans-serif">선행 개념</text><g class="map-node core"><rect x="145" y="18" width="26" height="18"/></g><text x="179" y="32" style="fill:var(--muted);font:600 13px Inter,system-ui,sans-serif">핵심 연산</text><g class="map-node bridge"><rect x="260" y="18" width="26" height="18"/></g><text x="294" y="32" style="fill:var(--muted);font:600 13px Inter,system-ui,sans-serif">파라미터·조건</text><g class="map-node out"><rect x="400" y="18" width="26" height="18"/></g><text x="434" y="32" style="fill:var(--muted);font:600 13px Inter,system-ui,sans-serif">결과·확장</text></g>
+      <path class="map-edge" d="M180 105C260 105 260 160 336 175"/><path class="map-edge" d="M180 215C260 215 270 205 336 195"/><path class="map-edge" d="M180 325C270 325 285 235 336 215"/>
+      <path class="map-edge core" d="M490 190H601"/><path class="map-edge core" d="M745 190H846"/><path class="map-edge" d="M920 245V326"/><path class="map-edge" d="M675 245V326"/><path class="map-edge" d="M420 245V326"/>
+      <path class="map-edge" d="M490 385C590 385 690 430 816 450"/><path class="map-edge" d="M745 385C780 385 805 418 835 441"/><path class="map-edge" d="M920 385V441"/>
+      <path class="map-edge" d="M960 145C960 92 902 62 800 62H620C578 62 552 94 552 142V470C552 482 543 487 530 487H509"/><path class="map-edge" d="M730 245C775 262 795 300 795 350V470C795 482 787 487 774 487"/>
       <g class="map-node pre"><rect x="30" y="70" width="155" height="70"/><text x="107" y="101"><tspan x="107">아날로그 신호</tspan><tspan x="107" dy="22">연속 시간·크기</tspan></text></g>
       <g class="map-node pre"><rect x="30" y="180" width="155" height="70"/><text x="107" y="211"><tspan x="107">주파수 대역</tspan><tspan x="107" dy="22">최고 주파수</tspan></text></g>
       <g class="map-node pre"><rect x="30" y="290" width="155" height="70"/><text x="107" y="321"><tspan x="107">안티에일리어싱</tspan><tspan x="107" dy="22">고주파 제거</tspan></text></g>
@@ -68,7 +70,7 @@
       <div class="control"><label for="pcm-sample-rate">표본화 주파수 <output id="pcm-sample-rate-out">12 Hz</output></label><input id="pcm-sample-rate" type="range" min="4" max="24" step="1" value="12"></div>
     </div>
     <div class="svg-scroll"><svg id="pcm-sampling-svg" viewBox="0 0 920 430" role="img" aria-labelledby="pcmSamplingTitle pcmSamplingDesc"><title id="pcmSamplingTitle">표본화와 에일리어싱 실험</title><desc id="pcmSamplingDesc">연속 정현파, 표본점, 표본점으로부터 보이는 낮은 주파수 파형을 같은 축에서 비교합니다.</desc></svg></div>
-    <div class="lab-actions"><span class="lab-readout" id="pcm-alias-readout" aria-live="polite"></span></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-alias-readout" role="status" aria-live="polite"></span></div>
     <p class="lab-caption">점 사이를 직선으로 이은 모양 자체가 복원 공식은 아닙니다. 이 실험의 목적은 표본열만 관찰할 때 여러 연속 주파수가 같은 값 배열을 만들 수 있음을 보여 주는 것입니다.</p>
   </div>
 
@@ -91,7 +93,7 @@
       <div class="control"><label for="pcm-amplitude">신호 진폭 <output id="pcm-amplitude-out">0.82</output></label><input id="pcm-amplitude" type="range" min="0.2" max="1" step="0.02" value="0.82"></div>
     </div>
     <div class="svg-scroll"><svg id="pcm-quant-svg" viewBox="0 0 920 470" role="img" aria-labelledby="pcmQuantTitle pcmQuantDesc"><title id="pcmQuantTitle">비트 깊이에 따른 양자화 실험</title><desc id="pcmQuantDesc">원래 정현파 표본과 선택된 양자화 레벨, 오차 막대를 표시합니다.</desc></svg></div>
-    <div class="lab-actions"><span class="lab-readout" id="pcm-quant-readout" aria-live="polite"></span></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-quant-readout" role="status" aria-live="polite"></span></div>
     <p class="lab-caption">비트 깊이가 늘면 같은 입력 범위 안의 레벨 간격이 줄어듭니다. 다만 입력이 허용 범위를 넘는 <strong>클리핑</strong>은 비트 수를 늘리는 것만으로 해결되지 않습니다.</p>
   </div>
 
@@ -116,7 +118,7 @@
       <div class="control"><label for="pcm-duration">재생 시간 <output id="pcm-duration-out">60 s</output></label><input id="pcm-duration" type="range" min="1" max="180" step="1" value="60"></div>
     </div>
     <div class="svg-scroll"><svg id="pcm-pipeline-svg" viewBox="0 0 920 390" role="img" aria-labelledby="pcmPipeTitle pcmPipeDesc"><title id="pcmPipeTitle">PCM 처리 파이프라인과 코드열</title><desc id="pcmPipeDesc">아날로그 파형, 표본, 양자화 번호, 이진 코드, 최종 비트 전송률을 왼쪽에서 오른쪽으로 표시합니다.</desc></svg></div>
-    <div class="lab-actions"><span class="lab-readout" id="pcm-bitrate-readout" aria-live="polite"></span></div>
+    <div class="lab-actions"><span class="lab-readout" id="pcm-bitrate-readout" role="status" aria-live="polite"></span></div>
     <p class="lab-caption">표본화 주파수는 시간 해상도, 비트 깊이는 크기 해상도, 채널 수는 독립 신호 수를 늘립니다. 세 값은 비트 전송률에 곱셈으로 반영됩니다.</p>
   </div>
 

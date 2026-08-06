@@ -77,6 +77,7 @@
     clear(svg);
     const levels=2**bits, min=-1,max=1,delta=(max-min)/levels;
     const x0=55,w=820,top=50,h=210,mid=top+h/2,amp=h*.43;
+    const ERR_ZERO=355, ERR_MAX=.25, ERR_PX=248; // 오차축 고정: ±0.25(2bit 최대 오차) = ±62px
     grid(svg,x0,top,w,h,12,8);
     addLegend(svg,[['원래 표본값','#8dabff'],['양자화 출력','#ffb466'],['오차','#73e0bd']],24);
     const original=[], quant=[], err=[];
@@ -90,15 +91,26 @@
       const q=quantize(v);
       original.push([x0+w*t,mid-amp*v]);
       quant.push([x0+w*t,mid-amp*q]);
-      err.push([x0+w*t,355-72*(q-v)/(delta/2)]);
+      err.push([x0+w*t,ERR_ZERO-ERR_PX*Math.max(-ERR_MAX,Math.min(ERR_MAX,q-v))]);
     }
     svg.append(el('path',{d:pathFrom(original),class:'wave-path',stroke:'#8dabff','stroke-width':2.5}));
     svg.append(el('path',{d:pathFrom(quant),class:'wave-path',stroke:'#ffb466','stroke-width':2.2}));
-    line(svg,x0,355,x0+w,355,'plot-axis');
-    line(svg,x0,300,x0+w,300,'plot-grid'); line(svg,x0,410,x0+w,410,'plot-grid');
+    const refHalf=ERR_PX*ERR_MAX, errHalf=ERR_PX*delta/2, prevHalf=Math.min(refHalf,ERR_PX*delta);
+    svg.append(el('rect',{x:x0,y:ERR_ZERO-refHalf,width:w,height:refHalf*2,fill:'#1b2230',stroke:'#2f3948'}));
+    if(bits>2)[ERR_ZERO-prevHalf,ERR_ZERO+prevHalf].forEach(y=>svg.append(el('line',{x1:x0,y1:y,x2:x0+w,y2:y,style:'stroke:#5a6678','stroke-width':1.2,'stroke-dasharray':'7 6'})));
+    svg.append(el('rect',{x:x0,y:ERR_ZERO-errHalf,width:w,height:Math.max(errHalf*2,1.2),fill:'#73e0bd',opacity:.15}));
+    [[.25,'+0.25'],[.125,'+0.125'],[0,'0'],[-.125,'−0.125'],[-.25,'−0.25']].forEach(([v,label])=>{
+      const y=ERR_ZERO-ERR_PX*v;
+      if(Math.abs(v)===.125) line(svg,x0,y,x0+w,y,'plot-grid');
+      text(svg,x0-8,y+4,label,'plot-small','end');
+    });
+    line(svg,x0,ERR_ZERO,x0+w,ERR_ZERO,'plot-axis');
     svg.append(el('path',{d:pathFrom(err),class:'wave-path',stroke:'#73e0bd','stroke-width':2}));
-    text(svg,x0,286,'양자화 오차 e[n] = Q(x[n]) − x[n]','plot-label');
+    text(svg,x0,286,'양자화 오차 e[n] = Q(x[n]) − x[n] · 세로축 ±0.25 고정','plot-label');
     text(svg,x0+w,286,`오차 범위 ≈ ±${(delta/2).toFixed(4)}`,'plot-muted','end');
+    text(svg,x0,437,bits>2
+      ? `회색 밴드 = 2bit 기준 ±0.25 · 점선 = 직전 ${bits-1}bit ±${delta.toFixed(4)} · 초록 밴드 = 현재 ${bits}bit ±${(delta/2).toFixed(4)}`
+      : `회색 밴드 = 2bit 기준 ±0.25 · 초록 밴드 = 현재 2bit ±${(delta/2).toFixed(4)}`,'plot-small');
     $('pcm-quant-readout').textContent=`${bits}비트 → ${levels.toLocaleString()}개 코드 · Δ≈${delta.toFixed(4)} · 반올림 오차 최대 약 ${(delta/2).toFixed(4)}`;
   }
 
