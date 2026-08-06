@@ -145,6 +145,8 @@ components:
 
 **The Fixed Dark Lab Rule.** `.wiki-document-page` 안의 항상 어두운 표면 집합 — `.lab`(과 `--viz-panel`을 쓰는 자식 `.control`), 그리고 `.lab`과 무관하게 문서 안에 독립적으로 등장하는 `.code-block`, `.concept-tooltip` — 은 활성 테마·색상 모드와 무관하게 항상 어둡습니다. 이는 하나의 토큰이 아니라 두 가지 장치가 겹친 결과입니다: (1) 두 테마가 `--viz-bg/--viz-panel/--viz-text/--viz-muted`에 우연히 동일한 다크 값을 지정하고, (2) `.lab` 내부 다수 요소가 토큰이 아닌 리터럴 hex(`#0d1118`, `#111827`, `#9db6ff`, `#8dabff`, `#344054` 등)로 하드코딩되어 있습니다. 파도 시각화 색(`--wave-1/2/3/--wave-sum`)만 `.wiki-document-page`에 고정 선언되어 있고, `--viz-*`는 이름과 달리 테마가 각자 재정의하는 토큰입니다.
 
+**The Code Syntax Palette (2026-08-06 확립).** `.code-block`은 `site.js`의 자체 경량 토크나이저(외부 라이브러리 금지)로 하이라이팅되며, 토큰 색은 항상-다크 배경(`#111827`) 전용 고정 리터럴입니다: 키워드 `#7ba4ff`(=`--wave-1`), 문자열 `#53d8b1`(=`--wave-3`), 숫자 `#f2b866`, 주석·언어 라벨 `#94a3b8`(이탤릭). 마크업 계약은 `<pre class="code-block" data-lang="js|sql|python|c|bash"><code>…` — `data-lang`이 있으면 좌상단에 언어 라벨이 뜨고 하이라이팅이 적용되며, 없으면 무장식 코드로 남습니다. 가로 오버플로 표면(`.svg-scroll`, `.table-wrap`)에는 `site.js`가 스크롤 힌트(`.scroll-hint`, 첫 스크롤에 소멸)와 상시 표시 스크롤바를 자동 부착합니다 — 문서 쪽에서 할 일은 없습니다.
+
 ## Typography
 
 **Display/Body Font (Atlas):** `Inter, Pretendard, "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`

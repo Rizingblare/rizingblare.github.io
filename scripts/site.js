@@ -1,6 +1,9 @@
 (() => {
   'use strict';
 
+  if (window.__JEONGDO_SITE_INITIALIZED__) return;
+  window.__JEONGDO_SITE_INITIALIZED__ = true;
+
   const root = document.documentElement;
   const config = window.__SITE_THEME_CONFIG__ || {};
   const allowedThemes = new Set(config.themes || []);
@@ -242,7 +245,38 @@
   });
 
   document.querySelector('[data-action="print"]')?.addEventListener('click', () => window.print());
+  const CODE_LANG_ALIASES = { javascript: 'js', py: 'python', shell: 'bash', sh: 'bash' };
+  const CODE_LANGS = {
+    js: { comment: /\/\/[^\n]*|\/\*[\s\S]*?\*\//, string: /`(?:\\.|[^`\\])*`|"(?:\\.|[^"\n\\])*"|'(?:\\.|[^'\n\\])*'/, ci: false, keywords: 'async await break case catch class const continue default delete do else extends false finally for function if import in instanceof let new null of return static super switch this throw true try typeof undefined var while yield' },
+    sql: { comment: /--[^\n]*|\/\*[\s\S]*?\*\//, string: /'(?:[^']|'')*'/, ci: true, keywords: 'all and as begin between by case commit committed create delete distinct do else end exists foreign from full group having if in index inner insert into is isolation join key left level like limit not null offset on or order outer primary read references repeatable right rollback select serializable set table then transaction uncommitted union update values view when where' },
+    python: { comment: /#[^\n]*/, string: /"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\n\\])*"|'(?:\\.|[^'\n\\])*'/, ci: false, keywords: 'False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield' },
+    c: { comment: /\/\/[^\n]*|\/\*[\s\S]*?\*\//, string: /"(?:\\.|[^"\n\\])*"|'(?:\\.|[^'\n\\])*'/, ci: false, keywords: 'break case char const continue default do double else enum extern float for goto if int long register return short signed sizeof static struct switch typedef union unsigned void volatile while' },
+    bash: { comment: /#[^\n]*/, string: /"(?:\\.|[^"\\])*"|'[^']*'/, ci: false, keywords: 'case do done echo elif else esac exit export fi for function if in local read return set then unset until while' }
+  };
+  const escapeCode = (text) => text.replace(/[&<>]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
+  const highlightCode = (source, spec) => {
+    const pattern = new RegExp(`(${spec.comment.source})|(${spec.string.source})|(\\b\\d+(?:\\.\\d+)?\\b)|(\\b(?:${spec.keywords.split(' ').join('|')})\\b)`, spec.ci ? 'gi' : 'g');
+    let out = '';
+    let last = 0;
+    let match;
+    while ((match = pattern.exec(source))) {
+      out += escapeCode(source.slice(last, match.index));
+      const cls = match[1] !== undefined ? 'tok-com' : match[2] !== undefined ? 'tok-str' : match[3] !== undefined ? 'tok-num' : 'tok-kw';
+      out += `<span class="${cls}">${escapeCode(match[0])}</span>`;
+      last = pattern.lastIndex;
+    }
+    return out + escapeCode(source.slice(last));
+  };
   document.querySelectorAll('.code-block').forEach((block) => {
+    let code = block.querySelector('code');
+    if (!code) {
+      code = document.createElement('code');
+      while (block.firstChild) code.appendChild(block.firstChild);
+      block.appendChild(code);
+    }
+    const rawLang = (block.dataset.lang || '').toLowerCase();
+    const lang = CODE_LANG_ALIASES[rawLang] || rawLang;
+    if (CODE_LANGS[lang]) code.innerHTML = highlightCode(code.textContent, CODE_LANGS[lang]);
     const button = document.createElement('button');
     button.className = 'lab-button';
     button.type = 'button';
@@ -250,9 +284,8 @@
     button.style.cssText = 'position:absolute;right:10px;top:10px;padding:5px 9px;font-size:11px';
     block.style.position = 'relative';
     button.addEventListener('click', async () => {
-      const text = block.textContent.replace(/^복사\s*/, '');
       try {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(code.textContent);
         button.textContent = '복사됨';
         window.setTimeout(() => { button.textContent = '복사'; }, 1200);
       } catch {
@@ -262,7 +295,31 @@
     block.prepend(button);
   });
 
+  const initializeScrollHints = () => {
+    document.querySelectorAll('.svg-scroll, .table-wrap').forEach((scroller) => {
+      if (scroller.dataset.scrollHintReady === 'true') return;
+      scroller.dataset.scrollHintReady = 'true';
+      const hint = document.createElement('p');
+      hint.className = 'scroll-hint';
+      hint.setAttribute('aria-hidden', 'true');
+      hint.textContent = '← 옆으로 밀어 전체 보기 →';
+      hint.hidden = true;
+      scroller.after(hint);
+      const update = () => {
+        hint.hidden = scroller.dataset.scrolled === 'true' || scroller.scrollWidth - scroller.clientWidth <= 12;
+      };
+      scroller.addEventListener('scroll', () => {
+        scroller.dataset.scrolled = 'true';
+        hint.hidden = true;
+      }, { once: true, passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  };
+  initializeScrollHints();
+
   document.addEventListener('knowledge:lab-ready', () => {
     document.body.dataset.labsReady = 'true';
+    initializeScrollHints();
   }, { once: true });
 })();
