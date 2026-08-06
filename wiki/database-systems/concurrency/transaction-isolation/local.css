@@ -1,0 +1,10 @@
+/* transaction-isolation · document-local styles.
+   랩 SVG 재렌더 시 변경된 노드에 주는 1.2s 플래시 강조.
+   .lab 내부(항상-다크 표면) 전용 — 리터럴 색 허용 범위(DESIGN.md Fixed Dark Lab Rule). */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes iso-lab-flash {
+    0% { filter: drop-shadow(0 0 8px rgba(255, 180, 102, 0.95)); }
+    100% { filter: drop-shadow(0 0 0 rgba(255, 180, 102, 0)); }
+  }
+  .wiki-document-page .lab svg .lab-flash { animation: iso-lab-flash 1.2s ease-out; }
+}
