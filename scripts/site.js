@@ -119,13 +119,17 @@
     navToggle.addEventListener('click', () => {
       const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
       navToggle.setAttribute('aria-expanded', String(!isOpen));
-      globalNav.toggleAttribute('data-open', !isOpen);
+      if (isOpen) globalNav.removeAttribute('data-open');
+      else globalNav.setAttribute('data-open', 'true');
     });
     globalNav.addEventListener('click', (event) => {
       if (event.target.closest('a')) closeNav();
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeNav();
+      if (event.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+        closeNav();
+        navToggle.focus();
+      }
     });
   }
 

@@ -79,12 +79,14 @@
       try {
         const items = await loadAll();
         const type = typeFilter.value;
-        const matches = items.filter((item) => (type === 'all' || item.type === type) && normalize(`${item.title} ${item.summary || item.description || ''} ${(item.aliases || []).join(' ')} ${(item.keywords || item.tags || []).join(' ')}`).includes(query)).slice(0, 100);
-        if (count) count.textContent = String(matches.length);
+        const allMatches = items.filter((item) => (type === 'all' || item.type === type) && normalize(`${item.title} ${item.summary || item.description || ''} ${(item.aliases || []).join(' ')} ${(item.keywords || item.tags || []).join(' ')}`).includes(query));
+        const matches = allMatches.slice(0, 100);
+        if (count) count.textContent = String(allMatches.length);
+        const capNotice = allMatches.length > matches.length ? `<p class="search-empty">전체 ${allMatches.length}건 중 상위 ${matches.length}건만 표시합니다. 검색어를 더 구체적으로 입력해 보세요.</p>` : '';
         results.innerHTML = matches.length ? matches.map((item) => {
           const body = `<h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.summary || item.description || '')}</p><div class="search-meta"><span>${escapeHtml(item.type)}</span><span>${escapeHtml(item.domain || item.primaryDomain || '')}</span><span>${escapeHtml(item.status || '')}</span></div>`;
           return item.url ? `<a class="search-result surface-panel" href="${escapeHtml(item.url)}">${body}</a>` : `<article class="search-result surface-panel">${body}</article>`;
-        }).join('') : '<p class="search-empty">검색 결과가 없습니다.</p>';
+        }).join('') + capNotice : '<p class="search-empty">검색 결과가 없습니다.</p>';
       } catch (error) { results.innerHTML = `<p class="search-empty">검색 인덱스를 불러오지 못했습니다: ${escapeHtml(error.message)}</p>`; }
     };
     let timer;
