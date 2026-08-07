@@ -1,11 +1,9 @@
 {
-  "generatedAt": "2026-08-02T18:17:54.382Z",
   "siteUrl": "https://rizingblare.github.io",
   "basePath": "",
-  "rawInventoryItems": 1157,
-  "catalogRecords": 1250,
   "publishedWikiDocuments": 7,
-  "domains": 13,
-  "pedagogyProfiles": 23,
-  "themes": 2
+  "domains": 3,
+  "themes": 2,
+  "publicWikiDocuments": 7,
+  "inProgressWikiDocuments": 0
 }

@@ -1,83 +1,21 @@
 {
-  "generatedAt": "2026-08-02T18:17:54.381Z",
-  "catalogCount": 1399,
-  "rawItemCount": 1157,
+  "conceptCount": 7,
   "content": "/search/content.json",
   "wiki": [
     {
       "id": "signal-processing",
-      "count": 141,
+      "count": 4,
       "url": "/search/wiki/signal-processing.json"
     },
     {
       "id": "networking",
-      "count": 221,
+      "count": 2,
       "url": "/search/wiki/networking.json"
     },
     {
-      "id": "electronics-circuits",
-      "count": 79,
-      "url": "/search/wiki/electronics-circuits.json"
-    },
-    {
-      "id": "broadcast-media",
-      "count": 77,
-      "url": "/search/wiki/broadcast-media.json"
-    },
-    {
-      "id": "mobile-communications",
-      "count": 68,
-      "url": "/search/wiki/mobile-communications.json"
-    },
-    {
-      "id": "programming",
-      "count": 42,
-      "url": "/search/wiki/programming.json"
-    },
-    {
-      "id": "radio-antenna",
-      "count": 83,
-      "url": "/search/wiki/radio-antenna.json"
-    },
-    {
-      "id": "telecom-regulations",
-      "count": 50,
-      "url": "/search/wiki/telecom-regulations.json"
-    },
-    {
-      "id": "software-engineering",
-      "count": 140,
-      "url": "/search/wiki/software-engineering.json"
-    },
-    {
-      "id": "information-security",
-      "count": 46,
-      "url": "/search/wiki/information-security.json"
-    },
-    {
-      "id": "algorithms-data-structures",
-      "count": 37,
-      "url": "/search/wiki/algorithms-data-structures.json"
-    },
-    {
-      "id": "computer-architecture",
-      "count": 79,
-      "url": "/search/wiki/computer-architecture.json"
-    },
-    {
       "id": "databases",
-      "count": 74,
+      "count": 1,
       "url": "/search/wiki/databases.json"
-    },
-    {
-      "id": "general-knowledge",
-      "count": 228,
-      "url": "/search/wiki/general-knowledge.json"
-    },
-    {
-      "id": "operating-systems",
-      "count": 34,
-      "url": "/search/wiki/operating-systems.json"
     }
   ]
 }

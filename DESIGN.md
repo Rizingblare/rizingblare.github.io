@@ -182,6 +182,8 @@ components:
 
 **헤더:** 토큰 `--header-height: 66px`가 고정값이고 사이드바/목차류(`.toc`, `.wiki-article-rail`, `.portfolio-rail`)의 스티키 오프셋(`top: calc(var(--header-height) + 24~28px)`)은 이 토큰 값으로 계산됩니다. 다만 실제 렌더링된 헤더 높이는 다릅니다 — Atlas는 `min-height:64px`로 재정의하고, `820px` 이하 브레이크포인트(core.css)에서는 `min-height:58px`로 더 줄어듭니다. 즉 오프셋 계산은 토큰 기준이지 실측 헤더 높이 기준이 아닙니다.
 
+**The Public Document Orientation Rule.** 공개 개념 문서는 hero에서 제목, 한 문장 설명, 난이도·시간과 학습 도착점을 한 번만 제시하며 같은 경로를 별도 카드로 반복하지 않는다. 모바일에서는 현재 섹션 TOC와 appearance 메뉴를 각각 하나의 버튼으로 축약한다.
+
 ## Elevation & Depth
 
 두 테마는 깊이 표현에서 정반대 철학을 씁니다 — 이 대비가 이 시스템에서 가장 진술 가치가 높은 사실입니다.

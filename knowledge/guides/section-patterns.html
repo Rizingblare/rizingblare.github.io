@@ -27,16 +27,14 @@
 </div>
 
 <!-- ── 5. 개념 지도: marker id는 반드시 map-arrow. 노드는 실마크업(이스케이프 금지),
-        클릭 노드는 concept-ref 앵커로 감싼다. min-width는 공유 CSS(720px)가 관리 -->
+        published 문서만 concept-ref 앵커로 감싼다. min-width는 공유 CSS(720px)가 관리 -->
 <div class="concept-map-wrap">
   <svg aria-labelledby="cmTitle cmDesc" class="concept-map" role="img" viewBox="0 0 1040 560">
     <title id="cmTitle">…개념 그래프</title><desc id="cmDesc">…</desc>
     <defs><marker id="map-arrow" markerWidth="6" markerHeight="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
     <text class="plot-muted" text-anchor="middle" x="110" y="32">열 라벨</text>
     <path class="map-edge" d="M190 105H270"/>
-    <a class="concept-ref" data-concept-id="CONCEPT-ID" data-status="proposed" data-title="표제" data-body="툴팁 정의문." href="/wiki/domains/DOMAIN/?q=검색어">
-      <g class="map-node sub"><rect x="30" y="70" width="160" height="70"/><text x="110" y="112">라벨</text></g>
-    </a>
+    <g class="map-node sub"><rect x="30" y="70" width="160" height="70"/><text x="110" y="112">라벨</text></g>
   </svg>
 </div>
 
@@ -62,14 +60,12 @@
   </div></details>
 </article>
 
-<!-- ── 8. 예약 개념(pending): 반드시 details로 접는다 — 본문 무게를 희석하지 않도록 -->
-<section id="pending-concepts" data-toc-label="예약 개념">
-  <div class="section-kicker">Reference concepts · Catalog nodes</div>
-  <h2>참조되었지만 아직 독립 문서가 없는 개념</h2>
-  <p class="section-lead">동일 concept ID는 문서 발행 후 자동으로 실제 경로로 전환됩니다.</p>
-  <details class="pending-fold"><summary>예약된 개념 N개 펼쳐 보기</summary>
-    <div class="glossary-grid"><article class="glossary-card" id="concept-SLUG"><h3>표제</h3><p>정의문.</p><span class="status">proposed · SLUG</span></article></div>
-  </details>
+<!-- ── 8. 핵심 용어(선택): 작성 상태나 미래 링크 없이 현재 문서에 필요한 정의만 -->
+<section id="key-terms" data-toc-label="핵심 용어">
+  <div class="section-kicker">Key terms</div>
+  <h2>본문 이해에 필요한 용어</h2>
+  <p class="section-lead">독립 문서의 작성 상태나 미래 링크 없이, 이 문서에 필요한 정의만 제공합니다.</p>
+  <div class="glossary-grid"><article class="glossary-card" id="concept-SLUG"><h3>표제</h3><p>정의문.</p></article></div>
 </section>
 
 <!-- ── 9. 엔딩(peak-end): 도착점 회수 + 다음 문서 CTA. stub 나열로 문서를 끝내지 않는다 -->

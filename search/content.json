@@ -88,15 +88,15 @@
   {
     "type": "post",
     "id": "knowledge-wiki-v2-architecture",
-    "title": "1,157개 개념을 위한 지식 위키 v2 구조",
-    "description": "개념 목록을 바로 문서화하지 않고 inventory, canonical catalog, 작성 작업 큐로 분리한 이유를 기록합니다.",
-    "summary": "개념 목록을 바로 문서화하지 않고 inventory, canonical catalog, 작성 작업 큐로 분리한 이유를 기록합니다.",
+    "title": "1,399개 내부 커리큘럼을 공개 문서로 이어가는 지식 위키 구조",
+    "description": "15개 분야의 내부 커리큘럼 목록 1,399개 중 현재 공개된 7개 문서를 탐색하는 방식을 소개합니다.",
+    "summary": "15개 분야의 내부 커리큘럼 목록 1,399개 중 현재 공개된 7개 문서를 탐색하는 방식을 소개합니다.",
     "status": "published",
     "tags": [
       "GitHub Pages",
       "Knowledge Wiki",
       "Static Site",
-      "Multi-agent"
+      "Learning UX"
     ],
     "domain": "blog",
     "url": "/blog/knowledge-wiki-v2-architecture/"

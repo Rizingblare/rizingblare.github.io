@@ -3,21 +3,17 @@
 Derivation direction (declared in knowledge/README.md):
 
     knowledge/catalog/<domain>.json   --   the editable source of truth
-        -> search/wiki/<domain>.json       byte-stable build output
-        -> search/manifest.json            counts recomputed, generatedAt preserved
-
-`rawItemCount` in the manifest describes the original inventory, which is not
-in this repository; it is carried over from the existing manifest verbatim.
+        -> search/wiki/<domain>.json       public published/pending projection
+        -> search/manifest.json            public shard locations and counts
+        -> build-report.json               public document/domain counts
 
 Usage:
     python3 scripts/build_search.py            # write outputs
     python3 scripts/build_search.py --check    # exit 1 if outputs are stale
-    python3 scripts/build_search.py --stamp    # also refresh manifest generatedAt
 """
 from __future__ import annotations
 
 import argparse
-import datetime
 import json
 import sys
 from pathlib import Path
@@ -26,6 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "knowledge" / "catalog"
 SHARDS = ROOT / "search" / "wiki"
 MANIFEST = ROOT / "search" / "manifest.json"
+BUILD_REPORT = ROOT / "build-report.json"
 
 
 def dumps(data) -> str:
@@ -33,9 +30,21 @@ def dumps(data) -> str:
 
 
 REQUIRED_KEYS = {"type", "id", "title", "status", "summary", "primaryDomain", "domain"}
+PUBLIC_STATUSES = {"published", "pending"}
+PUBLIC_KEYS = ("type", "id", "title", "aliases", "status", "summary", "domain")
 
 
-def build_outputs(stamp: bool = False) -> dict[str, str]:
+def public_item(item: dict) -> dict | None:
+    """Project one catalog record into the public search contract."""
+    if item.get("status") not in PUBLIC_STATUSES:
+        return None
+    projected = {key: item[key] for key in PUBLIC_KEYS if key in item}
+    if item["status"] == "published":
+        projected["url"] = item.get("url")
+    return projected
+
+
+def build_outputs() -> dict[str, str]:
     """Return {relpath: content} for every file this build owns.
 
     The owned set is exactly `search/wiki/<stem>.json` for each catalog
@@ -49,6 +58,8 @@ def build_outputs(stamp: bool = False) -> dict[str, str]:
         raise SystemExit(f"no catalog sources under {CATALOG}")
     outputs: dict[str, str] = {}
     counts: dict[str, int] = {}
+    published_count = 0
+    pending_count = 0
     seen_ids: dict[str, str] = {}
     errors: list[str] = []
     for src in sources:
@@ -78,8 +89,19 @@ def build_outputs(stamp: bool = False) -> dict[str, str]:
             for key in ("primaryDomain", "domain"):
                 if key in item and item[key] != src.stem:
                     errors.append(f"{where}: {key}={item[key]!r} != file domain {src.stem!r}")
-        counts[src.stem] = len(data)
-        outputs[f"search/wiki/{src.stem}.json"] = dumps(data)
+            if item.get("status") == "published" and not item.get("url"):
+                errors.append(f"{where}: published item requires a public url")
+        public_data = []
+        for item in data:
+            if not isinstance(item, dict):
+                continue
+            projected = public_item(item)
+            if projected:
+                public_data.append(projected)
+        counts[src.stem] = len(public_data)
+        published_count += sum(1 for item in public_data if item["status"] == "published")
+        pending_count += sum(1 for item in public_data if item["status"] == "pending")
+        outputs[f"search/wiki/{src.stem}.json"] = dumps(public_data)
     owned = {f"search/wiki/{s.stem}.json" for s in sources}
     for shard in sorted(SHARDS.glob("*.json")):
         rel = f"search/wiki/{shard.name}"
@@ -91,25 +113,31 @@ def build_outputs(stamp: bool = False) -> dict[str, str]:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     order = [entry["id"] for entry in manifest.get("wiki", [])]
     known = [d for d in order if d in counts] + [d for d in sorted(counts) if d not in order]
+    manifest.pop("generatedAt", None)
     manifest["wiki"] = [
-        {"id": d, "count": counts[d], "url": f"/search/wiki/{d}.json"} for d in known
+        {"id": d, "count": counts[d], "url": f"/search/wiki/{d}.json"}
+        for d in known
+        if counts[d]
     ]
-    manifest["catalogCount"] = sum(counts.values())
-    if stamp:
-        manifest["generatedAt"] = (
-            datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
-        )
+    manifest["conceptCount"] = sum(counts.values())
     outputs["search/manifest.json"] = dumps(manifest)
+    report = json.loads(BUILD_REPORT.read_text(encoding="utf-8"))
+    report.pop("generatedAt", None)
+    report.pop("concepts", None)
+    report["publicWikiDocuments"] = sum(counts.values())
+    report["publishedWikiDocuments"] = published_count
+    report["inProgressWikiDocuments"] = pending_count
+    report["domains"] = sum(1 for count in counts.values() if count)
+    outputs["build-report.json"] = dumps(report)
     return outputs
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="verify outputs are current, write nothing")
-    parser.add_argument("--stamp", action="store_true", help="refresh manifest generatedAt")
     args = parser.parse_args(argv)
 
-    outputs = build_outputs(stamp=args.stamp)
+    outputs = build_outputs()
     stale = []
     for rel, content in outputs.items():
         path = ROOT / rel

@@ -36,7 +36,7 @@ concept-graph       선행→핵심→응용 개념 지도 (SVG, .concept-map)
 worked-examples     풀이 과정이 있는 예제 (.worked, details.solution)
 misconceptions      오개념 교정 (.callout[data-kind="warning"] 등)
 document-connections 관련 문서 링크 (.connection-grid)
-pending-concepts    아직 문서화되지 않은 참조 개념 (details로 접은 .glossary-grid)
+key-terms           본문 이해에 필요한 용어 정의 (선택, 작성 상태·미래 링크 없음)
 sources             출처 (.source-list)
 checkpoint          도착점 셀프체크 + 다음 문서 CTA (peak-end 마감)
 ```
@@ -51,11 +51,12 @@ checkpoint          도착점 셀프체크 + 다음 문서 CTA (peak-end 마감)
   이 규칙은 동작 요건이 아니라 **문서 간 일관성 관례**다. 관례를 깨면 검색·
   비교·자동화가 어려워진다.
 - 경량 문서(euler-formula, fourier-series형)는 concept-graph·worked-examples·
-  misconceptions·pending-concepts를 생략할 수 있으나(현행 경량 2건이 실제로
+  misconceptions·key-terms를 생략할 수 있으나(현행 경량 2건이 실제로
   생략 중), **생략은 기본값이 아니라 판단이다** — 시험 대비 도메인
   (신호처리·전파·법규 등)은 worked-examples가 핵심 가치다.
 - fourier-transform(73KB, 랩 7개)은 플래그십 실험형이다. 일반 문서의 기준으로
   삼지 않는다.
+- 공개 개념 문서는 hero에서 제목, 한 문장 설명, 난이도·시간과 학습 도착점을 한 번만 제시하며 같은 경로를 별도 카드로 반복하지 않는다. 모바일에서는 현재 섹션 TOC와 appearance 메뉴를 각각 하나의 버튼으로 축약한다.
 
 ## 3. SVG·시각화 계약 (전부 실결함에서 도출된 강제 규칙)
 
@@ -115,11 +116,14 @@ checkpoint          도착점 셀프체크 + 다음 문서 CTA (peak-end 마감)
 
 1. 문서화할 개념은 반드시 `knowledge/catalog/<domain>.json`에 항목이 먼저 있다.
    없으면 카탈로그 항목 추가가 선행 단위다.
-2. 문서 발행 시 같은 단위에서 카탈로그 항목을 갱신한다:
-   `status: "proposed" → "published"`, `route`와 `url` 기입.
-3. `python3 scripts/build_search.py`로 샤드 재생성 → `sh scripts/check.sh` 0 실패
+2. 실제 작성 착수 시 `status: "proposed" → "pending"`으로 갱신한다. 공개
+   검색·분야 표면은 이 항목을 링크 없는 **작성 중**으로만 표시한다.
+3. 문서 발행 시 같은 단위에서 `status: "pending" → "published"`, `route`와
+   `url`을 기입한다. 발행 문서의 개념 링크는 `published` 대상만 허용하며,
+   아직 독립 문서가 없는 용어는 일반 텍스트 정의로 쓴다.
+4. `python3 scripts/build_search.py`로 샤드 재생성 → `sh scripts/check.sh` 0 실패
    확인 → 커밋. (산출물 직접 편집은 `catalog-sync` 게이트가 잡는다.)
-4. 위키 인덱스(`wiki/index.html`)의 최근 발행 목록·카운트, 해당 도메인 페이지
+5. 위키 인덱스(`wiki/index.html`)의 최근 발행 목록·카운트, 해당 도메인 페이지
    카운트도 같은 단위에서 갱신한다.
 
 ## 6. 재작성과 버전 관리

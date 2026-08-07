@@ -20,6 +20,8 @@
 # imports its own siblings by bare name, which is why it is invoked by path.
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+node "$ROOT/scripts/search-query-runtime-check.mjs"
+python3 "$ROOT/scripts/public_surface_check.py"
 PYTHONPATH="$ROOT" python3 "$ROOT/scripts/engine/validate.py" \
   --root "$ROOT" --registry "$ROOT/schema/kernel/layout.yaml" \
   --plugin scripts.catalog_sync_check:PLUGIN \

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="title desc">
-  <title id="title">추가 자격증 사본 자리표시자</title>
-  <desc id="desc">자격증 이미지를 교체할 위치를 보여주는 픽셀 스타일 자리표시자</desc>
-  <rect width="700" height="480" fill="#d9f3e9"/>
-  <rect x="22" y="22" width="656" height="436" fill="none" stroke="#1e1b26" stroke-width="8"/>
-  <path d="M80 95H620M80 140H520M80 205H620M80 250H565M80 315H470" stroke="#1e1b26" stroke-width="16"/>
-  <rect x="510" y="300" width="110" height="110" fill="#ffd166" stroke="#1e1b26" stroke-width="8"/>
-  <text x="350" y="425" text-anchor="middle" font-family="ui-monospace,monospace" font-size="24" font-weight="700" fill="#1e1b26">REPLACE WITH REDACTED SCAN</text>
-</svg>

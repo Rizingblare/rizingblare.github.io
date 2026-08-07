@@ -219,9 +219,7 @@
     ref.setAttribute('aria-describedby', tooltip.id);
     tooltip.querySelector('strong').textContent = ref.dataset.title || ref.textContent.trim();
     tooltip.querySelector('span').textContent = ref.dataset.body || '';
-    tooltip.querySelector('em').textContent = ref.dataset.status === 'published'
-      ? '클릭하면 독립 문서로 이동합니다.'
-      : '독립 문서 작성 전: 도메인 카탈로그에서 해당 후보를 찾습니다.';
+    tooltip.querySelector('em').textContent = '클릭하면 학습 문서로 이동합니다.';
     tooltip.dataset.open = 'true';
     const rect = ref.getBoundingClientRect();
     const width = Math.min(330, window.innerWidth - 28);
@@ -232,7 +230,7 @@
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
   };
-  document.querySelectorAll('.concept-ref').forEach((ref) => {
+  document.querySelectorAll('.concept-ref[data-status="published"]').forEach((ref) => {
     ref.addEventListener('mouseenter', () => showTooltip(ref));
     ref.addEventListener('mouseleave', hideTooltip);
     ref.addEventListener('focus', () => showTooltip(ref));
