@@ -174,6 +174,7 @@ class Plugin:
     checks: tuple[Check, ...] = ()
     registry_schema: "registry_engine.RegistrySchema | None" = None
     marker_syntax: "markers_engine.MarkerSyntax | None" = None
+    non_demotable: tuple[str, ...] = ()
 
 
 class ConfigError(Exception):
@@ -391,6 +392,7 @@ class Validator:
         self,
         checks: Sequence[Check] = ENGINE_CHECKS,
         demotions: Iterable[str] = (),
+        non_demotable: Iterable[str] = NON_DEMOTABLE,
     ) -> None:
         seen: set[str] = set()
         for check in checks:
@@ -399,15 +401,16 @@ class Validator:
             seen.add(check.check_id)
         self.checks = list(checks)
         self.known = seen
+        self.non_demotable = frozenset(non_demotable)
         self.demotions: set[str] = set()
         for check_id in demotions:
-            if check_id not in self.known:
-                raise ConfigError(f"unknown check id cannot be demoted: {check_id}")
-            if check_id in NON_DEMOTABLE:
+            if check_id in self.non_demotable:
                 raise ConfigError(
                     f"check {check_id} refuses demotion to warning; it reports a state "
                     "in which the rest of this report cannot be trusted"
                 )
+            if check_id not in self.known:
+                raise ConfigError(f"unknown check id cannot be demoted: {check_id}")
             self.demotions.add(check_id)
 
     def severity(self, check_id: str) -> str:
@@ -477,6 +480,7 @@ def load_plugin(spec: str) -> Plugin:
         tuple(checks),
         getattr(provided, "registry_schema", None),
         getattr(provided, "marker_syntax", None),
+        tuple(getattr(provided, "non_demotable", ())),
     )
 
 
@@ -533,7 +537,11 @@ def main(argv: Sequence[str] | None = None, plugin: Plugin | None = None) -> int
             schema = plugin.registry_schema or registry_engine.PERMISSIVE_SCHEMA
             loaded_registry = registry_engine.load_registry(Path(args.registry), schema)
 
-        validator = Validator(checks, demotions=args.warn)
+        validator = Validator(
+            checks,
+            demotions=args.warn,
+            non_demotable=(*NON_DEMOTABLE, *plugin.non_demotable),
+        )
     except ConfigError as exc:
         print(f"CONFIG: {exc}", file=sys.stderr)
         return 2

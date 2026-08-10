@@ -1,0 +1,116 @@
+{
+  "valid": {
+    "path": "valid",
+    "required_categories": [
+      "observation",
+      "feedback",
+      "proposal",
+      "evaluation",
+      "decision",
+      "deferred"
+    ],
+    "required_records": [
+      "schema/observations/obs-0001-fixture-run-20260811.md",
+      "schema/feedbacks/fb-0001-fixture-words-20260811.md",
+      "schema/proposals/prop-0001-fixture-change-20260811.md",
+      "schema/evaluations/eval-0001-fixture-change-20260811.md",
+      "schema/decisions/dec-0001-fixture-change-20260811.md",
+      "schema/defers/_todo/def-0001-fixture-followup-20260811.md"
+    ]
+  },
+  "negative_cases": [
+    {
+      "name": "decision-two-receipts",
+      "path": "invalid/decision-receipt/two-receipts",
+      "expected_check_ids": ["decision-receipt"]
+    },
+    {
+      "name": "decision-missing-receipt",
+      "path": "invalid/decision-receipt/missing-receipt",
+      "expected_check_ids": ["decision-receipt"]
+    },
+    {
+      "name": "frontmatter-unknown-field",
+      "path": "invalid/event-frontmatter/unknown-field",
+      "expected_check_ids": ["event-frontmatter"]
+    },
+    {
+      "name": "frontmatter-candidate-rule",
+      "path": "invalid/event-frontmatter/candidate-rule",
+      "expected_check_ids": ["event-frontmatter"]
+    },
+    {
+      "name": "identity-created-date",
+      "path": "invalid/event-identity/created-date",
+      "expected_check_ids": ["event-identity"]
+    },
+    {
+      "name": "identity-staged-id-change",
+      "path": "invalid/event-identity/staged-id-change",
+      "expected_check_ids": ["event-identity"],
+      "changes": [
+        {
+          "status": "M",
+          "source": "schema/feedbacks/fb-0003-staged-id-20260811.md",
+          "candidate": "schema/feedbacks/fb-0003-staged-id-20260811.md"
+        }
+      ]
+    },
+    {
+      "name": "identity-staged-deletion",
+      "path": "invalid/event-identity/staged-deletion",
+      "expected_check_ids": ["event-identity"],
+      "changes": [
+        {
+          "status": "D",
+          "source": "schema/proposals/prop-0002-staged-delete-20260811.md",
+          "candidate": null
+        }
+      ]
+    },
+    {
+      "name": "protected-missing-end",
+      "path": "invalid/event-protected-span/missing-end",
+      "expected_check_ids": ["event-protected-span"]
+    },
+    {
+      "name": "protected-source-integrity",
+      "path": "invalid/event-protected-span/source-integrity",
+      "expected_check_ids": ["event-protected-span"]
+    },
+    {
+      "name": "protected-same-path-byte-mutation",
+      "path": "invalid/event-protected-span/same-path-byte-mutation",
+      "expected_check_ids": ["event-protected-span"],
+      "changes": [
+        {
+          "status": "M",
+          "source": "schema/feedbacks/fb-0002-mutated-byte-20260811.md",
+          "candidate": "schema/feedbacks/fb-0002-mutated-byte-20260811.md"
+        }
+      ]
+    },
+    {
+      "name": "protected-rename-byte-mutation",
+      "path": "invalid/event-protected-span/rename-byte-mutation",
+      "expected_check_ids": ["event-identity", "event-protected-span"],
+      "changes": [
+        {
+          "status": "R",
+          "source": "schema/feedbacks/fb-0004-original-name-20260811.md",
+          "candidate": "schema/feedbacks/fb-0004-renamed-record-20260811.md"
+        }
+      ]
+    },
+    {
+      "name": "reference-missing-proposal",
+      "path": "invalid/event-reference/missing-proposal",
+      "expected_check_ids": ["event-reference"]
+    },
+    {
+      "name": "uniqueness-reused-number",
+      "path": "invalid/event-uniqueness/reused-number",
+      "expected_check_ids": ["event-uniqueness"]
+    }
+  ]
+}

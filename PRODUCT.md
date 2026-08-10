@@ -63,6 +63,6 @@ web
 4. **실명·실정보.** 플레이스홀더는 임시 상태다. 사실이 확정되면 실제 정보로 교체한다.
 5. **전환 서사를 숨기지 않는다.** 백엔드 실무에서 방송·미디어 기술로 가는 과정 자체가 이 사이트의 콘텐츠다.
 
-## English Brief
+## English brief
 
-Personal site of Jeongdo Kim (김정도): resume, portfolio, build-log blog, and a concept wiki (1,399 canonical concepts across 15 topicDomains, 7 published documents). Static HTML/CSS/JS on GitHub Pages with a two-theme design system (Atlas / Pixel). Two equal audiences: recruiters evaluating a career transition from backend development (ERP, concurrency control, legacy migration) into broadcast/media engineering, and the owner himself using the wiki as a learning system. All remaining placeholders (site URL, email, certificates) are to be replaced with real information. No fabricated evidence: no testimonials, press, or benchmarks exist, and broadcast-field work experience does not yet exist.
+Personal site of Jeongdo Kim (김정도): resume, portfolio, build-log blog, and a concept wiki (1,399 canonical concepts across 15 topicDomains, 7 published documents). Static HTML/CSS/JS on GitHub Pages with a two-theme design system (Atlas / Pixel). Two equal audiences: recruiters evaluating a career transition from backend development (ERP, concurrency control, legacy migration) into broadcast/media engineering, and the owner himself using the wiki as a learning system. Remaining placeholders are replaced only with verified information; no testimonials, press, benchmarks, or broadcast-field experience may be fabricated.

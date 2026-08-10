@@ -1,88 +1,110 @@
-# Structure declaration registry.
+# 구조 선언 registry.
 #
-# This file owns which paths exist in the repository and what each is for. It is
-# the canonical answer to "where does this belong", and it is machine-read by
-# scripts/engine/registry.py.
+# 이 파일은 저장소에 어떤 path가 존재하고 각 path가 무엇을 위한 것인지 소유한다.
+# "이것은 어디에 속하는가"에 대한 정본 답변이며,
+# scripts/engine/registry.py가 기계적으로 읽는다.
 #
-# It ships already declaring the whole skeleton you were handed, so the first
-# validator run is green before you have changed anything. That is deliberate: a
-# starter registry that does not declare the starter makes the gate fail on the
-# very files the instructions told you to copy, and the newcomer reasonably
-# concludes the tooling is broken.
+# 전달받은 전체 골격을 이미 선언한 상태로 제공되므로, 아무것도 변경하기 전의 첫
+# validator 실행부터 통과한다. 이는 의도된 것이다. 시작 골격을 선언하지 않는
+# 초기 registry는 지침이 복사하라고 한 바로 그 파일 때문에 gate를 실패시키며,
+# 새 사용자는 도구가 고장 났다고 합리적으로 판단하게 된다.
 #
-# THE RULE THAT MAKES IT WORTH HAVING: a tracked path that no declaration matches
-# is a FAILURE, not a warning. A registry that merely describes the tree drifts
-# from it within weeks and then misleads. A registry that refuses undeclared paths
-# cannot drift, because drift does not commit.
+# 이 registry를 둘 가치가 있게 만드는 규칙: 어떤 declaration과도 일치하지 않는
+# tracked path는 warning이 아니라 FAILURE다. tree를 설명하기만 하는 registry는
+# 몇 주 안에 실제 tree와 drift가 생겨 오도한다. 선언되지 않은 path를 거부하는
+# registry에는 drift가 생길 수 없다. drift는 commit되지 않기 때문이다.
 #
-# Registration is not the same as intent, and the registry cannot tell the
-# difference. A path can be correctly declared and still carry the wrong
-# disposition, and every registry check will pass it. If you ship anything derived
-# from this repository, gate the distribution with a second check that never reads
-# this file.
+# 등록은 의도와 같지 않으며 registry는 둘의 차이를 구분할 수 없다. path가 올바르게
+# 선언되어 있어도 잘못된 disposition을 가질 수 있고 모든 registry 검사를 통과할 수
+# 있다. 이 저장소에서 파생한 무언가를 배포한다면, 이 파일을 전혀 읽지 않는 두 번째
+# 검사로 배포를 gate하라.
 #
-# Changes here go through your decision procedure and a single writer.
+# 이곳의 변경은 decision procedure와 단일 writer를 거친다.
 #
-# Selector grammar (frozen — anything else is a load error):
-#   docs/guide.md   exact file
-#   docs/           direct children of a directory
-#   docs/**         recursive subtree
-#   *               root-level files only
-#   <name>          a single path segment
-#   **/<name>/**    a named directory at any depth
+# Selector grammar(동결됨 — 아래 이외의 형식은 load error다):
+#   docs/guide.md   정확히 일치하는 파일
+#   docs/           directory의 직계 자식
+#   docs/**         재귀 subtree
+#   *               root-level 파일만
+#   <name>          단일 path segment
+#   **/<name>/**    어느 깊이에나 있는 지정된 이름의 directory
 #
-# Specificity: exact beats longer literal prefix beats fewer wildcards. Two
-# declarations of equal specificity matching one path is an error, never a
-# coin flip — order must not decide attribution.
+# Specificity는 exact, 더 긴 literal prefix, 더 적은 wildcard 순으로 우선한다.
+# 같은 path와 일치하고 specificity도 같은 declaration이 두 개면 무작위 선택이 아니라
+# error다. 순서가 attribution을 결정해서는 안 된다.
 
 schema_version: 1
+canonical_contract: AGENTS.md
+project_manifest: schema/project/manifest.yaml
+language_lint:
+  check: scripts/harness_manifest.py
+  coverage:
+    - .agents/skills/harness-lint/SKILL.md
+    - .agents/skills/harness-sync/SKILL.md
+    - AGENTS.md
+    - DESIGN.md
+    - PRODUCT.md
+    - knowledge/README.md
+    - schema/contracts/README.md
+    - schema/defers/INDEX.md
+    - schema/defers/USER-DEFERRED.md
+    - schema/handoff/README.md
+    - schema/handoff/ledgers/README.md
+    - schema/spec/00-overview.md
+    - schema/spec/01-layers-and-evidence.md
+    - schema/spec/02-parallelism-and-orchestration.md
+    - schema/spec/03-enforcement-and-procedures.md
+    - schema/stages/README.md
+    - schema/template/events/decision.md
+    - schema/template/events/deferred.md
+    - schema/template/events/evaluation.md
+    - schema/template/events/feedback.md
+    - schema/template/events/observation.md
+    - schema/template/events/proposal.md
+    - schema/template/handoff-snapshot.md
+    - schema/template/operating-ledger.md
+    - scripts/engine/README.md
+  outside_coverage: contract-policy-only
 
-# ── Declarations ──────────────────────────────────────────────────────────────
-# role:        your vocabulary. Constrain it by injecting a schema (see
-#              scripts/engine/README.md); the permissive default accepts any
-#              string, which means a typo will not be caught at load time.
-# disposition: what a downstream distribution of YOUR repository does with the
-#              path — not what this kit did with it.
-#              ship = copy as-is · stub = replace with a fixed generic body ·
-#              seed = recreate the directory empty · skip = declared non-shipment.
-#              A declared "no" is not the same as a silent omission.
+# ── 선언 ─────────────────────────────────────────────────────────────────────
+# role:        이 프로젝트의 vocabulary다. schema를 주입하여 제한할 수 있다
+#              (scripts/engine/README.md 참조). 허용적인 기본값은 모든 string을
+#              받아들이므로 오타가 load 시점에 검출되지 않는다.
+# disposition: 이 kit가 path를 어떻게 처리했는지가 아니라, 이 저장소를 downstream에
+#              배포할 때 해당 path를 어떻게 처리할지를 나타낸다.
+#              ship = 그대로 복사 · stub = 고정된 범용 body로 교체 ·
+#              seed = 빈 directory로 다시 생성 · skip = 배포하지 않음을 선언.
+#              명시적으로 선언한 "no"는 조용히 생략한 것과 같지 않다.
+# owner/provenance_layer/charter/entry_document/artifact_schema는 책임지는
+#              path group과 그 group을 규율하는 문서를 식별한다.
+# exposure:    distribution disposition과 독립적인 GitHub Pages 도달 범위다.
+#              public-site에는 github-pages와 public-surface gate가 필요하다.
+#              repository-only에는 exposure target이나 exposure gate가 필요 없다.
+# producer_gate는 선언된 모든 group의 pre-commit repository gate다.
 
 declarations:
-  # ── Provenance content layers — none declared, on purpose ──────────────────
-  # The harness ships the operating contract and its tooling. It does NOT ship
-  # the three content layers (immutable inputs, derived material, generated
-  # outputs), and it does not pick their names. Which of them a project needs is
-  # a property of that project: one that captures nothing from outside has no
-  # inputs layer, and forcing an empty directory on it teaches agents to file by
-  # the name of an empty box instead of by provenance.
-  #
-  # Adoption is ONE declaration plus the directory, landed in the SAME commit —
-  # split them and there is a commit in which a path is attributed to a layer it
-  # does not live in while every check still passes. Uncomment and rename:
-  #
-  #   - select: knowledge/**
-  #     role: content-root
-  #     disposition: seed
-  #
-  # `seed` says a downstream distribution of YOUR repository recreates the
-  # directory empty rather than shipping its contents. Note that nothing here
-  # checks the reverse direction: a declaration whose paths do not exist is
-  # silent, not a failure, so a layer declared and never created leaves no trace.
-  # Declare it when you create it.
-
-  # ── The operating contract ─────────────────────────────────────────────────
-  # Rules, procedures, forms, and the evidence chain. This is the shippable part,
-  # with the private subtrees carved out below.
+  # ── 운영 계약 ──────────────────────────────────────────────────────────────
+  # 규칙, 절차, form과 evidence chain이다. 아래에서 private subtree를 제외한
+  # 나머지가 배포 가능한 부분이다.
   - select: schema/**
     role: contract
     disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: schema/contracts/README.md
+    entry_document: AGENTS.md
+    artifact_schema: scripts/event_check.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
     overrides:
-      # The evidence chain records private work: what was run, what the user
-      # said, what was decided. Declared non-shipment.
+      # evidence chain은 무엇을 실행했고 사용자가 무엇을 말했으며 무엇을 결정했는지 등
+      # private 작업을 기록한다. 배포하지 않는 것으로 선언한다.
       #
-      # An override must be strictly more specific than its parent AND contained
-      # within it, or the registry refuses to load. Each of these is one exact
-      # subtree of schema/**, so both halves hold.
+      # override는 parent보다 엄격히 더 specific해야 하며 parent 안에 포함되어야 한다.
+      # 그렇지 않으면 registry가 load를 거부한다. 아래 항목은 각각 schema/**의 정확한
+      # subtree 하나이므로 두 조건을 모두 충족한다.
       - select: schema/observations/**
         disposition: skip
       - select: schema/feedbacks/**
@@ -96,148 +118,422 @@ declarations:
       - select: schema/defers/**
         disposition: skip
 
-      # Handoff surfaces carry in-flight session state and operating ledgers.
-      # Nothing here is meaningful to a recipient.
+      # handoff surface는 진행 중인 session state와 operating ledger를 담는다.
+      # 여기의 어떤 것도 수신자에게 의미가 없다.
       #
-      # The volatile half legitimately empties itself: a snapshot is DELETED once
-      # the successor takes over. Declare the subtree anyway — an undeclared or
-      # missing path is a failure, and without this row the routine deletion
-      # reads as one, which creates pressure to keep consumed snapshots forever
-      # and so destroys the mechanism.
+      # volatile 영역은 정당하게 스스로 비워진다. successor가 인계받으면 snapshot은
+      # DELETED된다. 그래도 subtree를 선언한다. 선언되지 않았거나 없는 path는 failure이며,
+      # 이 row가 없으면 일상적인 삭제가 failure로 해석된다. 그러면 소비한 snapshot을
+      # 영원히 보존해야 한다는 압력이 생겨 mechanism을 망가뜨린다.
       - select: schema/handoff/**
         disposition: skip
 
-      # Volatile multi-session workspaces. Deleted at close by design.
+      # volatile multi-session workspace다. 설계상 종료 시 삭제한다.
       - select: schema/stages/**
         disposition: skip
 
-  # ── Tooling ────────────────────────────────────────────────────────────────
+  # ── 도구 ──────────────────────────────────────────────────────────────────
   - select: scripts/**
     role: support
     disposition: ship
+    owner: repository-support
+    provenance_layer: operating-contract
+    charter: scripts/engine/README.md
+    entry_document: AGENTS.md
+    artifact_schema: not-applicable
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
     overrides:
-      # Browser runtime shipped with the site, not repository tooling.
+      # repository tooling이 아니라 site와 함께 배포되는 browser runtime이다.
       - select: scripts/site.js
         role: site
+        owner: site
+        provenance_layer: generated-output
+        charter: DESIGN.md
+        entry_document: index.html
+        artifact_schema: scripts/public_surface_check.py
+        exposure: public-site
+        exposure_target: github-pages
+        exposure_gate: scripts/public_surface_check.py
       - select: scripts/v2.js
         role: site
+        owner: site
+        provenance_layer: generated-output
+        charter: DESIGN.md
+        entry_document: index.html
+        artifact_schema: scripts/public_surface_check.py
+        exposure: public-site
+        exposure_target: github-pages
+        exposure_gate: scripts/public_surface_check.py
       - select: scripts/portfolio.js
         role: site
+        owner: site
+        provenance_layer: generated-output
+        charter: DESIGN.md
+        entry_document: index.html
+        artifact_schema: scripts/public_surface_check.py
+        exposure: public-site
+        exposure_target: github-pages
+        exposure_gate: scripts/public_surface_check.py
       - select: scripts/wiki.js
         role: site
+        owner: site
+        provenance_layer: generated-output
+        charter: DESIGN.md
+        entry_document: index.html
+        artifact_schema: scripts/public_surface_check.py
+        exposure: public-site
+        exposure_target: github-pages
+        exposure_gate: scripts/public_surface_check.py
 
-  # ── Derived content layer (adopted 2026-08-03, charter: knowledge/README.md)
-  # Editable wiki sources: canonical catalog per domain plus authoring guides.
-  # search/wiki shards and manifest counts are BUILD OUTPUTS of this layer
-  # (scripts/build_search.py; freshness enforced by the catalog-sync plugin).
+  # ── 정본 및 generated tool skill ──────────────────────────────────────────
+  - select: .agents/skills/harness-sync/SKILL.md
+    role: contract
+    disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: AGENTS.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
+  - select: .agents/skills/harness-lint/SKILL.md
+    role: contract
+    disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: AGENTS.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
+  - select: .claude/skills/harness-sync/SKILL.md
+    role: contract
+    disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: CLAUDE.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
+  - select: .claude/skills/harness-lint/SKILL.md
+    role: contract
+    disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: CLAUDE.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
+
+  # ── 정본 authoring content(charter: knowledge/README.md) ───────────────────
+  # 편집 가능한 wiki source로, domain별 정본 catalog와 authoring guide를 포함한다.
+  # search/wiki shard와 manifest count는 이 layer의 BUILD OUTPUTS다.
+  # freshness는 catalog-sync plugin이 강제한다(scripts/build_search.py).
   - select: knowledge/**
     role: content
     disposition: ship
+    owner: content
+    provenance_layer: generated-output
+    charter: knowledge/README.md
+    entry_document: knowledge/README.md
+    artifact_schema: scripts/catalog_sync_check.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
 
-  # ── Published website (GitHub Pages) ───────────────────────────────────────
-  # The deployed personal site: landing, resume, portfolio, blog, concept wiki,
-  # search index, styles, and assets. Agent-maintained presentation output;
-  # provenance-layer sources for wiki content are adopted separately when the
-  # authoring pipeline lands.
+  # ── 공개된 website(GitHub Pages) ──────────────────────────────────────────
+  # 배포된 개인 site로, landing, resume, portfolio, blog, concept wiki,
+  # search index, style과 asset을 포함한다. agent가 유지 관리하는 presentation
+  # output이며, wiki content의 provenance-layer source는 authoring pipeline이
+  # 반영될 때 별도로 채택한다.
   - select: 404-page/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: assets/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: blog/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: portfolio/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: resume/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: search/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: derived-material
+    charter: knowledge/README.md
+    entry_document: index.html
+    artifact_schema: scripts/catalog_sync_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: styles/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: wiki/**
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: derived-material
+    charter: knowledge/README.md
+    entry_document: index.html
+    artifact_schema: scripts/catalog_sync_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
 
-  # ── Root-level files ───────────────────────────────────────────────────────
-  # Enumerated exactly, never covered by a wildcard. A root wildcard silently
-  # adopts every new root file into whatever disposition it carries, so a scratch
-  # file dropped at the root ships with no signal at any point. The friction of
-  # editing this list when you add a root file is the mechanism working.
+  # ── Root-level 파일 ────────────────────────────────────────────────────────
+  # wildcard로 덮지 않고 정확히 열거한다. root wildcard는 새 root 파일을 해당 wildcard의
+  # disposition으로 조용히 채택하므로, root에 둔 임시 파일이 어느 시점에도 신호 없이
+  # 배포된다. root 파일을 추가할 때 이 목록을 편집해야 하는 번거로움은 mechanism이
+  # 제대로 작동하고 있다는 뜻이다.
   - select: AGENTS.md
     role: contract
     disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: AGENTS.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
   - select: PRODUCT.md
     role: contract
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: PRODUCT.md
+    entry_document: AGENTS.md
+    artifact_schema: not-applicable
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
   - select: DESIGN.md
     role: contract
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: AGENTS.md
+    artifact_schema: not-applicable
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
   - select: index.html
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: 404.html
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: robots.txt
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: sitemap.xml
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: derived-material
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: feed.xml
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: derived-material
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: build-report.json
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: derived-material
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: .nojekyll
     role: site
     disposition: ship
+    owner: site
+    provenance_layer: generated-output
+    charter: DESIGN.md
+    entry_document: index.html
+    artifact_schema: scripts/public_surface_check.py
+    exposure: public-site
+    exposure_target: github-pages
+    producer_gate: scripts/check.sh
+    exposure_gate: scripts/public_surface_check.py
   - select: LICENSE
     role: support
     disposition: ship
+    owner: repository-support
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: not-applicable
+    artifact_schema: not-applicable
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
   - select: CLAUDE.md
     role: contract
     disposition: ship
-  - select: README.md
-    role: support
-    disposition: ship
-  - select: QUICKSTART.md
-    role: support
-    disposition: ship
+    owner: harness
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: CLAUDE.md
+    artifact_schema: scripts/harness_manifest.py
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
   - select: .gitignore
     role: support
     disposition: ship
+    owner: repository-support
+    provenance_layer: operating-contract
+    charter: AGENTS.md
+    entry_document: not-applicable
+    artifact_schema: not-applicable
+    exposure: repository-only
+    exposure_target: none
+    producer_gate: scripts/check.sh
+    exposure_gate: not-applicable
 
-  # The build marker the kit assembler leaves in its output. Declared because a
-  # recipient who copies the kit and runs the first documented command would
-  # otherwise be met with an undeclared-path failure on a file they never made.
-  # Delete it once this tree is yours, and delete this row with it.
-  - select: .harness-kit-sentinel
-    role: support
-    disposition: skip
-
-# ── Exclusions ────────────────────────────────────────────────────────────────
-# Untracked by design. Listed so the undeclared-path check skips them knowingly
-# rather than by accident. Each carries a stated reason: an exclusion is a
-# decision, not a gap.
+# ── 제외 항목 ────────────────────────────────────────────────────────────────
+# 설계상 untracked다. undeclared-path 검사가 우연이 아니라 의도적으로 건너뛰도록
+# 목록에 둔다. 각 항목에는 명시된 reason이 있다. exclusion은 gap이 아니라
+# decision이다.
 #
-# READ THIS BEFORE RELYING ON ONE. An exclusion decides a path only when no MORE
-# SPECIFIC declaration claims it, because both are resolved by the same
-# specificity ordering. A scattered pattern therefore loses to a broad literal
-# one: `**/__pycache__/**` is less specific than `scripts/**`, so bytecode
-# written beside a script resolves to that declaration's disposition and not to
-# the exclusion below. Measured with the loader, not assumed.
+# exclusion을 신뢰하기 전에 반드시 읽어라. exclusion과 declaration은 같은 specificity
+# 순서로 결정되므로, 더 specific한 declaration이 path를 차지하지 않을 때만 exclusion이
+# 그 path를 결정한다. 따라서 흩어진 pattern은 넓은 literal pattern에 우선권을 내준다.
+# `**/__pycache__/**`는 `scripts/**`보다 덜 specific하므로 script 옆에 기록된 bytecode는
+# 아래 exclusion이 아니라 해당 declaration의 disposition으로 결정된다. 이는 추정한
+# 것이 아니라 loader로 측정한 결과다.
 #
-# So the exclusions here record intent, and `.gitignore` is what enforces it —
-# an ignored path leaves the validator's universe altogether and is never asked
-# which declaration owns it. Keep the two lists in step.
+# 따라서 여기의 exclusion은 intent를 기록하고 `.gitignore`가 이를 강제한다. ignored
+# path는 validator의 검사 대상에서 완전히 벗어나 어떤 declaration이 소유하는지 묻지
+# 않는다. 두 목록을 항상 함께 맞춰라.
 
 exclusions:
   - select: dist/**
@@ -256,3 +552,9 @@ exclusions:
     reason: "orchestration-tool session state"
   - select: .playwright-mcp/**
     reason: "browser-session artifacts"
+
+# English brief
+# This registry is the canonical declaration of repository paths, ownership,
+# provenance, exposure, and validation gates. It rejects undeclared tracked paths,
+# applies deterministic selector specificity and overrides, and records deliberate
+# exclusions without changing any machine-facing data.

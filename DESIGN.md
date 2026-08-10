@@ -257,3 +257,7 @@ components:
 - **Step 3 (정성적 언어를 위한 사용자 인터뷰, 2라운드):** 실행 불가 — 실시간 사용자 확인이 필요하지만 이 실행에서는 대화형 확인 라운드를 열 수 없었습니다. Overview의 North Star와 색상 서술어("Brand Blue" 등)는 사용자 확정이 아니라 관찰된 이름·역할을 그대로 옮긴 잠정 표현이며, 사용자 확인 전에는 확정된 브랜드 언어로 인용되어서는 안 됩니다.
 - **Step 4b (`.impeccable/design.json` 사이드카 작성):** 건너뜀 — 이번 실행의 쓰기 범위가 스크래치패드 경로 하나로 한정되어 있고 저장소 파일을 편집하지 않기로 되어 있어, 사이드카를 실제 저장소에 쓸 수 없습니다.
 - **Step 1.7 (브라우저 자동화로 렌더링된 computed style 샘플링):** 건너뜀 — 이번 조사는 정적 파일 읽기로만 수행되었고 브라우저 자동화 도구를 쓰지 않았습니다. 다만 이 시스템의 토큰이 전량 선언적(CSS 커스텀 프로퍼티)이라 정적 분석만으로도 실제 계산값을 신뢰할 수 있는 수준으로 재구성할 수 있었습니다.
+
+## English brief
+
+This document defines the observed visual contract for the site's Atlas and Pixel themes, including typography, tokens, responsive behavior, navigation, wiki laboratories, and catalog rows. It records the component rules and known exceptions that new UI work must preserve across light and dark modes. The Korean body is canonical; identifiers, selectors, paths, and token names remain in their machine-readable form.

@@ -3,70 +3,71 @@ id: obs-NNNN-<slug>-<YYYYMMDD>
 kind: observation
 form: observation@1
 created: <YYYY-MM-DD>
-unit: <work unit this observation closes, or "ad-hoc">
+unit: <이 관찰이 마무리하는 작업 단위 또는 "ad-hoc">
 ---
 
-# Observation — <one-line subject>
+# 관찰 — <한 줄 제목>
 
-> Agent brief: A run receipt. Immutable and stateless: it records what happened,
-> what was measured, and what was decided in-flight. It is never edited to reflect
-> later events — a later observation supersedes it by being later.
+> 에이전트 요약: 실행 영수증이다. 불변이고 상태가 없다. 무엇이 일어났는지,
+> 무엇을 측정했는지, 실행 중에 무엇을 결정했는지를 기록한다. 이후 사건을 반영하도록
+> 편집하지 않는다. 후속 관찰 기록은 더 나중에 작성되었다는 사실로 앞선 기록을 대체한다.
 
-## What this unit did
+## 이 작업 단위가 수행한 일
 
-<Scope, and the commit range it produced — hashes plus subjects. Values, not
-narrative.>
+<범위와 이 작업이 만든 커밋 범위 — 해시와 제목. 서술문이 아니라 값으로 적는다.>
 
-## Files
+## 파일
 
-<Read · created · modified, as three lists. This is the section a later agent
-scans to answer "has anything touched this file before", so a path omitted here
-is a path that reads as untouched.>
+<읽음 · 생성 · 수정의 세 목록. 이후 에이전트가 "이 파일을 전에 건드린 적이 있는가"에
+답하려고 훑는 절이므로, 여기서 빠진 경로는 건드리지 않은 경로로 읽힌다.>
 
-## Quality dimensions
+## 품질 차원
 
-<Per dimension: passed, warned, or not applicable. Never one collapsed score —
-two artifacts failing for opposite reasons land on the same number, and the
-aggregate hides which dimension moved.>
+<차원별로 통과, 경고, 해당 없음 중 하나를 적는다. 하나로 뭉친 점수를 쓰지 않는다 —
+반대 이유로 실패한 두 산출물이 같은 수치가 되어 어느 차원이 변했는지 종합 점수가
+가린다.>
 
-## What was not resolved
+## 해결하지 못한 사항
 
-<Scope that was requested and not completed, claims that could not be supported,
-sources that could not be found. Distinct from the section below: this is work
-not done, that one is knowledge that would otherwise be lost.>
+<요청됐지만 완료하지 못한 범위, 뒷받침할 수 없었던 주장, 찾지 못한 출처. 아래 절과
+다르다. 여기는 하지 못한 작업이고, 아래는 그렇지 않으면 사라질 지식이다.>
 
-## Measurements
+## 측정값
 
-<Numbers a reader can re-derive: counts, check results, timings, file counts.
-State how each was obtained so it can be reproduced.>
+<독자가 다시 산출할 수 있는 수치: 개수, 검사 결과, 소요 시간, 파일 수. 재현할 수
+있도록 각 수치를 얻은 방법을 적는다.>
 
-## What could not be recovered by query
+## 조회로 복구할 수 없는 사항
 
-<This is the reason the document exists. Assignment reasoning, judgement calls,
-rejected alternatives and why, incidents and their root cause. Anything a reader
-could rebuild from version history or a runtime query does NOT belong here.>
+<이 문서가 존재하는 이유다. 배정 판단, 판단이 필요한 선택, 기각한 대안과 그 이유,
+사고와 근본 원인을 적는다. 독자가 버전 이력이나 런타임 조회로 다시 만들 수 있는 것은
+여기에 두지 않는다.>
 
-## Incidents
+## 사고
 
-<Any critical-resource conflict, procedural leak, or failed assumption. Record the
-sequence, the root cause, and the disposition — even if you repaired it yourself.
-An unreported repair destroys the signal that the next assignment needs.>
+<핵심 자원 충돌, 절차 누수 또는 실패한 가정을 적는다. 직접 복구했더라도 발생 순서,
+근본 원인과 처리 결과를 기록한다. 보고하지 않은 복구는 다음 배정에 필요한 신호를
+없앤다.>
 
-## Pointers
+## 포인터
 
-<Links to the canonical homes of anything that outlives this receipt.>
+<이 영수증보다 오래 유지되는 모든 것의 정본 위치로 가는 링크.>
 
-## Rules for this category
+## 이 범주의 규칙
 
-**Immutable once issued, and it carries no status field at all.** Statelessness is
-the definition, not a simplification: a receipt whose state can change is no longer
-a record of what happened, and you can no longer say what was true at the time.
+**발급된 뒤에는 불변이며, 어떤 상태 필드도 두지 않는다.** 무상태성은 단순화가
+아니라 정의다. 상태가 바뀔 수 있는 영수증은 더 이상 무엇이 일어났는지에 대한
+기록이 아니며, 당시 무엇이 사실이었는지도 더는 말할 수 없다.
 
-**Record what a query cannot rebuild.** Commit history, worktree state, and task
-lists are recoverable; copying them here creates a second source of truth that
-drifts from the real one and is trusted anyway.
+**조회로 다시 만들 수 없는 것을 기록한다.** 커밋 이력, 작업 트리 상태, 작업 목록은
+복구할 수 있다. 이를 이곳에 복사하면 실제 정본과 어긋나면서도 계속 신뢰받는
+두 번째 정본이 생긴다.
 
-Domain knowledge does not live here. It lives in the derived layer.
+도메인 지식은 이곳에 두지 않는다. 파생 계층에 둔다.
 
-This category gets **no hand-written index**. It is append-only, so a generated view
-answers the same questions and a manifest would only rot.
+이 범주에는 **수기로 작성한 색인을 두지 않는다.** 추가 전용이므로 생성된 뷰가
+같은 질문에 답할 수 있고, 매니페스트는 썩어 갈 뿐이다.
+
+## English brief
+
+This observation template is an immutable, stateless run receipt for facts, measurements, in-flight decisions, incidents, and reasoning that queries cannot reconstruct. It excludes recoverable runtime or version-control state, domain knowledge, mutable status, and hand-written indexes; later observations supersede earlier ones chronologically.

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    {
+      "kind": "locator-registry",
+      "path": "schema/kernel/layout.yaml",
+      "sha256": "0fd747cf4c31eaaa64047c78b6a255dd4517dfd92b8586be2276215bee5eb9c9"
+    },
+    {
+      "kind": "canonical-contract",
+      "path": "AGENTS.md",
+      "sha256": "f220ba109913c20877236f931584f934f97fd4fce745bf52ddcbc434ecf313ea"
+    },
+    {
+      "kind": "sync-skill",
+      "path": ".agents/skills/harness-sync/SKILL.md",
+      "sha256": "e351355cf3075c68cd11d892355eb2260c49e3705920a8f16324336a1d4272d9"
+    },
+    {
+      "kind": "lint-skill",
+      "path": ".agents/skills/harness-lint/SKILL.md",
+      "sha256": "1dc91aae2184102053f68b554a88c2b1ebc42eb66ba7adbf80c634a89a9b6972"
+    },
+    {
+      "kind": "project-manifest",
+      "path": "schema/project/manifest.yaml",
+      "sha256": "75a6a164e5644b35a4832a35ad63d5c6c25c3cb0c6e457aac89438f55bb35413"
+    },
+    {
+      "kind": "generator",
+      "path": "scripts/harness_manifest.py",
+      "sha256": "51c760beda829b37e3901b8251337299419c6480610bbe532178a6110a4dd247"
+    }
+  ],
+  "targets": [
+    {
+      "path": ".claude/skills/harness-lint/SKILL.md",
+      "old": "c4993c9fe4a7d810ae81f0b02ba7c7abbbe3ea464a499d1094272de31fce5913",
+      "new_sha256": "9dbc9e47766e26b3efbebc353a478a420b5f78cff05017bff5b8a2e8fdaf17e1"
+    },
+    {
+      "path": ".claude/skills/harness-sync/SKILL.md",
+      "old": "50cfeac01e425772fa05257d293189a1722b04c3361d81e633ba4849c4a0ce7c",
+      "new_sha256": "947a6d1853b404e0643310c9a97d6c151486570a09a5c6230e512b8dc9a18a0c"
+    }
+  ]
+}

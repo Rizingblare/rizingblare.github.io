@@ -556,6 +556,8 @@ class RegistrySchema:
     required_declaration_keys: tuple[str, ...] = ("select", "disposition")
     optional_declaration_keys: tuple[str, ...] = ("role", "note", "overrides")
     extra_top_level_keys: tuple[str, ...] = ()
+    required_extra_top_level_keys: tuple[str, ...] = ()
+    declaration_field_enums: tuple[tuple[str, tuple[str, ...]], ...] = ()
     require_exclusions: bool = False
     max_key_depth: int = 4
 
@@ -568,9 +570,24 @@ class RegistrySchema:
         if overlap:
             raise ValueError(f"keys are both required and optional: {sorted(overlap)}")
         reserved = {"schema_version", "declarations", "exclusions"}
-        clash = reserved & set(self.extra_top_level_keys)
+        extra = set(self.extra_top_level_keys)
+        required_extra = set(self.required_extra_top_level_keys)
+        clash = reserved & (extra | required_extra)
         if clash:
             raise ValueError(f"extra top-level keys clash with engine keys: {sorted(clash)}")
+        overlap = extra & required_extra
+        if overlap:
+            raise ValueError(f"extra top-level keys are both required and optional: {sorted(overlap)}")
+        enum_fields: set[str] = set()
+        declaration_keys = set(self.declaration_keys)
+        for field_name, allowed in self.declaration_field_enums:
+            if field_name in enum_fields:
+                raise ValueError(f"duplicate declaration enum field: {field_name!r}")
+            if field_name not in declaration_keys:
+                raise ValueError(f"declaration enum field is not in the closed declaration shape: {field_name!r}")
+            if not allowed or any(not isinstance(value, str) or not value for value in allowed):
+                raise ValueError(f"declaration enum field has invalid allowed values: {field_name!r}")
+            enum_fields.add(field_name)
 
     @property
     def declaration_keys(self) -> tuple[str, ...]:
@@ -798,7 +815,7 @@ def _validate(doc: Any, schema: RegistrySchema) -> Registry:
     if not isinstance(doc, dict):
         raise RegistryError(["registry root must be a mapping"])
 
-    top_required = ["schema_version", "declarations"]
+    top_required = ["schema_version", "declarations", *schema.required_extra_top_level_keys]
     if schema.require_exclusions:
         top_required.append("exclusions")
     top_optional = ["exclusions", *schema.extra_top_level_keys]
@@ -854,6 +871,9 @@ def _validate(doc: Any, schema: RegistrySchema) -> Registry:
             _check_enum(errors, ctx, "disposition", entry["disposition"], schema.dispositions)
         if "role" in entry:
             _check_enum(errors, ctx, "role", entry["role"], schema.roles)
+        for field_name, allowed in schema.declaration_field_enums:
+            if field_name in entry:
+                _check_enum(errors, ctx, field_name, entry[field_name], allowed)
         if selector is None:
             continue
         parent_decl = Declaration(
@@ -882,6 +902,9 @@ def _validate(doc: Any, schema: RegistrySchema) -> Registry:
                 _check_enum(errors, octx, "disposition", override["disposition"], schema.dispositions)
             if "role" in override:
                 _check_enum(errors, octx, "role", override["role"], schema.roles)
+            for field_name, allowed in schema.declaration_field_enums:
+                if field_name in override:
+                    _check_enum(errors, octx, field_name, override[field_name], allowed)
             # An override must be strictly narrower than its parent and lie
             # inside it. Both halves matter: a wider override would shadow the
             # parent everywhere, and one pointing outside would silently claim

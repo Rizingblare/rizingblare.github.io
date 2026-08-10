@@ -1,0 +1,77 @@
+schema_version: 1
+
+project:
+  id: rizingblare-github-io
+  purpose:
+    ko: "김정도의 Resume, Portfolio, Blog, Concept Wiki를 발행하는 정적 GitHub Pages 저장소다."
+    en_brief: "This repository authors and publishes Jeongdo Kim's static resume, portfolio, blog, and concept wiki. It is the source workspace for the public GitHub Pages site."
+  non_goal:
+    ko: "범용 agent harness의 배포 정본이나 재사용 site template가 아니다."
+    en_brief: "This repository is not the distribution source for the generic agent harness. It is also not a reusable site template."
+
+language:
+  user_replies: ko
+  durable_human_prose:
+    canonical_language: ko
+    coverage: existing-and-new
+    mechanical_enforcement: layout-registry
+    english_brief:
+      min_sentences: 2
+      max_sentences: 4
+  path_names: english-kebab-case
+  metadata_keys: english
+
+execution:
+  defaults:
+    supervisor_for_meaningful_units: true
+    harness_for_meaningful_units: true
+    dedicated_worktree_for_write_units: true
+  opt_out:
+    authority: explicit-user
+    scope: current-unit
+    cascade: none
+
+tools:
+  codex:
+    delegation: enabled
+    supervisor_binding: orca-stored-orchestration
+    launch_verification:
+      profile: orca-worker-completion-v1
+      identity_sources:
+        task: task_issued
+        dispatch: live
+      worker_record:
+        fields:
+          success: ok
+          task: result.dispatch.task_id
+          dispatch: result.dispatch.id
+          requested: result.worker.startOptions.launch.requested
+          effective: result.worker.startOptions.launch.effective
+        allowed_values:
+          success: true
+      completion_record:
+        fields:
+          success: ok
+          messages: result.messages
+          type: type
+          payload: payload
+          task: taskId
+          dispatch: dispatchId
+          outcome: outcome
+          files_modified: filesModified
+        allowed_values:
+          success: true
+          type: worker_done
+          outcome: succeeded
+    model_bindings:
+      rewrite:
+        model: gpt-5.6-sol
+        effort: xhigh
+      adversarial-review:
+        model: gpt-5.6-sol
+        effort: xhigh
+      routine:
+        model: gpt-5.6-terra
+        effort: high
+  claude:
+    delegation: disabled

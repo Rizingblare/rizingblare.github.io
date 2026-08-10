@@ -7,7 +7,13 @@ dist/
 node_modules/
 
 # Tool-local workspaces (agent harness, session artifacts)
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/harness-sync/
+!.claude/skills/harness-sync/SKILL.md
+!.claude/skills/harness-lint/
+!.claude/skills/harness-lint/SKILL.md
 .mcp.json
 .impeccable/
 .orca/

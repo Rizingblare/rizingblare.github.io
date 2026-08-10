@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "valid-minimal",
+      "expect": "pass"
+    },
+    {
+      "name": "manifest-registry-shape",
+      "expect": "project-manifest"
+    },
+    {
+      "name": "path-marker-safety",
+      "expect": "harness-projection"
+    },
+    {
+      "name": "bootstrap-resume",
+      "expect": "harness-projection"
+    },
+    {
+      "name": "projection-drift",
+      "expect": "harness-projection"
+    },
+    {
+      "name": "launch-identity",
+      "expect": "model-launch-verification",
+      "profile": {
+        "agent": "codex",
+        "model": "gpt-5.6-terra",
+        "effort": "high",
+        "files_modified": ["schema/kernel/layout.yaml"]
+      }
+    }
+  ]
+}
