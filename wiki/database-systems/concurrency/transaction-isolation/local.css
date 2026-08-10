@@ -8,3 +8,76 @@
   }
   .wiki-document-page .lab svg .lab-flash { animation: iso-lab-flash 1.2s ease-out; }
 }
+
+.wiki-document-page .matrix tbody th {
+  background: transparent;
+  font-size: inherit;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+.wiki-document-page .lab .lab-scroll-hint {
+  margin: 0 0 8px;
+}
+
+.wiki-document-page .article-body > section:first-child {
+  margin-top: 50px;
+}
+
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .eyebrow,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .hero-summary strong,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .section-kicker,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .tag,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .concept-ref,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .callout[data-kind="intuition"] .callout-title,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .step::before,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .problem strong,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .solution-step > span,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .source-item a,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .next-doc {
+  color: #6d3fc0;
+}
+
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .global-nav a,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .toc a,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .breadcrumbs,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .hero-subtitle,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .chip,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .section-lead,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .mini-card p,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .step p,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .solution-step p,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .source-item p,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .footer,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .site-footer {
+  color: #6f6875;
+}
+
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .toc-title,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .breadcrumbs span[aria-hidden="true"] {
+  color: #6f6875;
+}
+
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .callout[data-kind="warning"] .callout-title,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .maybe {
+  color: #a64510;
+}
+
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .callout[data-kind="practice"] .callout-title,
+html[data-theme="pixel"][data-color-mode="light"] body.wiki-document-page .yes {
+  color: #006c50;
+}
+
+html[data-theme="atlas"][data-color-mode="light"] body.wiki-document-page .toc-title {
+  color: #5f6b7d;
+}
+
+html[data-theme="atlas"][data-color-mode="light"] body.wiki-document-page .callout[data-kind="warning"] .callout-title,
+html[data-theme="atlas"][data-color-mode="light"] body.wiki-document-page .maybe {
+  color: #b5480d;
+}
+
+html[data-theme="atlas"][data-color-mode="light"] body.wiki-document-page .callout[data-kind="practice"] .callout-title,
+html[data-theme="atlas"][data-color-mode="light"] body.wiki-document-page .yes {
+  color: #007758;
+}

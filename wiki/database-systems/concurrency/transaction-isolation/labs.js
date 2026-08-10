@@ -21,6 +21,15 @@
   };
   const st=(s,l,t='read')=>({s,l,t});
   const levelLabel={ru:'Read Uncommitted',rc:'Read Committed',rr:'Repeatable Read',ser:'Serializable'};
+  const stepLabel=label=>Array.isArray(label)?label.join(' '):label;
+  const sequenceText=(t1,t2)=>[...t1.map(step=>({...step,actor:'T1'})),...t2.map(step=>({...step,actor:'T2'}))]
+    .sort((a,b)=>a.s-b.s)
+    .map((step,index)=>`${index+1}. ${step.actor} ${stepLabel(step.l)}`)
+    .join(' → ');
+  const updateDescription=(descId,readoutId,value)=>{
+    $(descId).textContent=value;
+    $(readoutId).textContent=value;
+  };
 
   function anomalyConfig(key,level){
     if(key==='dirty'){
@@ -138,7 +147,11 @@
     wrap(c.explain,60).slice(0,2).forEach((v,i)=>vg.append(el('text',{x:78,y:510+i*19,class:'plot-small'},v)));
     svg.append(vg);
     prevA=Object.assign({__init:true},next);
-    $('isolation-anomaly-readout').textContent=`${c.title} × ${levelLabel[level]} — ${c.status} · ${c.final}`;
+    updateDescription(
+      'anomalyDesc',
+      'isolation-anomaly-readout',
+      `${c.title} × ${levelLabel[level]}. 초기 상태: ${c.initial}. 순서: ${sequenceText(c.t1,c.t2)}. 원인: ${c.explain} 결과: ${c.final}. 판정: ${c.status}.`
+    );
   }
 
   let prevS={};
@@ -206,7 +219,14 @@
     if(prevS.__init&&prevS.note!==rk)rt.setAttribute('class','plot-small lab-flash');
     svg.append(rt);
     prevS=Object.assign({__init:true},next);
-    $('snapshot-readout').textContent=`초기 100 · T2가 ${nv} 커밋 · ${levelLabel[level]} · ${result}`;
+    const explain=rc
+      ? 'Read Committed는 각 SELECT가 시작할 때 새 스냅샷을 얻어 T2의 커밋을 두 번째 읽기에 반영합니다.'
+      : 'Repeatable Read는 T1의 트랜잭션 스냅샷을 유지해 T2가 커밋한 새 버전을 두 번째 읽기에서도 숨깁니다.';
+    updateDescription(
+      'snapshotDesc',
+      'snapshot-readout',
+      `${levelLabel[level]} 스냅샷 비교. 초기 상태: value = 100. 순서: ${sequenceText(t1s,t2s)}. 원인: ${explain} 결과: ${result}.`
+    );
   }
   $('isolation-anomaly')?.addEventListener('change',renderAnomaly);$('isolation-level')?.addEventListener('change',renderAnomaly);$('snapshot-level')?.addEventListener('change',renderSnapshot);$('snapshot-update')?.addEventListener('input',renderSnapshot);
   renderAnomaly();renderSnapshot();document.dispatchEvent(new CustomEvent('knowledge:lab-ready'));

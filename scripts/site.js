@@ -184,7 +184,16 @@
     const title = document.createElement('div');
     title.className = 'toc-title';
     title.textContent = '이 문서에서';
-    toc.replaceChildren(title);
+    const scrollDescription = document.createElement('span');
+    scrollDescription.id = `${article.dataset.documentId || 'document'}-toc-scroll-help`;
+    scrollDescription.className = 'visually-hidden';
+    scrollDescription.textContent = '작은 화면에서는 목차를 좌우로 밀어 모든 항목을 볼 수 있습니다.';
+    const scrollCue = document.createElement('span');
+    scrollCue.className = 'toc-scroll-cue';
+    scrollCue.setAttribute('aria-hidden', 'true');
+    scrollCue.textContent = '↔ 좌우로 이동';
+    toc.setAttribute('aria-describedby', scrollDescription.id);
+    toc.replaceChildren(title, scrollDescription, scrollCue);
     headings.forEach((heading) => {
       const section = heading.closest('section[id]');
       const link = document.createElement('a');
@@ -193,12 +202,23 @@
       toc.append(link);
     });
     const links = [...toc.querySelectorAll('a')];
+    const revealTocLink = (link) => {
+      if (window.matchMedia('(max-width: 1040px)').matches) {
+        link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    };
+    links.forEach((link) => link.addEventListener('focus', () => revealTocLink(link)));
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
-        links.forEach((link) => link.setAttribute('aria-current', String(link.hash === `#${visible.target.id}`)));
+        const current = links.find((link) => link.hash === `#${visible.target.id}`);
+        links.forEach((link) => {
+          if (link === current) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+        if (current) revealTocLink(current);
       }, { rootMargin: '-16% 0px -70% 0px', threshold: [0, 0.1, 0.5] });
       headings.forEach((heading) => observer.observe(heading.closest('section')));
     }
@@ -265,7 +285,7 @@
     }
     return out + escapeCode(source.slice(last));
   };
-  document.querySelectorAll('.code-block').forEach((block) => {
+  document.querySelectorAll('.code-block').forEach((block, index) => {
     let code = block.querySelector('code');
     if (!code) {
       code = document.createElement('code');
@@ -280,21 +300,30 @@
     button.type = 'button';
     button.textContent = '복사';
     button.style.cssText = 'position:absolute;right:10px;top:10px;padding:5px 9px;font-size:11px';
+    const status = document.createElement('span');
+    status.id = `code-copy-status-${index + 1}`;
+    status.className = 'visually-hidden';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    button.setAttribute('aria-describedby', status.id);
     block.style.position = 'relative';
     button.addEventListener('click', async () => {
+      status.textContent = '';
       try {
         await navigator.clipboard.writeText(code.textContent);
         button.textContent = '복사됨';
+        status.textContent = '코드를 클립보드에 복사했습니다.';
         window.setTimeout(() => { button.textContent = '복사'; }, 1200);
       } catch {
         button.textContent = '복사 실패';
+        status.textContent = '코드를 복사하지 못했습니다. 코드를 선택해 직접 복사해 주세요.';
       }
     });
-    block.prepend(button);
+    block.prepend(button, status);
   });
 
   const initializeScrollHints = () => {
-    document.querySelectorAll('.svg-scroll, .table-wrap').forEach((scroller) => {
+    document.querySelectorAll('.svg-scroll, .table-wrap, .code-block').forEach((scroller) => {
       if (scroller.dataset.scrollHintReady === 'true') return;
       scroller.dataset.scrollHintReady = 'true';
       const hint = document.createElement('p');
