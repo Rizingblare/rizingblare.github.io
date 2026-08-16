@@ -3,7 +3,7 @@ id: dec-0001-activate-harness-authoring-workflow-20260816
 kind: decision
 form: decision@1
 created: 2026-08-16
-status: active
+status: superseded-by dec-0002-apply-forward-harness-correction-20260816
 gated_by: eval-0001-harness-ui-closure-20260816
 targets: [path:AGENTS.md, path:CLAUDE.md, path:schema, path:scripts, path:knowledge, path:index.html, path:wiki, path:styles/wiki-document.css]
 required_checks: [harness-manifest, harness-language, event-chain, public-surface, catalog-sync, search-runtime, site-regression]
