@@ -1,12 +1,12 @@
 # 위키 문서 작성 청사진 (document-authoring blueprint)
 
-1,157개 개념 문서 프로그램에서 **작성 에이전트가 문서를 만들기 전에 읽는 규범**이다.
+1,399개 개념 문서 프로그램에서 **작성 에이전트가 문서를 만들기 전에 읽는 규범**이다.
 이 문서의 규칙은 2026-08-03 결함 분석(라이브 사이트 Playwright 검증 + codex 적대적
 리뷰)에서 실제로 깨졌던 지점들로부터 도출되었다 — 장식이 아니라 재발 방지다.
 
 ## English brief
 
-Authoring blueprint for the ~1,157-document wiki program: canonical section
+Authoring blueprint for the ~1,399-document wiki program: canonical section
 skeleton (v2), per-document co-located assets (`index.html` + `local.css` +
 `labs.js`), the SVG/theming hard rules (no `var()` in presentation attributes,
 `#map-arrow` marker id, token-only colors), catalog-first workflow, and the
